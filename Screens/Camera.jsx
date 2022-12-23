@@ -2,8 +2,7 @@ import { Camera, CameraType } from "expo-camera";
 import { useState, useEffect } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Avatar, IconButton } from "react-native-paper";
-import Color from "../Theme/Color";
-import Size from "../Theme/Size";
+import {Color,Size,Font} from '../constants/theme';
 
 const CameraComponent = ({ navigation }) => {
   const [type, setType] = useState(CameraType.front);
