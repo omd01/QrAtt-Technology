@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity,} from "react-native";
 import React, { useState, useEffect } from "react";
 import Inputs from "../components/Inputs";
 import { Avatar } from "react-native-paper";
@@ -169,7 +169,9 @@ const Signup = ({ navigation, route }) => {
     };
 
     return (
+      
       <View style={{ height: Size.Full }}>
+       
         <View
           pointerEvents={cambar ? "none" : "auto"}
           style={{
@@ -242,7 +244,7 @@ const Signup = ({ navigation, route }) => {
               />
 
                     <Inputs
-                icon={"door"}
+                icon={"book-open-blank-variant"}
                 label={"Branch"}
                 val={branch}
                 setval={setBranch}
@@ -363,6 +365,7 @@ const Signup = ({ navigation, route }) => {
           </View>
         ) : null}
       </View>
+      
     );
   };
 
