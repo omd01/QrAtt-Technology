@@ -6,10 +6,12 @@ import Color from "../Theme/Color";
 import Size from "../Theme/Size";
 import * as ImagePicker from 'expo-image-picker';
 
+
 const Signup = ({ navigation, route }) => {
   const [secondPage, setSecondPage] = useState(false);
   const [cambar, setCambar] = useState(false);
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(""); 
+
   useEffect(() => {
     if (route.params) {
       if (route.params.image) {
@@ -103,6 +105,7 @@ const Signup = ({ navigation, route }) => {
                 val={password}
                 setval={setPassword}
                 iserror={false}
+                secure={true}
               />
 
               <Inputs
@@ -111,6 +114,7 @@ const Signup = ({ navigation, route }) => {
                 val={cpassword}
                 setval={setCPassword}
                 iserror={false}
+                secure={true}
               />
             </View>
 
@@ -157,6 +161,8 @@ const Signup = ({ navigation, route }) => {
     const [name, setName] = useState("");
     const [pmobile, setPmobile] = useState("");
     const [room, setRoom] = useState("");
+    const [branch, setBranch] = useState("");
+
 
     const handelSubmit = () => {
       setSecondPage(false);
@@ -219,7 +225,6 @@ const Signup = ({ navigation, route }) => {
                 setval={setName}
                 iserror={false}
               />
-
               <Inputs
                 icon={"phone"}
                 label={"Parents Mobile"}
@@ -233,6 +238,14 @@ const Signup = ({ navigation, route }) => {
                 label={"Room No"}
                 val={room}
                 setval={setRoom}
+                iserror={false}
+              />
+
+                    <Inputs
+                icon={"door"}
+                label={"Branch"}
+                val={branch}
+                setval={setBranch}
                 iserror={false}
               />
             </View>
