@@ -1,8 +1,7 @@
 import{ useState } from 'react';
 import {StyleSheet} from "react-native"
 import { TextInput  } from 'react-native-paper';
-import Color from '../Theme/Color';
-import Size from '../Theme/Size';
+import {Color,Size} from '../constants/theme';
 
 const Inputs = ({ icon, iserror , label, val, setval,secure }) => {
 

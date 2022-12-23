@@ -2,17 +2,12 @@ import { View, Text, SafeAreaView, TouchableOpacity,ScrollView} from "react-nati
 import React, { useState, useEffect } from "react";
 import Inputs from "../components/Inputs";
 import { Avatar } from "react-native-paper";
-import Color from "../Theme/Color";
-import Size from "../Theme/Size";
+import {Color,Size,Font} from '../constants/theme';
 import * as ImagePicker from 'expo-image-picker';
 
 
 const Signup = ({ navigation, route }) => {
   const [secondPage, setSecondPage] = useState(false);
-
-
-
- 
 
   const FistPage = () => {
     const [mobile, setMobile] = useState("");
@@ -37,8 +32,8 @@ const Signup = ({ navigation, route }) => {
                 letterSpacing: 1,
                 alignSelf: "center",
                 color: Color.White,
-                fontSize: Size.Large,
-                fontWeight: "bold",
+                fontSize: Size.Large +5,
+                fontFamily:Font.bold
               }}
             >
               Create Account
@@ -48,8 +43,9 @@ const Signup = ({ navigation, route }) => {
               style={{
                 alignSelf: "center",
                 color: Color.White,
-                opacity: 0.5,
-                fontSize: Size.Midum,
+                marginVertical:1,
+                fontSize: Size.Midum -2,
+                fontFamily:Font.light
               }}
             >
               Please fill the input below here
