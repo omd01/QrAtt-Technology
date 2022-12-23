@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TouchableOpacity,} from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity,ScrollView} from "react-native";
 import React, { useState, useEffect } from "react";
 import Inputs from "../components/Inputs";
 import { Avatar } from "react-native-paper";
@@ -9,38 +9,10 @@ import * as ImagePicker from 'expo-image-picker';
 
 const Signup = ({ navigation, route }) => {
   const [secondPage, setSecondPage] = useState(false);
-  const [cambar, setCambar] = useState(false);
-  const [avatar, setAvatar] = useState(""); 
 
-  useEffect(() => {
-    if (route.params) {
-      if (route.params.image) {
-        setAvatar(route.params.image);
-        setCambar(false);
-      }
-      if(route.params.gallary){
-        handelGallary()
-      }
-    }
-  }, [route]);
 
-  const handelGallary = async ()=>{
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [1, 1],
-        quality: 1,
-      });
-  
-      if (!result.canceled) {
-        setAvatar(result.assets[0].uri);
-        setCambar(false)
-      }
-      if (result.canceled) {
-        setCambar(true)
-      }
-   
-  }
+
+ 
 
   const FistPage = () => {
     const [mobile, setMobile] = useState("");
@@ -131,7 +103,7 @@ const Signup = ({ navigation, route }) => {
               }}
             >
               <Text style={{ color: Color.Dark, fontSize: Size.Midum }}>
-                Submit
+               Next
               </Text>
             </TouchableOpacity>
           </View>
@@ -162,16 +134,49 @@ const Signup = ({ navigation, route }) => {
     const [pmobile, setPmobile] = useState("");
     const [room, setRoom] = useState("");
     const [branch, setBranch] = useState("");
-
+    const [cambar, setCambar] = useState(false);
+    const [avatar, setAvatar] = useState(""); 
+    
+    useEffect(() => {
+      if (route.params) {
+        if (route.params.image) {
+          setAvatar(route.params.image);
+          setCambar(false);
+        }
+        if(route.params.gallary){
+          handelGallary()
+        }
+      }
+    }, [route]);
+  
 
     const handelSubmit = () => {
       setSecondPage(false);
     };
 
+    const handelGallary = async ()=>{
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+  
+      if (!result.canceled) {
+        setAvatar(result.assets[0].uri);
+        setCambar(false)
+      }
+      if (result.canceled) {
+        setCambar(true)
+      }
+   
+  }
+
     return (
-      
-      <View style={{ height: Size.Full }}>
-       
+      <>
+      <View style={{ height: Size.Full,justifyContent:'center' }}>
+        <View>
+       <ScrollView >
         <View
           pointerEvents={cambar ? "none" : "auto"}
           style={{
@@ -274,7 +279,8 @@ const Signup = ({ navigation, route }) => {
           <TouchableOpacity
             style={{
               flexDirection: "row",
-              marginBottom: 20,
+              marginBottom:20,
+              marginTop:40,
               alignSelf: "center",
             }}
             onPress={() => navigation.navigate("login")}
@@ -287,7 +293,9 @@ const Signup = ({ navigation, route }) => {
             </Text>
           </TouchableOpacity>
         </View>
-
+        </ScrollView>
+      
+        </View>
         {cambar ? (
           <View
             style={{
@@ -364,17 +372,16 @@ const Signup = ({ navigation, route }) => {
             </View>
           </View>
         ) : null}
-      </View>
-      
+     </View>
+      </>
     );
   };
 
   return (
-    <View
-      style={{
+    <View style={{
         backgroundColor: Color.Primary,
-      }}
-    >
+      }}>
+
       <SafeAreaView>
         {secondPage === true ? <SecondPage /> : <FistPage />}
       </SafeAreaView>
