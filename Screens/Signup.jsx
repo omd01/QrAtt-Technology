@@ -20,6 +20,17 @@ const Signup = ({ navigation, route }) => {
     const [password, setPassword] = useState("");
     const [cpassword, setCPassword] = useState("");
 
+    
+    useEffect(() => {
+      if (route.params) {
+        if (route.params.firstPage) {
+         setSecondPage(false)
+         console.log("hii");
+         
+        }
+      }
+    }, [route]);
+
     const setActivation = () => {
       setSecondPage(true);
     };
@@ -84,7 +95,7 @@ const Signup = ({ navigation, route }) => {
               />
 
               <Inputs
-                icon={"lock"}
+                icon={"lock-check"}
                 label={"Confirm Password"}
                 val={cpassword}
                 setval={setCPassword}
@@ -159,6 +170,7 @@ const Signup = ({ navigation, route }) => {
         if (route.params.gallary) {
           handelGallary();
         }
+        
       }
     }, [route]);
 
