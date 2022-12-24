@@ -17,7 +17,9 @@ const newstyle = StyleSheet.create({
 
   
   return (<>
-    {secure ? <TextInput
+    {secure ?
+    
+     <TextInput
       label={label}
       mode="outlined"
       value={val}
@@ -49,9 +51,9 @@ const newstyle = StyleSheet.create({
           size={20}
           color={(isTextInputFocused = true) => '#cccccc'}
         />
-      }
-    
-    /> : <TextInput
+      }/> 
+
+      : <TextInput
       label={label}
       mode="outlined"
       value={val}

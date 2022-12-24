@@ -1,10 +1,15 @@
-import { View, Text, SafeAreaView, TouchableOpacity,ScrollView} from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import Inputs from "../components/Inputs";
 import { Avatar } from "react-native-paper";
-import {Color,Size,Font} from '../constants/theme';
-import * as ImagePicker from 'expo-image-picker';
-
+import { Color, Size, Font } from "../constants/theme";
+import * as ImagePicker from "expo-image-picker";
 
 const Signup = ({ navigation, route }) => {
   const [secondPage, setSecondPage] = useState(false);
@@ -32,8 +37,8 @@ const Signup = ({ navigation, route }) => {
                 letterSpacing: 1,
                 alignSelf: "center",
                 color: Color.White,
-                fontSize: Size.Large +5,
-                fontFamily:Font.bold
+                fontSize: Size.Large + 5,
+                fontFamily: Font.bold,
               }}
             >
               Create Account
@@ -43,9 +48,9 @@ const Signup = ({ navigation, route }) => {
               style={{
                 alignSelf: "center",
                 color: Color.White,
-                marginVertical:1,
-                fontSize: Size.Midum -2,
-                fontFamily:Font.light
+                marginVertical: 1,
+                fontSize: Size.Midum - 2,
+                fontFamily: Font.light,
               }}
             >
               Please fill the input below here
@@ -98,8 +103,12 @@ const Signup = ({ navigation, route }) => {
                 marginHorizontal: 10,
               }}
             >
-              <Text style={{ color: Color.Dark, fontSize: Size.Midum }}>
-               Next
+              <Text style={{
+                 color: Color.Dark,
+                  fontSize: Size.Midum ,
+                  fontFamily: Font.semiBold
+                  }}>
+                Next
               </Text>
             </TouchableOpacity>
           </View>
@@ -113,10 +122,24 @@ const Signup = ({ navigation, route }) => {
               alignSelf: "center",
             }}
           >
-            <Text style={{ color: Color.White, fontSize: 12, opacity: 0.6 }}>
+            <Text
+              style={{
+                color: Color.White,
+                fontSize: 12,
+                opacity: 0.6,
+                fontFamily: Font.semiBold,
+              }}
+            >
               Already have a account ‎
             </Text>
-            <Text style={{ color: "#34E585", fontSize: 12, opacity: 0.6 }}>
+            <Text
+              style={{
+                color: Color.Btn,
+                fontSize: 12,
+                opacity: 0.6,
+                fontFamily: Font.semiBold,
+              }}
+            >
               sign in
             </Text>
           </TouchableOpacity>
@@ -131,253 +154,271 @@ const Signup = ({ navigation, route }) => {
     const [room, setRoom] = useState("");
     const [branch, setBranch] = useState("");
     const [cambar, setCambar] = useState(false);
-    const [avatar, setAvatar] = useState(""); 
-    
+    const [avatar, setAvatar] = useState("");
+
     useEffect(() => {
       if (route.params) {
         if (route.params.image) {
           setAvatar(route.params.image);
           setCambar(false);
         }
-        if(route.params.gallary){
-          handelGallary()
+        if (route.params.gallary) {
+          handelGallary();
         }
       }
     }, [route]);
-  
 
     const handelSubmit = () => {
       setSecondPage(false);
     };
 
-    const handelGallary = async ()=>{
+    const handelGallary = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
         aspect: [1, 1],
         quality: 1,
       });
-  
+
       if (!result.canceled) {
         setAvatar(result.assets[0].uri);
-        setCambar(false)
+        setCambar(false);
       }
       if (result.canceled) {
-        setCambar(true)
+        setCambar(true);
       }
-   
-  }
+    };
 
     return (
       <>
-      <View style={{ height: Size.Full,justifyContent:'center' }}>
-        <View>
-       <ScrollView >
-        <View
-          pointerEvents={cambar ? "none" : "auto"}
-          style={{
-            flex: 1,
-            paddingHorizontal: Size.Midum,
-            justifyContent: "center",
-          }}
-        >
-          <View style={{ justifyContent: "center", alignContent: "center" }}>
-            <TouchableOpacity
-              onPress={() => setCambar(true)}
-              style={{
-                marginBottom: Size.Small,
-                height: 100,
-                width: 100,
-                alignSelf: "center",
-              }}
-            >
-              {avatar ? (
-                <Avatar.Image source={{ uri: avatar }} size={100} />
-              ) : (
-                <Avatar.Icon
-                  size={130}
-                  icon={"camera-iris"}
-                  style={{
-                    height: 100,
-                    width: 100,
-                    backgroundColor: Color.Secondary,
-                    borderRadius: 50,
-                    borderWidth: Size.Small,
-                    borderColor: "#54417C",
-                  }}
-                />
-              )}
-            </TouchableOpacity>
+        <View style={{ height: Size.Full, justifyContent: "center" }}>
+          <View>
+            <ScrollView>
+              <View
+                pointerEvents={cambar ? "none" : "auto"}
+                style={{
+                  flex: 1,
+                  paddingHorizontal: Size.Midum,
+                  justifyContent: "center",
+                }}
+              >
+                <View
+                  style={{ justifyContent: "center", alignContent: "center" }}
+                >
+                  <TouchableOpacity
+                    onPress={() => setCambar(true)}
+                    style={{
+                      marginBottom: Size.Small,
+                      height: 100,
+                      width: 100,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {avatar ? (
+                      <Avatar.Image source={{ uri: avatar }} size={100} />
+                    ) : (
+                      <Avatar.Icon
+                        size={130}
+                        icon={"camera-iris"}
+                        style={{
+                          height: 100,
+                          width: 100,
+                          backgroundColor: Color.Secondary,
+                          borderRadius: 50,
+                          borderWidth: Size.Small,
+                          borderColor: "#54417C",
+                        }}
+                      />
+                    )}
+                  </TouchableOpacity>
 
-            <Text
-              style={{
-                alignSelf: "center",
-                color: Color.White,
-                opacity: 0.5,
-                fontSize: Size.Midum,
-              }}
-            >
-              Update Profile Photo
-            </Text>
+                  <Text
+                    style={{
+                      alignSelf: "center",
+                      color: Color.White,
+                      opacity: 0.5,
+                      fontSize: Size.Midum,
+                    }}
+                  >
+                    Update Profile Photo
+                  </Text>
 
-            <View style={{ marginTop: 5, marginBottom: 20 }}>
-              <Inputs
-                icon={"account"}
-                label={"Full Name"}
-                val={name}
-                setval={setName}
-                iserror={false}
-              />
-              <Inputs
-                icon={"phone"}
-                label={"Parents Mobile"}
-                val={pmobile}
-                setval={setPmobile}
-                iserror={false}
-              />
-
-              <Inputs
-                icon={"door"}
-                label={"Room No"}
-                val={room}
-                setval={setRoom}
-                iserror={false}
-              />
+                  <View style={{ marginTop: 5, marginBottom: 20 }}>
+                    <Inputs
+                      icon={"account"}
+                      label={"Full Name"}
+                      val={name}
+                      setval={setName}
+                      iserror={false}
+                    />
+                    <Inputs
+                      icon={"phone"}
+                      label={"Parents Mobile"}
+                      val={pmobile}
+                      setval={setPmobile}
+                      iserror={false}
+                    />
 
                     <Inputs
-                icon={"book-open-blank-variant"}
-                label={"Branch"}
-                val={branch}
-                setval={setBranch}
-                iserror={false}
-              />
-            </View>
+                      icon={"door"}
+                      label={"Room No"}
+                      val={room}
+                      setval={setRoom}
+                      iserror={false}
+                    />
 
-            <TouchableOpacity
-              onPress={handelSubmit}
-              style={{
-                backgroundColor: Color.Btn,
-                borderRadius: 20,
-                opacity: 0.9,
-                alignItems: "center",
-                padding: Size.Midum,
-                marginHorizontal: 10,
-              }}
-            >
-              <Text style={{ color: Color.Dark, fontSize: Size.Midum }}>
-                Submit
-              </Text>
-            </TouchableOpacity>
+                    <Inputs
+                      icon={"book-open-blank-variant"}
+                      label={"Branch"}
+                      val={branch}
+                      setval={setBranch}
+                      iserror={false}
+                    />
+                  </View>
+
+                  <TouchableOpacity
+                    onPress={handelSubmit}
+                    style={{
+                      backgroundColor: Color.Btn,
+                      borderRadius: 20,
+                      opacity: 0.9,
+                      alignItems: "center",
+                      padding: Size.Midum,
+                      marginHorizontal: 10,
+                    }}
+                  >
+                    <Text style={{ 
+                      color: Color.Dark, 
+                      fontSize: Size.Midum,
+                      fontFamily: Font.semiBold,
+                       }}>
+                      Submit
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <View>
+                <TouchableOpacity
+                  style={{
+                    flexDirection: "row",
+                    marginBottom: 20,
+                    marginTop: 40,
+                    alignSelf: "center",
+                  }}
+                  onPress={() => navigation.navigate("login")}
+                >
+                  <Text
+                    style={{ color: Color.White,
+                       fontSize: 12,
+                        opacity: 0.6 
+                      ,   fontFamily: Font.semiBold,}}
+                  >
+                    Already have a account ‎
+                  </Text>
+                  <Text
+                    style={{ color: Color.Btn,
+                     fontSize: 12,
+                      opacity: 0.6,
+                      fontFamily: Font.semiBold, }}
+                  >
+                    sign in
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
           </View>
-        </View>
-
-        <View>
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              marginBottom:20,
-              marginTop:40,
-              alignSelf: "center",
-            }}
-            onPress={() => navigation.navigate("login")}
-          >
-            <Text style={{ color: Color.White, fontSize: 12, opacity: 0.6 }}>
-              Already have a account ‎
-            </Text>
-            <Text style={{ color: "#34E585", fontSize: 12, opacity: 0.6 }}>
-              sign in
-            </Text>
-          </TouchableOpacity>
-        </View>
-        </ScrollView>
-      
-        </View>
-        {cambar ? (
-          <View
-            style={{
-              backgroundColor: Color.Opacity,
-              flex: 1,
-              height: Size.Full,
-              width: Size.Full,
-              position: "absolute",
-            }}
-          >
+          {cambar ? (
             <View
               style={{
-                alignSelf: "flex-end",
+                backgroundColor: Color.Opacity,
+                flex: 1,
+                height: Size.Full,
                 width: Size.Full,
-                height: 220,
-                padding: Size.Small,
-                justifyContent: "space-evenly",
-                top: 640,
-                borderTopEndRadius: 40,
-                borderTopStartRadius: 40,
+                position: "absolute",
               }}
             >
-              <TouchableOpacity
-                activeOpacity={1}
-                onPress={handelGallary}
+              <View
                 style={{
-                  marginTop: 20,
-                  margin: 5,
-                  borderRadius: Size.Small,
-                  backgroundColor: Color.Secondary,
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
+                  alignSelf: "flex-end",
+                  width: Size.Full,
+                  height: 220,
+                  padding: Size.Small,
+                  justifyContent: "space-evenly",
+                  top: 640,
+                  borderTopEndRadius: 40,
+                  borderTopStartRadius: 40,
                 }}
               >
-                <Text style={{ color: Color.White, fontSize: Size.Midum }}>
-                  Gallary
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={handelGallary}
+                  style={{
+                    marginTop: 20,
+                    margin: 5,
+                    borderRadius: Size.Small,
+                    backgroundColor: Color.Secondary,
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: Color.White,
+                     fontSize: Size.Midum ,
+                     fontFamily:Font.medium
+                     }}>
+                    Gallary
+                  </Text>
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                activeOpacity={1}
-                onPress={() => navigation.navigate("camera")}
-                style={{
-                  margin: 5,
-                  borderRadius: Size.Small,
-                  backgroundColor: Color.Secondary,
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ color: Color.White, fontSize: Size.Midum }}>
-                  Camera
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => navigation.navigate("camera")}
+                  style={{
+                    margin: 5,
+                    borderRadius: Size.Small,
+                    backgroundColor: Color.Secondary,
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: Color.White,
+                    fontFamily:Font.medium, fontSize: Size.Midum }}>
+                    Camera
+                  </Text>
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => setCambar(false)}
-                activeOpacity={1}
-                style={{
-                  margin: 5,
-                  borderRadius: Size.Small,
-                  backgroundColor: Color.Secondary,
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ color: "red", fontSize: Size.Midum }}>
-                  Cancel
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => setCambar(false)}
+                  activeOpacity={1}
+                  style={{
+                    margin: 5,
+                    borderRadius: Size.Small,
+                    backgroundColor: Color.Secondary,
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "red",fontFamily:Font.medium, fontSize: Size.Midum }}>
+                    Cancel
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        ) : null}
-     </View>
+          ) : null}
+        </View>
       </>
     );
   };
 
   return (
-    <View style={{
+    <View
+      style={{
         backgroundColor: Color.Primary,
-      }}>
-
+      }}
+    >
       <SafeAreaView>
         {secondPage === true ? <SecondPage /> : <FistPage />}
       </SafeAreaView>
