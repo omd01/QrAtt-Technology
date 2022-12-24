@@ -6,3 +6,4 @@
 # 0.1.6 implement Fonts --
 
 # 0.2.1 Added Paper theme / implemnt Login Page
+# 0.2.1 Bux fix and Seprete Signup Pages

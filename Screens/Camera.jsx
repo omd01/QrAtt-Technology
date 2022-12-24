@@ -78,7 +78,7 @@ const CameraComponent = ({ navigation }) => {
   }
   const clickPicture = async () => {
     const data = await camera.takePictureAsync();
-    navigation.navigate("signup", { image: data.uri });
+    navigation.navigate("signupSecond", { image: data.uri });
   };
 
   return (
@@ -125,7 +125,7 @@ const CameraComponent = ({ navigation }) => {
           icon="folder-multiple-image"
           iconColor={Color.White}
           size={25}
-          onPress={() => navigation.navigate("signup", { gallary: true })}
+          onPress={() => navigation.navigate("signupSecond", { gallary: true })}
         />
         <IconButton
           icon="camera"

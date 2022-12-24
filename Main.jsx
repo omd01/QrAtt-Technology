@@ -28,6 +28,7 @@ const Main = () => {
     <Stack.Screen name='home' component={Screens.Home} />
     <Stack.Screen name='login' component={Screens.Login}/>
     <Stack.Screen name='signup' component={Screens.Signup}/>
+    <Stack.Screen name='signupSecond' component={Screens.SignupSecond}/>
     <Stack.Screen name='leav' component={Screens.Leav}/>
     <Stack.Screen name='history' component={Screens.History}/>
     <Stack.Screen name='profile' component={Screens.Profile}/>

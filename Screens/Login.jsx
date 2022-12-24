@@ -85,7 +85,7 @@ const Login = ({navigation}) => {
           </Button>
         </View>
         <TouchableOpacity
-        onPress={() => navigation.navigate('signup',{firstPage:true})}
+        onPress={() => navigation.navigate('signup')}
             style={{
               flexDirection: "row",
               alignSelf: "center",
