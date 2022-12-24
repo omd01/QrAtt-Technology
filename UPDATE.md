@@ -4,3 +4,5 @@
 # 0.1.4 Bug fix and add ScrollView
 # 0.1.5 Added Splash Screen , Added Font, Removed Theme Folder
 # 0.1.6 implement Fonts --
+
+# 0.2.1 Added Paper theme

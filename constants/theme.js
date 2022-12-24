@@ -9,6 +9,8 @@ const Full = "100%"
 const Small = 10
 const Midum = 15
 const Large = 30
+const ExtraLarge = 50
+
 
 export const Color = {
     Primary,
@@ -23,7 +25,8 @@ export const Size = {
     Full,
     Small,
     Midum,
-    Large
+    Large,
+    ExtraLarge
 }
 
 export const Font ={

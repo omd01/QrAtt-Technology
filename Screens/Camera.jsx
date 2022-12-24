@@ -1,8 +1,8 @@
 import { Camera, CameraType } from "expo-camera";
 import { useState, useEffect } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import { IconButton } from "react-native-paper";
-import {Color,Size,Font} from '../constants/theme';
+import { Text, View } from "react-native";
+import { IconButton, Button } from "react-native-paper";
+import { Color, Size, Font } from "../constants/theme";
 
 const CameraComponent = ({ navigation }) => {
   const [type, setType] = useState(CameraType.front);
@@ -30,28 +30,43 @@ const CameraComponent = ({ navigation }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: Color.White, fontSize: 25, marginVertical: 10 }}>
-          Opps...
-        </Text>
-        <Text style={{ color: Color.White, fontSize: 15 }}>
-          We need your permission to show the camera
-        </Text>
-        <TouchableOpacity
-          onPress={requestPermission}
+        <Text
           style={{
-            backgroundColor: Color.Btn,
-            borderRadius: 50,
-            opacity: 0.7,
-            alignItems: "center",
-            padding: 15,
-            marginHorizontal: 110,
-            marginVertical: 20,
+            color: Color.White,
+            fontSize: Size.Large,
+            marginVertical: Size.Small,
+            fontFamily: Font.bold,
           }}
         >
-          <Text style={{ color: Color.Dark, fontSize: 15 }}>
-            grant permission
-          </Text>
-        </TouchableOpacity>
+          Opps...
+        </Text>
+        <Text
+          style={{
+            color: Color.White,
+            fontSize: Size.Midum,
+            fontFamily: Font.regular,
+          }}
+        >
+          We need your permission to show the camera
+        </Text>
+
+        <Button
+          mode="contained"
+          onPress={requestPermission}
+          textColor={Color.Dark}
+          buttonColor={Color.Btn}
+          contentStyle={{ height: Size.ExtraLarge }}
+          labelStyle={{
+            fontSize: Size.Midum,
+            fontFamily: Font.semiBold,
+          }}
+          style={{
+            opacity: 0.9,
+            marginVertical: Size.Small,
+          }}
+        >
+          Grant Permission
+        </Button>
       </View>
     );
   }
@@ -99,7 +114,7 @@ const CameraComponent = ({ navigation }) => {
       <View
         style={{
           flexDirection: "row",
-          justifyContent:'space-evenly',
+          justifyContent: "space-evenly",
           alignItems: "center",
           backgroundColor: Color.Secondary,
           borderRadius: 20,
@@ -110,7 +125,7 @@ const CameraComponent = ({ navigation }) => {
           icon="folder-multiple-image"
           iconColor={Color.White}
           size={25}
-          onPress={() => navigation.navigate('signup',{gallary:true})}
+          onPress={() => navigation.navigate("signup", { gallary: true })}
         />
         <IconButton
           icon="camera"
