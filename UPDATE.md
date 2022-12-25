@@ -8,3 +8,4 @@
 # 0.2.1 Added Paper theme / implemnt Login Page
 # 0.2.2 Bux fix and Seprete Signup Pages , added paper-Btn instade of TouchableOpacity
 # 0.2.3 Crate Home Page and Bottom Navigation
+# 0.2.4 Home Screen Implenentation

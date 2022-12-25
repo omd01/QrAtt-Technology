@@ -5,6 +5,7 @@ import Leav from "./Leav";
 import Profile from "./Profile";
 import History from "./History";
 import Footer from "../components/Footer";
+import Scanner from "./Scanner";
 
 const Home = ({ navigation }) => {
   const [screen, setScreen] = useState("home");
@@ -23,11 +24,7 @@ const Home = ({ navigation }) => {
           <History />
         ) : screen === "profile" ? (
           <Profile />
-        ) : (
-          <View style={{backgroundColor:"#fff"}}>
-            <Text>hii</Text>
-          </View>
-        )}
+        ) : <Scanner/>}
       </View>
       <Footer screen={screen} setScreen={setScreen} />
     </View>

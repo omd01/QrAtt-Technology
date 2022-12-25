@@ -15,34 +15,26 @@ return(
   <IconButton
     icon={screen === "home" ? "home" : "home-outline"}
     iconColor={screen === "home" ? Color.Btn : Color.White}
-    size={35}
-    onPress={() => {
-      setScreen("home");
-    }}
+    size={30}
+    onPress={() => setScreen("home")}
   />
   <IconButton
     icon={screen === "leav" ? "send" : "send-outline"}
     iconColor={screen === "leav" ? Color.Btn : Color.White}
     size={30}
-    onPress={() => {
-      setScreen("leav");
-    }}
+    onPress={() => setScreen("leav")}
   />
   <IconButton
     icon={screen === "history" ? "history" : "history"}
     iconColor={screen === "history" ? Color.Btn : Color.White}
     size={30}
-    onPress={() => {
-      setScreen("history");
-    }}
+    onPress={() =>setScreen("history")}
   />
   <IconButton
     icon={screen === "profile" ? "account-eye" : "account-eye-outline"}
     iconColor={screen === "profile" ? Color.Btn : Color.White}
     size={30}
-    onPress={() => {
-      setScreen("profile");
-    }}
+    onPress={() =>setScreen("profile")}
   />
 </View>
 )
