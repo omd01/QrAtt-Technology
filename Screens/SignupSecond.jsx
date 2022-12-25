@@ -55,6 +55,7 @@ const SignupSecond = ({ navigation, route }) => {
         backgroundColor: Color.Primary,
       }}
     >
+      
       <View
         pointerEvents={cambar ? "none" : "auto"}
         style={{

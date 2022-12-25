@@ -1,14 +1,21 @@
-import { View, Text,SafeAreaView,Platform,StatusBar } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import { Color, Size, Font } from "../constants/theme";
+import Footer from "../components/Footer";
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   return (
-    <View style={{backgroundColor:"#fff",flex:1,paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}>
-      <SafeAreaView>
-      <Text onPress={ () => navigation.navigate("login")}>Home</Text>
-      </SafeAreaView>
+    <View
+      style={{
+        height: Size.Full,
+        backgroundColor: Color.Primary,
+      }}
+    >
+    <View style={{ flex: 1 }}>
+      <Text>Home</Text>
+      </View><Footer navigation={navigation}screens={'home'}/>
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

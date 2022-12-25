@@ -106,6 +106,7 @@ const CameraComponent = ({ navigation }) => {
         <Camera
           style={{ height: Size.Full, aspectRatio: 1 }}
           type={type}
+          
           ratio="1:1"
           ref={(e) => setCamera(e)}
         />

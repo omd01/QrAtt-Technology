@@ -8,7 +8,7 @@ const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handelSubmit = () =>{
-
+   navigation.navigate('home')
   }
   return (
     <View style={{ height: Size.Full, backgroundColor: Color.Secondary }}>
