@@ -5,15 +5,9 @@ import Footer from "../components/Footer";
 
 const History = ({ navigation }) => {
   return (
-    <View
-      style={{
-        height: Size.Full,
-        backgroundColor: Color.Primary,
-      }}
-    >
-    <View style={{ flex: 1 }}>
+    <View>
+  
       <Text>History</Text>
-      </View><Footer navigation={navigation}screens={'history'}/>
     </View>
   );
 }

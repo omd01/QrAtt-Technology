@@ -1,9 +1,14 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
+import Leav from "./Leav";
+import Profile from "./Profile";
+import History from "./History";
 import Footer from "../components/Footer";
 
 const Home = ({ navigation }) => {
+  const [screen, setScreen] = useState("home");
+
   return (
     <View
       style={{
@@ -11,9 +16,20 @@ const Home = ({ navigation }) => {
         backgroundColor: Color.Primary,
       }}
     >
-    <View style={{ flex: 1 }}>
-      <Text>Home</Text>
-      </View><Footer navigation={navigation}screens={'home'}/>
+      <View style={{ flex: 1,justifyContent:'center'}}>
+        {screen === "leav" ? (
+          <Leav />
+        ) : screen === "history" ? (
+          <History />
+        ) : screen === "profile" ? (
+          <Profile />
+        ) : (
+          <View style={{backgroundColor:"#fff"}}>
+            <Text>hii</Text>
+          </View>
+        )}
+      </View>
+      <Footer screen={screen} setScreen={setScreen} />
     </View>
   );
 };
