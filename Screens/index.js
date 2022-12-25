@@ -9,13 +9,13 @@ import Splash from './Splash';
 import SignupSecond from "./SignupSecond"
 
 export const Screens = {
-     Home ,
- Login ,
- Signup,
- SignupSecond,
- Leav,
- History ,
- Profile,
- Camera ,
- Splash 
+    Home,
+    Login,
+    Signup,
+    SignupSecond,
+    Leav,
+    History,
+    Profile,
+    Camera,
+    Splash
 }
