@@ -9,3 +9,4 @@
 # 0.2.2 Bux fix and Seprete Signup Pages , added paper-Btn instade of TouchableOpacity
 # 0.2.3 Crate Home Page and Bottom Navigation
 # 0.2.4 Home Screen Implenentation / added Qr System
+# 0.2.4 Implementing Leave Screen
