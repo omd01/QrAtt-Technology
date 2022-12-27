@@ -1,8 +1,8 @@
 import { View, Text,TouchableOpacity } from "react-native";
 import React ,{useState}from "react";
 import { Color, Size, Font } from "../constants/theme";
-import Inputs from "../components/Inputs";
 import { Button } from "react-native-paper";
+import { Input, InputSecure } from "../components/InputFields";
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
@@ -56,20 +56,20 @@ const Login = ({navigation}) => {
           }}
         >
         <View style={{height:Size.Full}}>
-        <Inputs
+        <Input
             icon={"email"}
             label={"Email"}
             val={email}
             setval={setEmail}
             iserror={false}
           />
-          <Inputs
+          <InputSecure
             icon={"lock"}
             label={"Password"}
             val={password}
             setval={setPassword}
             iserror={false}
-            secure={true}
+           
           />
           <Button
             mode="contained"

@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 import * as ImagePicker from "expo-image-picker";
-import Inputs from "../components/Inputs";
 import { SelectList } from 'react-native-dropdown-select-list'
+import { Input } from "../components/InputFields";
 
 const SignupSecond = ({ navigation, route }) => {
   const [name, setName] = useState("");
@@ -114,14 +114,14 @@ const SignupSecond = ({ navigation, route }) => {
         </Text>
 
         <View style={{ marginTop: 5, marginBottom: 20 }}>
-          <Inputs
+          <Input
             icon={"account"}
             label={"Full Name"}
             val={name}
             setval={setName}
             iserror={false}
           />
-          <Inputs
+          <Input
             icon={"phone"}
             label={"Parents Mobile"}
             val={pmobile}
@@ -129,7 +129,7 @@ const SignupSecond = ({ navigation, route }) => {
             iserror={false}
           />
 
-          <Inputs
+          <Input
             icon={"door"}
             label={"Room No"}
             val={room}
@@ -137,13 +137,7 @@ const SignupSecond = ({ navigation, route }) => {
             iserror={false}
           />
 
-          {/* <Inputs
-            icon={"book-open-blank-variant"}
-            label={"Branch"}
-            val={branch}
-            setval={setBranch}
-            iserror={false}
-          /> */}
+          
           <SelectList 
         setSelected={(val) => setBranch(val)} 
         data={data} 
