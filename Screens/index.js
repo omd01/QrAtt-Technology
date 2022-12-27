@@ -1,7 +1,7 @@
 import Home from "./Home"
 import Login from "./Login"
 import Signup from './Signup';
-import Leav from './Leav';
+import Leave from './Leave';
 import History from "./History"
 import Profile from "./Profile"
 import Camera from './Camera'
@@ -13,7 +13,7 @@ export const Screens = {
     Login,
     Signup,
     SignupSecond,
-    Leav,
+    Leave,
     History,
     Profile,
     Camera,

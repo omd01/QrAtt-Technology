@@ -1,16 +1,16 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { Color, Size, Font } from "../constants/theme";
-const Leav = ({navigation}) => {
+const Leave = ({navigation}) => {
 
   return (
     <View>
       
-    <Text>Leav</Text>
+    <Text>Leave</Text>
 
        
     </View>
   );
 };
 
-export default Leav
+export default Leave

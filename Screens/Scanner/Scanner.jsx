@@ -24,9 +24,12 @@ const Scanner = ({ navigation, selfi }) => {
  
    if(verifyImg){
      setScreen("FinalScreen");
-     console.log(qrData);
-     console.log(action);
-     console.log(verifyImg);
+     
+if (action && qrData && verifyImg) {
+  console.log(qrData);
+  console.log(action);
+  console.log(verifyImg);
+}
      if (qrData === null) {
       setScreen("BeforeScan");
      }

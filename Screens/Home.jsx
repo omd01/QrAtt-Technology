@@ -1,11 +1,11 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
-import Leav from "./Leav";
-import Profile from "./Profile";
+ import Profile from "./Profile";
 import History from "./History";
 import Footer from "../components/Footer";
 import Scanner from "./Scanner/Scanner";
+import Leave from "./Leave";
 
 const Home = ({navigation,route} ) => {
   const [screen, setScreen] = useState("home");
@@ -28,8 +28,8 @@ useEffect(() => {
       }}
     >
       <View style={{ flex: 1}}>
-        {screen === "leav" ? (
-          <Leav />
+        {screen === "leave" ? (
+          <Leave/>
         ) : screen === "history" ? (
           <History />
         ) : screen === "profile" ? (

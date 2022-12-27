@@ -19,10 +19,10 @@ return(
     onPress={() => setScreen("home")}
   />
   <IconButton
-    icon={screen === "leav" ? "send" : "send-outline"}
-    iconColor={screen === "leav" ? Color.Btn : Color.White}
+    icon={screen === "leave" ? "send" : "send-outline"}
+    iconColor={screen === "leave" ? Color.Btn : Color.White}
     size={30}
-    onPress={() => setScreen("leav")}
+    onPress={() => setScreen("leave")}
   />
   <IconButton
     icon={screen === "history" ? "history" : "history"}
