@@ -22,7 +22,8 @@ const Main = () => {
     const options ={headerShown:false}
   
   return (<>
-    <StatusBar backgroundColor={Color.Secondary} style={{flex: 1,paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}/>
+    <StatusBar backgroundColor={Color.Primary} style={{flex: 1,paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}/>
+
     <NavigationContainer >
     <Stack.Navigator initialRouteName='home' screenOptions={options}>
     <Stack.Screen name='home' component={Screens.Home} />

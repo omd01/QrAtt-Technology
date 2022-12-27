@@ -1,14 +1,24 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import Leav from "./Leav";
 import Profile from "./Profile";
 import History from "./History";
 import Footer from "../components/Footer";
-import Scanner from "./Scanner";
+import Scanner from "./Scanner/Scanner";
 
-const Home = ({ navigation }) => {
+const Home = ({navigation,route} ) => {
   const [screen, setScreen] = useState("home");
+  const [selfi, setSelfi] = useState(null);
+ 
+
+useEffect(() => {
+ if (route.params) {
+  setSelfi(route.params.image)
+ 
+ }
+  
+}, [ route])
 
   return (
     <View
@@ -17,16 +27,16 @@ const Home = ({ navigation }) => {
         backgroundColor: Color.Primary,
       }}
     >
-      <View style={{ flex: 1,justifyContent:'center'}}>
+      <View style={{ flex: 1}}>
         {screen === "leav" ? (
           <Leav />
         ) : screen === "history" ? (
           <History />
         ) : screen === "profile" ? (
           <Profile />
-        ) : <Scanner/>}
+        ) : <Scanner navigation={navigation} selfi={selfi}/>}
       </View>
-      <Footer screen={screen} setScreen={setScreen} />
+      <Footer screen={screen} setScreen={setScreen}/>
     </View>
   );
 };

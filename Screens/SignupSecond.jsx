@@ -5,6 +5,7 @@ import { Avatar, Button } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import Inputs from "../components/Inputs";
+import { SelectList } from 'react-native-dropdown-select-list'
 
 const SignupSecond = ({ navigation, route }) => {
   const [name, setName] = useState("");
@@ -13,6 +14,17 @@ const SignupSecond = ({ navigation, route }) => {
   const [branch, setBranch] = useState("");
   const [cambar, setCambar] = useState(false);
   const [avatar, setAvatar] = useState("");
+  const data = [
+    {key:'1',value:'Information Technology'},
+    {key:'2',value:'Computer'},
+    {key:'3',value:'Electronics'},
+    {key:'5',value:'Machinical'},
+    {key:'6',value:'Machinical'},
+    {key:'7',value:'Machinical'},
+    {key:'8',value:'Machinical'},
+    {key:'9',value:'Machinical'},
+    {key:'10',value:'Machinical'},
+  ];
 
   useEffect(() => {
     if (route.params) {
@@ -126,13 +138,30 @@ const SignupSecond = ({ navigation, route }) => {
             iserror={false}
           />
 
-          <Inputs
+          {/* <Inputs
             icon={"book-open-blank-variant"}
             label={"Branch"}
             val={branch}
             setval={setBranch}
             iserror={false}
-          />
+          /> */}
+          <SelectList 
+        setSelected={(val) => setBranch(val)} 
+        data={data} 
+        save="value"
+        boxStyles={{height:Size.ExtraLarge + 5,alignItems:'center',borderColor:Color.Secondary,backgroundColor:Color.Secondary}}
+        
+        inputStyles={{color:"#fff"}}
+        placeholder={'Branch'}
+        // dropdownStyles={{color:'#fff'}}
+        dropdownItemStyles={{backgroundColor:Color.Secondary,marginVertical:1,height:40}}
+        searchPlaceholder={'Sea'}
+        
+         dropdownTextStyles={{color:Color.White}}
+       
+      
+       
+    />
         </View>
         <Button
           mode="contained"

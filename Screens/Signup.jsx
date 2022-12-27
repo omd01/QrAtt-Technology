@@ -112,6 +112,7 @@ const Signup = ({ navigation}) => {
 
         <View>
           <TouchableOpacity
+          onPress={()=>navigation.navigate('login')}
             style={{
               flexDirection: "row",
               marginBottom: 20,

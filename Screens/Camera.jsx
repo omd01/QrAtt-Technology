@@ -3,24 +3,34 @@ import { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import { IconButton, Button } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
+import { manipulateAsync, FlipType } from 'expo-image-manipulator';
 
-const CameraComponent = ({ navigation }) => {
+const CameraComponent = ({ navigation ,route }) => {
   const [type, setType] = useState(CameraType.front);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [camera, setCamera] = useState(null);
+  const [fromScan, setFromScan] = useState(false)
+const [flash,setFlash]= useState(false)
+  useEffect(() => {
+    if (route.params) {
+      if (route.params.fromScan) {
+        setFromScan(route.params.fromScan)
+      }
+     
+    }
+  }, [route]);
+
 
   useEffect(() => {
     requestPermission();
   }, []);
 
   if (!permission) {
-    // Camera permissions are still loading
+   
     return <View />;
   }
 
   if (!permission.granted) {
-    // Camera permissions are not granted yet
-
     return (
       <View
         style={{
@@ -76,9 +86,17 @@ const CameraComponent = ({ navigation }) => {
       current === CameraType.back ? CameraType.front : CameraType.back
     );
   }
+
   const clickPicture = async () => {
     const data = await camera.takePictureAsync();
-    navigation.navigate("signupSecond", { image: data.uri });
+    const manipResult = await manipulateAsync(
+      data.localUri || data.uri,
+      [{ flip: FlipType.Horizontal }],
+      
+    );
+   if(manipResult){
+    {fromScan? navigation.navigate("home", { image: manipResult.uri }) : navigation.navigate("signupSecond", { image: manipResult.uri })}
+   }  
   };
 
   return (
@@ -90,14 +108,16 @@ const CameraComponent = ({ navigation }) => {
         alignItems: "center",
       }}
     >
+      <Text style={{color:Color.White,fontSize:Size.Large-10,fontFamily:Font.semiBold}}>Verify its you !</Text>
       <View
         style={{
           height: "60%",
           width: "90%",
           backgroundColor: Color.Secondary,
-          borderWidth: 5,
-          borderColor: Color.Secondary,
-          marginVertical: 20,
+          borderWidth: 3,
+          borderColor: Color.White,
+          marginVertical: 40,
+          marginTop:30,
           justifyContent: "center",
           alignItems: "center",
           overflow: "hidden",
@@ -106,14 +126,16 @@ const CameraComponent = ({ navigation }) => {
         <Camera
           style={{ height: Size.Full, aspectRatio: 1 }}
           type={type}
-          
           ratio="1:1"
+          flashMode={flash?"torch":"off"}
           ref={(e) => setCamera(e)}
         />
       </View>
 
       <View
         style={{
+          borderWidth: 1,
+          borderColor: Color.White,
           flexDirection: "row",
           justifyContent: "space-evenly",
           alignItems: "center",
@@ -122,12 +144,20 @@ const CameraComponent = ({ navigation }) => {
           width: "90%",
         }}
       >
+        {fromScan?
         <IconButton
+          icon="flashlight"
+          iconColor={Color.White}
+          size={25}
+          onPress={()=>setFlash((previousState) => !previousState)}
+        />
+        : <IconButton
           icon="folder-multiple-image"
           iconColor={Color.White}
           size={25}
           onPress={() => navigation.navigate("signupSecond", { gallary: true })}
-        />
+        />}
+       
         <IconButton
           icon="camera"
           iconColor={Color.White}
