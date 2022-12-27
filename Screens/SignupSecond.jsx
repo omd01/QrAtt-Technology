@@ -19,11 +19,10 @@ const SignupSecond = ({ navigation, route }) => {
     {key:'2',value:'Computer'},
     {key:'3',value:'Electronics'},
     {key:'5',value:'Machinical'},
-    {key:'6',value:'Machinical'},
-    {key:'7',value:'Machinical'},
-    {key:'8',value:'Machinical'},
-    {key:'9',value:'Machinical'},
-    {key:'10',value:'Machinical'},
+    {key:'6',value:'Civil'},
+    {key:'7',value:'Electrical'},
+    {key:'8',value:'Ai'},
+    
   ];
 
   useEffect(() => {
@@ -154,8 +153,9 @@ const SignupSecond = ({ navigation, route }) => {
         inputStyles={{color:"#fff"}}
         placeholder={'Branch'}
         // dropdownStyles={{color:'#fff'}}
-        dropdownItemStyles={{backgroundColor:Color.Secondary,marginVertical:1,height:40}}
-        searchPlaceholder={'Sea'}
+        fontFamily={Font.semiBold}
+        dropdownItemStyles={{backgroundColor:Color.Secondary,marginVertical:1,height:45,justifyContent:'center'}}
+        searchPlaceholder={'Search Branch'}
         
          dropdownTextStyles={{color:Color.White}}
        
