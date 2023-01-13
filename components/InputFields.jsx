@@ -1,13 +1,7 @@
 import { useState } from "react";
-import { View, TouchableOpacity, FlatList, } from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import {  TouchableOpacity,  } from "react-native";
 import {  TextInput } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
-import { ButtonD } from "./Buttons";
 
 export const Input = ({ icon, iserror, label, val, setval, cstyle }) => {
   const [backColor, setBackColor] = useState(Color.Primary);

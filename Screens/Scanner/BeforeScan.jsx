@@ -80,6 +80,7 @@ const BeforeScan = ({screen,setScreen,setQrData}) => {
                 marginBottom: 170,
                 justifyContent: "center",
                 alignItems: "center",
+                
                 padding: 1,
               }}
             >
@@ -100,7 +101,7 @@ const BeforeScan = ({screen,setScreen,setQrData}) => {
                   color: Color.White,
                 }}
               >
-                Scan the qr code present on the gate and make
+                Scan the qr code present on the gate
               </Text>
               <Text
                 style={{
@@ -109,7 +110,7 @@ const BeforeScan = ({screen,setScreen,setQrData}) => {
                   color: Color.White,
                 }}
               >
-                your attendence
+                 and make your attendence
               </Text>
             </View>
           </View>

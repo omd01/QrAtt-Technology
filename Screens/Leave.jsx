@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar } from "react-native-paper";
 import {  InputArea, InputButton } from "../components/InputFields";
-import {Dropdown} from "../components/Dropdown";
+import {DropdownImg} from "../components/Dropdown";
 import { ButtonD } from "../components/Buttons";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Teachers from "../Dumy/Teachers.json"
 
 const Leave = () => {
   const [teacher, setTeacher] = useState(undefined);
@@ -86,15 +87,15 @@ const Leave = () => {
 
 
 
-  const data = [
-    { key: "1", value: "J.B.Nemane" },
-    { key: "2", value: "Bodhle" },
-    { key: "3", value: "Yekhe " },
-    { key: "5", value: "Dhole" },
-    { key: "6", value: "Bedre" },
-    { key: "7", value: "Electrical" },
-    { key: "8", value: "Ai" },
-  ];
+  // const data = [
+  //   { key: "1", value: "J.B.Nemane"  },
+  //   { key: "2", value: "Bodhle" },
+  //   { key: "3", value: "Yekhe " },
+  //   { key: "5", value: "Dhole" },
+  //   { key: "6", value: "Bedre" },
+  //   { key: "7", value: "Electrical" },
+  //   { key: "8", value: "Ai" },
+  // ];
 
   const handelSubmit = () => {
     console.log(teacher);
@@ -136,8 +137,8 @@ const Leave = () => {
         >
           {`To Teacher`}
         </Text>
-        <Dropdown
-          data={data}
+        <DropdownImg
+          data={Teachers}
           micon={"human-male-board"}
           label={"Teacher's List"}
           value={"Teacher's"}

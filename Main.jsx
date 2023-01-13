@@ -31,6 +31,7 @@ const Main = () => {
     <Stack.Screen name='signup' component={Screens.Signup}/>
     <Stack.Screen name='camera' component={Screens.Camera}/>
     <Stack.Screen name='splash' component={Screens.Splash}/>
+    <Stack.Screen name='profiles' component={Screens.Profiles}/>
 
 
     </Stack.Navigator>
