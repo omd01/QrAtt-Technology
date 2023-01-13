@@ -10,3 +10,4 @@
 # 0.2.3 Crate Home Page and Bottom Navigation
 # 0.2.4 Home Screen Implenentation / added Qr System
 # 0.2.5 Implementing Leave Screen
+# 0.2.6 Implementing Teacher Profile Screen 
