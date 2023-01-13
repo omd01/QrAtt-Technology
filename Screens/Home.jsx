@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Keyboard } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
  import Profile from "./Profile";
@@ -10,7 +10,21 @@ import Leave from "./Leave";
 const Home = ({navigation,route} ) => {
   const [screen, setScreen] = useState("home");
   const [selfi, setSelfi] = useState(null);
- 
+  const [keyboardStatus, setKeyboardStatus] = useState("KeyboardHidden");
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardStatus("KeyboardShown");
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardStatus("KeyboardHidden");
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
 
 useEffect(() => {
  if (route.params) {
@@ -36,7 +50,8 @@ useEffect(() => {
           <Profile />
         ) : <Scanner navigation={navigation} selfi={selfi}/>}
       </View>
-      <Footer screen={screen} setScreen={setScreen}/>
+      {keyboardStatus==="KeyboardHidden"? <Footer screen={screen} setScreen={setScreen}/> : null}
+     
     </View>
   );
 };

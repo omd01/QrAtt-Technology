@@ -1,15 +1,12 @@
-import { View, Text } from "react-native";
-import React from "react";
-import { Color, Size, Font } from "../constants/theme";
-import Footer from "../components/Footer";
+import { View, Text } from 'react-native'
+import React from 'react'
 
-const History = ({ navigation }) => {
+const History = () => {
   return (
     <View>
-  
       <Text>History</Text>
     </View>
-  );
+  )
 }
 
 export default History

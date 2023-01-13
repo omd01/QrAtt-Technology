@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image ,Vibration } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { BarCodeScanner } from "expo-barcode-scanner";
 import assets from "../../constants/assets";
@@ -8,8 +8,9 @@ import { Color, Font, Size } from '../../constants/theme';
 const BeforeScan = ({screen,setScreen,setQrData}) => {
     const [hasPermission, setHasPermission] = useState(null);
     const handleBarCodeScanned = ({ data }) => {
+      Vibration.vibrate(200);
         setScreen("AfterScan");
-        // console.log(data);
+       console.log(data);
         setQrData(data)
       };
 

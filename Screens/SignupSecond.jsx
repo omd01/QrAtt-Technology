@@ -1,28 +1,28 @@
 import { View, Text, TouchableOpacity } from "react-native";
 
 import React, { useState, useEffect } from "react";
-import { Avatar, Button } from "react-native-paper";
+import { Avatar } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 import * as ImagePicker from "expo-image-picker";
-import { SelectList } from 'react-native-dropdown-select-list'
+import {Dropdown} from "../components/Dropdown"
 import { Input } from "../components/InputFields";
+import { ButtonD } from "../components/Buttons";
 
 const SignupSecond = ({ navigation, route }) => {
   const [name, setName] = useState("");
   const [pmobile, setPmobile] = useState("");
   const [room, setRoom] = useState("");
-  const [branch, setBranch] = useState("");
   const [cambar, setCambar] = useState(false);
   const [avatar, setAvatar] = useState("");
+  const [branch, setBranch] = useState("");
   const data = [
-    {key:'1',value:'Information Technology'},
-    {key:'2',value:'Computer'},
-    {key:'3',value:'Electronics'},
-    {key:'5',value:'Machinical'},
-    {key:'6',value:'Civil'},
-    {key:'7',value:'Electrical'},
-    {key:'8',value:'Ai'},
-    
+    { key: "1", value: "Information Technology" },
+    { key: "2", value: "Computer" },
+    { key: "3", value: "Electronics" },
+    { key: "5", value: "Machinical" },
+    { key: "6", value: "Civil" },
+    { key: "7", value: "Electrical" },
+    { key: "8", value: "Ai" },
   ];
 
   useEffect(() => {
@@ -66,7 +66,6 @@ const SignupSecond = ({ navigation, route }) => {
         backgroundColor: Color.Primary,
       }}
     >
-      
       <View
         pointerEvents={cambar ? "none" : "auto"}
         style={{
@@ -138,40 +137,10 @@ const SignupSecond = ({ navigation, route }) => {
           />
 
           
-          <SelectList 
-        setSelected={(val) => setBranch(val)} 
-        data={data} 
-        save="value"
-        boxStyles={{height:Size.ExtraLarge + 5,alignItems:'center',borderColor:Color.Secondary,backgroundColor:Color.Secondary}}
-        
-        inputStyles={{color:"#fff"}}
-        placeholder={'Branch'}
-        // dropdownStyles={{color:'#fff'}}
-        fontFamily={Font.semiBold}
-        dropdownItemStyles={{backgroundColor:Color.Secondary,marginVertical:1,height:45,justifyContent:'center'}}
-        searchPlaceholder={'Search Branch'}
-        
-         dropdownTextStyles={{color:Color.White}}
-       
-      
-       
-    />
+          <Dropdown data={data} setSelected={setBranch}  label={"Branch"} micon={"application-edit"}/>
         </View>
-        <Button
-          mode="contained"
-          onPress={handelSubmit}
-          textColor={Color.Dark}
-          buttonColor={Color.Btn}
-          contentStyle={{ height: Size.ExtraLarge }}
-          labelStyle={{
-            fontSize: Size.Midum,
-            fontFamily: Font.semiBold,
-          }}
-          style={{ opacity: 0.9, marginHorizontal: 10 }}
-          // disabled={!email || !mobile || !password || !cpassword}
-        >
-          Submit
-        </Button>
+
+        <ButtonD value={"Submit"} onPress={handelSubmit} disabled={false} />
       </View>
       {cambar ? (
         <View
@@ -207,49 +176,28 @@ const SignupSecond = ({ navigation, route }) => {
               Choose Profile From
             </Text>
 
-            <Button
-              mode="contained"
+            <ButtonD
+              value={"Gallary"}
               onPress={handelGallary}
+              bgColor={Color.Secondary}
               textColor={Color.White}
-              buttonColor={Color.Secondary}
-              contentStyle={{ height: Size.ExtraLarge }}
-              labelStyle={{
-                fontSize: Size.Midum,
-                fontFamily: Font.semiBold,
-              }}
               style={{ marginHorizontal: 10, marginVertical: 5, marginTop: 20 }}
-            >
-              Gallary
-            </Button>
-
-            <Button
-              mode="contained"
+            />
+            <ButtonD
+              value={"Camera"}
               onPress={() => navigation.navigate("camera")}
+              bgColor={Color.Secondary}
               textColor={Color.White}
-              buttonColor={Color.Secondary}
-              contentStyle={{ height: Size.ExtraLarge }}
-              labelStyle={{
-                fontSize: Size.Midum,
-                fontFamily: Font.semiBold,
-              }}
-              style={{ marginHorizontal: 10, marginVertical: 5 }}
-            >
-              Camera
-            </Button>
-            <Button
-              mode="contained"
+              style={{ marginHorizontal: 10, marginVertical: 5,}}
+            />
+
+            <ButtonD
+              value={"Cancel"}
               onPress={() => setCambar(false)}
+              bgColor={Color.Secondary}
               textColor={"red"}
-              buttonColor={Color.Secondary}
-              contentStyle={{ height: Size.ExtraLarge }}
-              labelStyle={{
-                fontSize: Size.Midum,
-                fontFamily: Font.semiBold,
-              }}
-              style={{ marginHorizontal: 10, marginVertical: 5 }}
-            >
-              Cancel
-            </Button>
+              style={{ marginHorizontal: 10, marginVertical: 5, }}
+            />
           </View>
         </View>
       ) : null}

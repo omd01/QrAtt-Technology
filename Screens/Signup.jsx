@@ -1,9 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
-
 import React, { useState } from "react";
-import { Button } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
+import { ButtonD } from "../components/Buttons";
 
 const Signup = ({ navigation }) => {
   const [mobile, setMobile] = useState("");
@@ -87,19 +86,7 @@ const Signup = ({ navigation }) => {
               iserror={false}
             />
           </View>
-
-          <Button
-            mode="contained"
-            onPress={setActivation}
-            textColor={Color.Dark}
-            buttonColor={Color.Btn}
-            contentStyle={{ height: Size.ExtraLarge }}
-            labelStyle={{ fontSize: Size.Midum, fontFamily: Font.semiBold }}
-            style={{ opacity: 0.9, marginHorizontal: 10 }}
-            // disabled={!email || !mobile || !password || !cpassword}
-          >
-            Next
-          </Button>
+          <ButtonD value={"Next"} onPress={setActivation} disabled={false} />
         </View>
       </View>
 
@@ -120,7 +107,7 @@ const Signup = ({ navigation }) => {
               fontFamily: Font.semiBold,
             }}
           >
-            Already have a account ‎
+            {`Already have a account `}
           </Text>
           <Text
             style={{

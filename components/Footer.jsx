@@ -2,7 +2,7 @@ import { View } from 'react-native'
 import React from 'react'
 import { Color, Size, Font } from "../constants/theme";
 import { IconButton } from "react-native-paper";
-const Footer = ({screen,setScreen}) => {
+const Footer = ({screen,setScreen}) => {  
 return(
   <View
   style={{
