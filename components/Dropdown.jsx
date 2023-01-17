@@ -165,46 +165,7 @@ export const DropdownImg = ({
         onPress={() => navigation.navigate('profiles', { data: item })}
       />
     </View>
-    //   <ButtonD
-
-    //     value={item.value}
-        // onPress={() => {
-        //   setValue(item.value);
-        //   setSelected(item.value)
-        //   animation.value = { height: 0 };
-        //   setIcon("chevron-down");
-        // }}
-
-    //     bgColor={Color.Secondary}
-    //     textColor={Color.White}
-    //     contentStyle={{ alignSelf: "flex-start" }}
-    //     style={{ marginVertical: 1, height: 45, borderRadius: 0  }}
-    //     labelStyle={{ fontSize: Size.Midum - 1 }}
-    //   />
-
-    //   <Button
-    //   icon={({ size, color }) => (
-    //     <Image
-    //       source={{ uri: 'https://res.cloudinary.com/dqbwa8i3y/image/upload/v1667825520/QrAtt/Admin/eiqcevloi4aktr2pprpo.png'}}
-    //       style={{ width: 25, height: 25, marginHorizontal:2}}
-    //     />
-    //     )}
-    //   mode="contained"
-    //   onPress={() => {
-    //           setValue(item.value);
-    //           setSelected(item.value)
-    //           animation.value = { height: 0 };
-    //           setIcon("chevron-down");
-    //         }}
-    //   textColor={Color.White}
-    //   buttonColor={Color.Secondary}
-    //   contentStyle={{ height: Size.ExtraLarge , alignSelf: "flex-start" }}
-    //   labelStyle={{  fontFamily: Font.semiBold ,fontSize: Size.Midum - 1}}
-    //   style={{ opacity: 0.9 , marginVertical: 1, height: 45, borderRadius: 0 ,justifyContent:'center' }}
-
-    // >
-    //   {item.value}
-    // </Button>
+   
   );
 
   const style = {
