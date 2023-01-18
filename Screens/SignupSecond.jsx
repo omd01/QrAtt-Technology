@@ -9,12 +9,12 @@ import { Input } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
 
 const SignupSecond = ({ navigation, route }) => {
-  const [name, setName] = useState("");
-  const [pmobile, setPmobile] = useState("");
-  const [room, setRoom] = useState("");
+  const [name, setName] = useState(null);
+  const [pmobile, setPmobile] = useState(null);
+  const [room, setRoom] = useState(null);
   const [cambar, setCambar] = useState(false);
-  const [avatar, setAvatar] = useState("");
-  const [branch, setBranch] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [branch, setBranch] = useState(null);
   const data = [
     { key: "1", value: "Information Technology" },
     { key: "2", value: "Computer" },

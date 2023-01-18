@@ -2,7 +2,7 @@ import { View, Text, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar } from "react-native-paper";
-import {  InputArea, InputButton } from "../components/InputFields";
+import {  InputArea } from "../components/InputFields";
 import {DropdownImg} from "../components/Dropdown";
 import { ButtonD } from "../components/Buttons";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -10,7 +10,7 @@ import Teachers from "../Dumy/Teachers.json"
 
 const Leave = () => {
   const [teacher, setTeacher] = useState(undefined);
-  const [reason, setReason] = useState(undefined);
+  const [reason, setReason] = useState(null);
   
   const [nowdate, setNowDate] = useState(new Date());
 
@@ -105,7 +105,8 @@ const Leave = () => {
   };
 
   return (
-    <View style={{ height: Size.Full, paddingHorizontal: Size.Small }}>
+    <ScrollView style={{ height: Size.Full, paddingHorizontal: Size.Small }}>
+
       <View
         style={{
           flexDirection: "row",
@@ -142,6 +143,7 @@ const Leave = () => {
           micon={"human-male-board"}
           label={"Teacher's List"}
           value={"Teacher's"}
+          onIconPress={{}}
           setSelected={setTeacher}
           cstyle={{ marginVertical: Size.Small - 8 }}
         />
@@ -160,7 +162,7 @@ const Leave = () => {
         <ButtonD
           value={formatedFromDate ? formatedFromDate : "Start Date"}
           onPress={() => setshowFromDate(true)}
-          bgColor={Color.Secondary}
+          bgColor={from === null ?Color.Primary : Color.Secondary}
           contentStyle={{ alignSelf: "flex-start" }}
           textColor={Color.White}
           labelStyle={{ fontSize: 15 }}
@@ -169,6 +171,9 @@ const Leave = () => {
             borderRadius: 13,
             height: Size.ExtraLarge + 5,
             justifyContent: "center",
+            borderWidth:1,
+            borderColor:Color.Secondary,
+            
           }}
         />
 
@@ -195,7 +200,7 @@ const Leave = () => {
         <ButtonD
           value={formatedToDate ? formatedToDate : "End Date"}
           onPress={() => setshowToDate(true)}
-          bgColor={Color.Secondary}
+          bgColor={to === null ? Color.Primary : Color.Secondary}
           contentStyle={{ alignSelf: "flex-start" }}
           textColor={Color.White}
           labelStyle={{ fontSize: 15 }}
@@ -204,6 +209,8 @@ const Leave = () => {
             borderRadius: 13,
             height: Size.ExtraLarge + 5,
             justifyContent: "center",
+            borderWidth:1,
+            borderColor:Color.Secondary,
           }}
         />
 
@@ -228,9 +235,10 @@ const Leave = () => {
           {`Valid Reason`}
         </Text>
         <InputArea
-          val={"Write a valid reason for leave request"}
+          val={reason}
           setVal={setReason}
           Lines={10}
+         placeholder={"Write a valid reason for leave request"}
         />
       </View>
 
@@ -241,7 +249,8 @@ const Leave = () => {
           disabled={false}
         />
       </View>
-    </View>
+  
+    </ScrollView>
   );
 };
 

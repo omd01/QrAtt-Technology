@@ -41,7 +41,7 @@ useEffect(() => {
         backgroundColor: Color.Primary,
       }}
     >
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1,zIndex:10}}>
         {screen === "leave" ? (
           <Leave/>
         ) : screen === "history" ? (

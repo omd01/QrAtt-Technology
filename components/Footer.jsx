@@ -7,6 +7,7 @@ return(
   <View
   style={{
     backgroundColor: Color.Secondary,
+    zIndex:10,
     height: "7%",
     flexDirection: "row",
     justifyContent: "space-around",

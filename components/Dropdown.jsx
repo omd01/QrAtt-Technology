@@ -1,21 +1,33 @@
 import { useState } from "react";
-import { View, TouchableOpacity, FlatList, Image, Text  } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  Text,
+  ScrollView,
+  Linking,
+} from "react-native";
 import Animated, {
-  log,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import { Button, IconButton, TextInput } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 import { ButtonD } from "./Buttons";
 import { Avatar } from "react-native-paper";
 
-export const Dropdown = ({ data, setSelected, label, micon, cstyle }) => {
+export const Dropdown = ({
+  data,
+  setSelected,
+  label,
+  micon,
+  cstyle,
+  iserror,
+}) => {
   const [value, setValue] = useState(null);
   const animation = useSharedValue({ height: 0, borderWidth: 0 });
-  const [backColor, setBackColor] = useState(Color.Primary);
   const [icon, setIcon] = useState("chevron-down");
 
   const renderItem = ({ item }) => (
@@ -36,7 +48,7 @@ export const Dropdown = ({ data, setSelected, label, micon, cstyle }) => {
   );
 
   const style = {
-    backgroundColor: backColor,
+    backgroundColor: value === null ? Color.Primary : Color.Secondary,
     height: Size.ExtraLarge + 5,
     marginVertical: Size.Small,
     ...cstyle,
@@ -52,7 +64,6 @@ export const Dropdown = ({ data, setSelected, label, micon, cstyle }) => {
   const onPress = () => {
     animation.value = { height: 200, borderWidth: 0.5 };
     setIcon("close");
-    setBackColor(Color.Secondary);
   };
   return (
     <View>
@@ -62,11 +73,10 @@ export const Dropdown = ({ data, setSelected, label, micon, cstyle }) => {
           label={label}
           mode="outlined"
           value={value}
-          // error={iserror}
+          error={iserror}
           style={style}
           editable={false}
           textColor={Color.White}
-          onFocus={() => setBackColor(Color.Secondary)}
           outlineStyle={{
             borderColor: Color.Secondary,
             borderRadius: 13,
@@ -81,7 +91,12 @@ export const Dropdown = ({ data, setSelected, label, micon, cstyle }) => {
           }
           right={
             <TextInput.Icon
-              onPress={() => (animation.value = { height: 0 })}
+              onPress={() =>
+                icon === "chevron-down"
+                  ? ((animation.value = { height: 200, borderWidth: 0.5 }),
+                    setIcon("close"))
+                  : ((animation.value = { height: 0 }), setIcon("chevron-down"))
+              }
               style={{ paddingTop: Size.Small }}
               icon={icon}
               size={20}
@@ -112,68 +127,12 @@ export const Dropdown = ({ data, setSelected, label, micon, cstyle }) => {
   );
 };
 
-export const DropdownImg = ({
-  data,
-  setSelected,
-  label,
-  micon,
-  cstyle,
-}) => {
-  const navigation = useNavigation()
+export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyle }) => {
+  const navigation = useNavigation();
   const [value, setValue] = useState(null);
   const animation = useSharedValue({ height: 0, borderWidth: 0 });
-  const [backColor, setBackColor] = useState(Color.Primary);
   const [icon, setIcon] = useState("chevron-down");
-
-  const renderItem = ({ item }) => (
-    <View
-      style={{
-        height: 50,
-        backgroundColor: Color.Secondary,
-        marginVertical: 1,
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexDirection: "row",
-      }}
-    >
-      <Avatar.Image
-        size={40}
-        source={{ uri: item.avatar.url }}
-        style={{ marginHorizontal: 10 }}
-      />
-      <TouchableOpacity
-       onPress={() => {
-        setValue(item.name);
-        setSelected(item.name)
-        animation.value = { height: 0 };
-        setIcon("chevron-down");
-      }}
-        style={{
-          flex: 1,
-          height: "100%",
-          justifyContent: "center",
-        }}
-      >
-        <Text style={{ fontFamily: Font.light, fontSize: Size.Midum ,color:Color.White }}>
-          {item.name}
-        </Text>
-      </TouchableOpacity>
-      <IconButton
-        icon="eye"
-        iconColor={Color.White}
-        size={23}
-        onPress={() => navigation.navigate('profiles', { data: item })}
-      />
-    </View>
-   
-  );
-
-  const style = {
-    backgroundColor: backColor,
-    height: Size.ExtraLarge + 5,
-    marginVertical: Size.Small,
-    ...cstyle,
-  };
+  const [newlabel, setNewLabel] = useState(label);
 
   const animationStyle = useAnimatedStyle(() => {
     return {
@@ -185,21 +144,25 @@ export const DropdownImg = ({
   const onPress = () => {
     animation.value = { height: 200, borderWidth: 0.5 };
     setIcon("close");
-    setBackColor(Color.Secondary);
   };
+
   return (
     <View>
       <TouchableOpacity onPress={onPress} activeOpacity={1}>
         <TextInput
           onPressIn={onPress}
-          label={label}
+          label={newlabel}
           mode="outlined"
           value={value}
           // error={iserror}
-          style={style}
+          style={{
+            backgroundColor: value === null ? Color.Primary : Color.Secondary,
+            height: Size.ExtraLarge + 5,
+            marginVertical: Size.Small,
+            ...cstyle,
+          }}
           editable={false}
           textColor={Color.White}
-          onFocus={() => setBackColor(Color.Secondary)}
           outlineStyle={{
             borderColor: Color.Secondary,
             borderRadius: 13,
@@ -214,7 +177,11 @@ export const DropdownImg = ({
           }
           right={
             <TextInput.Icon
-              onPress={() => (animation.value = { height: 0 })}
+              onPress={() =>
+                icon === "chevron-down"
+                  ? ((animation.value = { height: 200 ,borderWidth:0.5}), setIcon("close"))
+                  : ((animation.value = { height: 0 }), setIcon("chevron-down"))
+              }
               style={{ paddingTop: Size.Small }}
               icon={icon}
               size={20}
@@ -234,12 +201,61 @@ export const DropdownImg = ({
           animationStyle,
         ]}
       >
-        <FlatList
-          style={{ marginVertical: 5 }}
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-        />
+        <ScrollView nestedScrollEnabled={true} >
+          {data.map((item) => {
+            return (
+              <View
+              key={item._id}
+                style={{
+                  height: 50,
+                  backgroundColor: Color.Secondary,
+                  marginVertical: 1,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  flexDirection: "row",
+                }}
+              >
+                <Avatar.Image
+                  size={40}
+                  source={{ uri: item.avatar.url }}
+                  style={{ marginHorizontal: 10 }}
+                />
+                <TouchableOpacity
+                  onPress={() => {
+                    setValue(item.name);
+                    setSelected(item.name);
+                    animation.value = { height: 0 };
+                    setIcon("chevron-down");
+                    setNewLabel(null);
+                  }}
+                  style={{
+                    flex: 1,
+                    height: "100%",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontFamily: Font.light,
+                      fontSize: Size.Midum,
+                      color: Color.White,
+                    }}
+                  >
+                    {item.name}
+                  </Text>
+                </TouchableOpacity>
+                <IconButton
+                  icon="phone"
+                  iconColor={Color.White}
+                  size={23}
+                  onPress={()=>{
+                    Linking.openURL(`tel:${item.mobile}`)
+                  }}
+                />
+              </View>
+            );
+          })}
+        </ScrollView>
       </Animated.View>
     </View>
   );

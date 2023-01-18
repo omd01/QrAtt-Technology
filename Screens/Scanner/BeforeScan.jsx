@@ -77,10 +77,9 @@ const BeforeScan = ({screen,setScreen,setQrData}) => {
                 backgroundColor: Color.Secondary,
                 position: "absolute",
                 bottom: 0,
-                marginBottom: 170,
+                marginBottom: 150,
                 justifyContent: "center",
                 alignItems: "center",
-                
                 padding: 1,
               }}
             >

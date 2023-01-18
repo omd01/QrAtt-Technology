@@ -25,14 +25,13 @@ const Main = () => {
     <StatusBar backgroundColor={Color.Primary} style={{flex: 1,paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}/>
 
     <NavigationContainer >
-    <Stack.Navigator initialRouteName='splash' screenOptions={options}>
+    <Stack.Navigator initialRouteName='home' screenOptions={options}>
     <Stack.Screen name='home' component={Screens.Home} />
     <Stack.Screen name='login' component={Screens.Login}/>
     <Stack.Screen name='signup' component={Screens.Signup}/>
     <Stack.Screen name='signupSecond' component={Screens.SignupSecond}/>
     <Stack.Screen name='camera' component={Screens.Camera}/>
     <Stack.Screen name='splash' component={Screens.Splash}/>
-    <Stack.Screen name='profiles' component={Screens.Profiles}/>
 
 
     </Stack.Navigator>

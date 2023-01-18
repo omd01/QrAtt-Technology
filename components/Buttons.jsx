@@ -10,7 +10,7 @@ export const ButtonD = ({ value, onPress, disabled ,style,bgColor ,textColor,con
       buttonColor={bgColor || Color.Btn }
       contentStyle={{ height: Size.ExtraLarge ,...contentStyle,}}
       labelStyle={{ fontSize: Size.Midum, fontFamily: Font.semiBold ,...labelStyle}}
-      style={{ opacity: 0.9 ,...style ,}}
+      style={{ opacity: 0.9 ,...style}}
       disabled={disabled}
     >
       {value}

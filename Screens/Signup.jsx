@@ -1,20 +1,36 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { View, Text, TouchableOpacity ,Keyboard} from "react-native";
+import React, { useState,useEffect } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
 
 const Signup = ({ navigation }) => {
-  const [mobile, setMobile] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cpassword, setCPassword] = useState("");
+  const [mobile, setMobile] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [cpassword, setCPassword] = useState(null);
   const data = {
     mobile,
     email,
     password,
     cpassword,
   };
+  const [keyboardStatus, setKeyboardStatus] = useState("KeyboardHidden");
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardStatus("KeyboardShown");
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardStatus("KeyboardHidden");
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
 
   const setActivation = () => {
     navigation.navigate("signupSecond", { data: data });
@@ -91,6 +107,7 @@ const Signup = ({ navigation }) => {
       </View>
 
       <View>
+      {keyboardStatus === "KeyboardHidden" &&
         <TouchableOpacity
           onPress={() => navigation.navigate("login")}
           style={{
@@ -120,6 +137,7 @@ const Signup = ({ navigation }) => {
             sign in
           </Text>
         </TouchableOpacity>
+}
       </View>
     </View>
   );

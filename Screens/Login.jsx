@@ -1,13 +1,12 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
-import { Button } from "react-native-paper";
 import { Input, InputSecure } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const handelSubmit = () => {
     navigation.navigate("home");
   };

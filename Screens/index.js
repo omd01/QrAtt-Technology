@@ -7,7 +7,6 @@ import Profile from "./Profile"
 import Camera from './Camera'
 import Splash from './Splash';
 import SignupSecond from "./SignupSecond"
-import Profiles from "./Profiles";
 
 export const Screens = {
     Home,
@@ -19,5 +18,4 @@ export const Screens = {
     Profile,
     Camera,
     Splash,
-    Profiles
 }

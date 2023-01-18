@@ -4,9 +4,8 @@ import {  TextInput } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 
 export const Input = ({ icon, iserror, label, val, setval, cstyle }) => {
-  const [backColor, setBackColor] = useState(Color.Primary);
   const style = {
-    backgroundColor: backColor,
+    backgroundColor: (val === null ? Color.Primary :Color.Secondary),
     height: Size.ExtraLarge + 5,
     marginVertical: Size.Small,
     ...cstyle,
@@ -25,7 +24,6 @@ export const Input = ({ icon, iserror, label, val, setval, cstyle }) => {
       }}
       style={style}
       textColor={Color.White}
-      onFocus={() => setBackColor(Color.Secondary)}
       left={
         <TextInput.Icon
           style={{ paddingTop: Size.Small }}
@@ -38,11 +36,10 @@ export const Input = ({ icon, iserror, label, val, setval, cstyle }) => {
 };
 
 export const InputSecure = ({ icon, iserror, label, val, setval }) => {
-  const [backColor, setBackColor] = useState(Color.Primary);
   const [secured, setSecured] = useState(true);
 
   const style = {
-    backgroundColor: backColor,
+    backgroundColor: (val === null ? Color.Primary :Color.Secondary),
     height: Size.ExtraLarge + 5,
 
     marginVertical: Size.Small,
@@ -57,7 +54,6 @@ export const InputSecure = ({ icon, iserror, label, val, setval }) => {
       onChangeText={(text) => setval(text)}
       style={style}
       textColor={Color.White}
-      onFocus={() => setBackColor(Color.Secondary)}
       outlineStyle={{
         borderColor: Color.Secondary,
         borderRadius: 13,
@@ -83,55 +79,51 @@ export const InputSecure = ({ icon, iserror, label, val, setval }) => {
   );
 };
 
-export const InputNonEdit = ({ icon, label, val }) => {
-  return (
-    <TextInput
-      label={label}
-      mode="outlined"
-      value={val}
-      editable={false}
-      outlineStyle={{
-        borderColor: Color.Secondary,
-        borderRadius: 13,
-        borderWidth: 1,
-      }}
-      style={{
-        backgroundColor: Color.Secondary,
-        height: Size.ExtraLarge + 5,
-        // marginVertical: Size.Small,
-      }}
-      textColor={Color.White}
-      // left={
-      //   <TextInput.Icon
-      //     style={{ marginTop: Size.Small + 1 }}
-      //     icon={icon}
-      //     iconColor={Color.White}
-      //   />
-      // }
-    />
-  );
-};
+// export const InputNonEdit = ({ icon, label, val }) => {
+//   return (
+//     <TextInput
+//       label={label}
+//       mode="outlined"
+//       value={val}
+//       editable={false}
+//       outlineStyle={{
+//         borderColor: Color.Secondary,
+//         borderRadius: 13,
+//         borderWidth: 1,
+//       }}
+//       style={{
+//         backgroundColor: Color.Secondary,
+//         height: Size.ExtraLarge + 5,
+//         // marginVertical: Size.Small,
+//       }}
+//       textColor={Color.White}
+//       // left={
+//       //   <TextInput.Icon
+//       //     style={{ marginTop: Size.Small + 1 }}
+//       //     icon={icon}
+//       //     iconColor={Color.White}
+//       //   />
+//       // }
+//     />
+//   );
+// };
 
-export const InputArea = ({ label, val, setVal ,style,Lines}) => {
-  const [backColor,setBackColor]=useState(Color.Primary)
+export const InputArea = ({ val,placeholder, setVal ,style,Lines}) => {
   return (
     <TextInput
       multiline
       numberOfLines={Lines}
       onChangeText={(text) => setVal(text)}
-      placeholder={val}
-      label={label}
+      placeholder={placeholder}
       mode="outlined"
-      // value={val}
       placeholderTextColor={Color.White}
-      onFocus={() => setBackColor(Color.Secondary)}
       outlineStyle={{
         borderColor: Color.Secondary,
         borderRadius: 13,
         borderWidth: 1,
       }}
       style={{
-        backgroundColor: backColor,
+        backgroundColor: (val === null ? Color.Primary :Color.Secondary),
         ...style
       }}
       textColor={Color.White}
@@ -140,50 +132,50 @@ export const InputArea = ({ label, val, setVal ,style,Lines}) => {
 };
 
 
-export const InputButton = ({label,onPress,value,iserror,Licon,Ricon,onbtnPress})=>{
-  const [backColor, setBackColor] = useState(Color.Opacity);
+// export const InputButton = ({label,onPress,value,iserror,Licon,Ricon,onbtnPress})=>{
+//   const [backColor, setBackColor] = useState(Color.Opacity);
 
-  const onPres = () => {
-    setBackColor(Color.Secondary)
-    onPress
-  };
+//   const onPres = () => {
+//     setBackColor(Color.Secondary)
+//     onPress
+//   };
   
 
- return (
-  <TouchableOpacity onPress={onPres} activeOpacity={1}>
+//  return (
+//   <TouchableOpacity onPress={onPres} activeOpacity={1}>
 
-  <TextInput
-    label={label}
-    mode="outlined"
-    value={value}
-   error={iserror}
-    style={{backgroundColor: backColor,
-      height: Size.ExtraLarge + 5,}}
-    editable={false}
-    textColor={Color.White}
-    onFocus={() => setBackColor(Color.Secondary)}
-    outlineStyle={{
-      borderColor: Color.Secondary,
-      borderRadius: 13,
-      borderWidth: 1,
-    }}
-    left={
-      <TextInput.Icon
-        style={{ paddingTop: Size.Small }}
-        icon={Licon}
-        iconColor={Color.White}
-      />
-    }
-    right={
-      <TextInput.Icon
-        onPress={onbtnPress}
-        style={{ paddingTop: Size.Small }}
-        icon={Ricon}
-        size={20}
-        iconColor="#cccccc"
-      />
-    }
-  />
-</TouchableOpacity>
- )
-}
+//   <TextInput
+//     label={label}
+//     mode="outlined"
+//     value={value}
+//    error={iserror}
+//     style={{backgroundColor: backColor,
+//       height: Size.ExtraLarge + 5,}}
+//     editable={false}
+//     textColor={Color.White}
+//     onFocus={() => setBackColor(Color.Secondary)}
+//     outlineStyle={{
+//       borderColor: Color.Secondary,
+//       borderRadius: 13,
+//       borderWidth: 1,
+//     }}
+//     left={
+//       <TextInput.Icon
+//         style={{ paddingTop: Size.Small }}
+//         icon={Licon}
+//         iconColor={Color.White}
+//       />
+//     }
+//     right={
+//       <TextInput.Icon
+//         onPress={onbtnPress}
+//         style={{ paddingTop: Size.Small }}
+//         icon={Ricon}
+//         size={20}
+//         iconColor="#cccccc"
+//       />
+//     }
+//   />
+// </TouchableOpacity>
+//  )
+// }

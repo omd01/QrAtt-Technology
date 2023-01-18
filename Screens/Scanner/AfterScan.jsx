@@ -8,7 +8,6 @@ const AfterScan = ({ navigation, setAction }) => {
   return (
     <View
     style={{
-      height: "40%",
       margin: 10,
       borderRadius: Size.Large,
       borderWidth: 2,
@@ -37,6 +36,7 @@ const AfterScan = ({ navigation, setAction }) => {
     >
       Choose the action do you want to perform
     </Text>
+
     <Button
       mode="contained"
       onPress={() => {
