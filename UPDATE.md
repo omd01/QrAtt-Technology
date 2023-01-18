@@ -11,3 +11,4 @@
 # 0.2.4 Home Screen Implenentation / added Qr System
 # 0.2.5 Implementing Leave Screen
 # 0.2.6 Implementing Teacher Profile Screen 
+# 0.2.7 History Page implementation
