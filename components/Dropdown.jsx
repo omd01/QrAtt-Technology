@@ -12,8 +12,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { useNavigation } from "@react-navigation/native";
-import { Button, IconButton, TextInput } from "react-native-paper";
+import { IconButton, TextInput } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 import { ButtonD } from "./Buttons";
 import { Avatar } from "react-native-paper";
@@ -128,7 +127,7 @@ export const Dropdown = ({
 };
 
 export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyle }) => {
-  const navigation = useNavigation();
+ 
   const [value, setValue] = useState(null);
   const animation = useSharedValue({ height: 0, borderWidth: 0 });
   const [icon, setIcon] = useState("chevron-down");
@@ -201,7 +200,7 @@ export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyl
           animationStyle,
         ]}
       >
-        <ScrollView nestedScrollEnabled={true} >
+        <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
           {data.map((item) => {
             return (
               <View
@@ -223,7 +222,7 @@ export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyl
                 <TouchableOpacity
                   onPress={() => {
                     setValue(item.name);
-                    setSelected(item.name);
+                    setSelected(item._id);
                     animation.value = { height: 0 };
                     setIcon("chevron-down");
                     setNewLabel(null);
@@ -260,3 +259,4 @@ export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyl
     </View>
   );
 };
+

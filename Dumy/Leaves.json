@@ -1,0 +1,127 @@
+[
+    {
+      "_id": "636b4b4jdb165fa1b7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear go home for treatment i have my parents permission and i will come back when i am clear go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-02-04T06:40:13.526Z",
+      "__v": 0
+    },{
+      "_id": "636b4b4jdb165fab1b7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "639ee485870b669y82a9e0969",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-03-02T06:40:13.526Z",
+      "__v": 0
+    },{
+      "_id": "636b4b4jdqb165fa1b7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-12-15T06:40:13.526Z",
+      "__v": 0
+    },{
+      "_id": "636b4b4jdpb165fa1b7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-09-22T06:40:13.526Z",
+      "__v": 0
+    },{
+      "_id": "636b4b4wjdb165fa1b7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-10-19T06:40:13.526Z",
+      "__v": 0
+    },{
+      "_id": "636b4b4jdb1t65fa1b7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-11-09T06:40:13.526Z",
+      "__v": 0
+    },{
+      "_id": "636b4b4jdb165fa1qb7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-11-09T06:40:13.526Z",
+      "__v": 0
+    },{
+      "_id": "636b4b4jdeb165fa1b7870",
+      "userId": "636b49e1b5fge7165fa1b784a",
+      "name": "JB rejected 1",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-11-09T06:40:13.526Z",
+      "to": "2022-11-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-11-09T06:40:13.526Z",
+      "__v": 0
+    },
+    {
+      "_id": "636b4b4je7165fa1b7870",
+      "userId": "636b49e1b5fej7165fa1b784a",
+      "name": "JB rejected",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear",
+      "from": "2022-10-09T06:40:13.526Z",
+      "to": "2022-10-09T06:40:13.526Z",
+      "status": "rejected",
+      "createdAt": "2022-11-09T06:40:13.526Z",
+      "__v": 0
+    },
+    {
+      "_id": "636b4ceeb5fef71v65fa1b789d",
+      "userId": "636b49e1bf5fe7165fa1b784a",
+      "name": "JB Pending",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "Leav No One",
+      "from": "2022-12-09T06:47:10.922Z",
+      "to": "2022-11-09T06:47:10.922Z",
+      "status": "pending",
+      "createdAt": "2022-11-09T06:47:10.922Z",
+      "__v": 0
+    },
+    {
+      "_id": "636b4ceeb5fed71z65fa1b789d",
+      "userId": "636b49e1b5fe7165fa1b784a",
+      "name": "JB approved",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "Leav No One",
+      "from": "2022-11-09T06:47:10.922Z",
+      "to": "2022-11-09T06:47:10.922Z",
+      "status": "approved",
+      "createdAt": "2022-11-09T06:47:10.922Z",
+      "__v": 0
+    }
+  ]

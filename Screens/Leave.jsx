@@ -65,23 +65,15 @@ const Leave = () => {
 
   useEffect(() => {
     if (from) {
-      var tempDate = new Date(from);
-      setFormatedFromDate(
-        `${tempDate.getDate()} / ${
-          monthNames[tempDate.getMonth()]
-        } / ${tempDate.getFullYear()}`
-      );
+      var tempDate = new Date(from).toLocaleDateString();
+      setFormatedFromDate(tempDate);
     }
   }, [from]);
 
   useEffect(() => {
     if (to) {
-      var tempDate = new Date(to);
-      setFormatedToDate(
-        `${tempDate.getDate()} / ${
-          monthNames[tempDate.getMonth()]
-        } / ${tempDate.getFullYear()}`
-      );
+      var tempDate = new Date(to).toLocaleDateString();
+      setFormatedToDate(tempDate);
     }
   }, [to]);
 
@@ -105,7 +97,7 @@ const Leave = () => {
   };
 
   return (
-    <ScrollView style={{ height: Size.Full, paddingHorizontal: Size.Small }}>
+    <View style={{ height: Size.Full, paddingHorizontal: Size.Small }}>
 
       <View
         style={{
@@ -127,7 +119,7 @@ const Leave = () => {
           {`Send Leave Request`}
         </Text>
       </View>
-
+      <ScrollView>
       <View style={{ marginVertical: 5 }}>
         <Text
           style={{
@@ -249,8 +241,8 @@ const Leave = () => {
           disabled={false}
         />
       </View>
-  
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
