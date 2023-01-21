@@ -1,0 +1,14 @@
+[
+    {
+      "_id": "639e125e63b0956f12589711",
+      "gate": "Main Gate",
+      "action": "check-in",
+      "actionAt": "2022-12-17T19:02:54.023Z"
+    },
+    {
+      "_id": "63cbc2052e1e667d41ef4515",
+      "gate": "Main Gate",
+      "action": "check-out",
+      "actionAt": "2023-01-21T10:44:21.641Z"
+    }
+  ]
