@@ -20,6 +20,7 @@ const AfterScan = ({ navigation, setAction }) => {
       size={90}
       backgroundColor={null}
       icon="map-marker-alert"
+      color={Color.White}
       style={{
         alignSelf: "center",
       }}

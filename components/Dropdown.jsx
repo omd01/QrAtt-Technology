@@ -61,14 +61,17 @@ export const Dropdown = ({
   });
 
   const onPress = () => {
-    animation.value = { height: 200, borderWidth: 0.5 };
-    setIcon("close");
+    animation.value.height === 200 ?
+    [animation.value = { height: 0, borderWidth: 0 },setIcon("chevron-down")]:
+    [animation.value = { height: 200, borderWidth: 0.5 },setIcon("close")];
+
+    
   };
   return (
     <View>
       <TouchableOpacity onPress={onPress} activeOpacity={1}>
         <TextInput
-          onPressIn={onPress}
+          // onPressIn={onPress}
           label={label}
           mode="outlined"
           value={value}
@@ -99,7 +102,7 @@ export const Dropdown = ({
               style={{ paddingTop: Size.Small }}
               icon={icon}
               size={20}
-              iconColor="#cccccc"
+              iconColor={Color.White}
             />
           }
         />
@@ -141,6 +144,7 @@ export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyl
   });
 
   const onPress = () => {
+
     animation.value = { height: 200, borderWidth: 0.5 };
     setIcon("close");
   };

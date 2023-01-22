@@ -23,22 +23,6 @@ const Leave = () => {
   const [formatedFromDate, setFormatedFromDate] = useState(undefined);
   const [formatedToDate, setFormatedToDate] = useState(undefined);
 
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-
 
   const onChangeFrom = (event, selectedDate) => {
     if (event.type === "dismissed") {
@@ -78,23 +62,13 @@ const Leave = () => {
   }, [to]);
 
 
-
-  // const data = [
-  //   { key: "1", value: "J.B.Nemane"  },
-  //   { key: "2", value: "Bodhle" },
-  //   { key: "3", value: "Yekhe " },
-  //   { key: "5", value: "Dhole" },
-  //   { key: "6", value: "Bedre" },
-  //   { key: "7", value: "Electrical" },
-  //   { key: "8", value: "Ai" },
-  // ];
-
   const handelSubmit = () => {
     console.log(teacher);
     console.log(reason);
     console.log(from);
     console.log(to);
   };
+  
 
   return (
     <View style={{ height: Size.Full, paddingHorizontal: Size.Small }}>
@@ -108,11 +82,13 @@ const Leave = () => {
           marginVertical: Size.Small,
         }}
       >
-        <Avatar.Icon size={40} backgroundColor={null} icon="email-send" />
+        <Avatar.Icon size={40} backgroundColor={null} color={Color.White} icon="email-send" />
         <Text
           style={{
             color: Color.White,
-            fontSize: Size.Midum + 2,
+            // fontSize: Size.Midum + 2,
+            fontSize: Size.Midum + 4, //change in size { 2 } /4
+
             fontFamily: Font.semiBold,
           }}
         >

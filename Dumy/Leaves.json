@@ -4,7 +4,7 @@
       "userId": "636b49e1b5fge7165fa1b784a",
       "name": "JB rejected 1",
       "teacher": "636a600e36ab575d4c045b60",
-      "reason": "I am ill and i want to go home for treatment i have my parents permission and i will come back when i am clear go home for treatment i have my parents permission and i will come back when i am clear go home for treatment i have my parents permission and i will come back when i am clear",
+      "reason": "I AM ILL SO I WNAT TO GO HOME AND DRINK SOME WATER my parents permission and i will come back when i am clear go home for treatment i have my parents permission and i will come back when i am clear go home for treatment i have my parents permission and i will come back when i am clear",
       "from": "2022-11-09T06:40:13.526Z",
       "to": "2022-11-09T06:40:13.526Z",
       "status": "rejected",
@@ -122,6 +122,17 @@
       "to": "2022-11-09T06:47:10.922Z",
       "status": "approved",
       "createdAt": "2022-11-09T06:47:10.922Z",
+      "__v": 0
+    },{
+      "_id": "63cbe17a9c4227008aebcb65",
+      "userId": "636b49e1b5fe7165fa1b784a",
+      "name": "JB nemane",
+      "teacher": "636a600e36ab575d4c045b60",
+      "reason": "my parents told mi that i cannot go to home so i want to go to home",
+      "from": "2023-01-21T12:58:34.990Z",
+      "to": "2023-01-21T12:58:34.990Z",
+      "status": "rejected",
+      "createdAt": "2023-01-21T12:58:34.990Z",
       "__v": 0
     }
   ]

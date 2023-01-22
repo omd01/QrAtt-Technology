@@ -83,11 +83,39 @@ export const RenderItem = ({ data }) => {
 
   function getFromTo(from, to) {
     var from_d = new Date(from).toLocaleString().split(" ");
-    var from = `${from_d[1]} ${from_d[3]}, ${from_d[5]}`;
+    var from = `${from_d[1]} ${new Date(from).getDate()}, ${new Date(from).getFullYear()}`;
     var to_d = new Date(to).toLocaleString().split(" ");
-    var to = `${to_d[1]} ${to_d[3]}, ${to_d[5]}`;
+    var to = `${to_d[1]} ${new Date(to).getDate()}, ${new Date(to).getFullYear()}`;
     return `${from} - To - ${to}`;
   }
+
+   
+  // function getTimeAgoFromUTC(utcDate) {
+  //   const date = new Date(utcDate);
+  //   const now = new Date();
+  //   const seconds = (now - date) / 1000;
+  
+  //   let interval = Math.floor(seconds / 31536000);
+    
+  //   interval = Math.floor(seconds / 3600);
+  //   if (interval >= 1) {
+  //     return date.toLocaleTimeString();
+  //   }
+  //   interval = Math.floor(seconds / 60);
+  //   if (interval >= 1) {
+  //     return interval + " minutes ago";
+  //   }
+  //   if(seconds < 3600)
+  //     return Math.floor(seconds) + " seconds ago";
+  //   else
+  //     return date.toLocaleString();
+  // }
+  
+
+
+
+
+  // console.log(getTimeAgoFromUTC(data.createdAt));
 
   const handerCancel = (id) => {
     console.log(id);
@@ -105,6 +133,8 @@ export const RenderItem = ({ data }) => {
           overflow: "hidden",
           alignItems: "center",
           flexDirection: "row",
+          // marginVertical:3,
+          marginTop:3,
           ...border,
         }}
       >
@@ -113,11 +143,12 @@ export const RenderItem = ({ data }) => {
             <View
               style={{
                 height: "70%",
-                width: "20%",
+                width: "18%",
                 alignItems: "center",
                 justifyContent: "center",
                 borderRightWidth: 1,
                 borderColor: Color.White,
+                
               }}
             >
               <Text
@@ -129,7 +160,13 @@ export const RenderItem = ({ data }) => {
               >
                 {new Date(data.createdAt).getDate()}
               </Text>
-              <Text style={{ fontFamily: Font.regular, color: Color.White , fontSize: Size.Midum -2 }}>
+              <Text
+                style={{
+                  fontFamily: Font.regular,
+                  color: Color.White,
+                  fontSize: Size.Midum - 2,
+                }}
+              >
                 {new Date(data.createdAt).toLocaleString().split(" ")[1]}
               </Text>
             </View>
@@ -145,11 +182,18 @@ export const RenderItem = ({ data }) => {
                 style={{
                   marginLeft: 8,
                   color: Color.White,
-                  fontFamily: Font.medium,
+                  fontFamily: Font.semiBold,
                   fontSize: Size.Midum + 2,
+                  maxWidth: 230,
+                  // height:"100%",
+                  // overflow:'hidden'
                 }}
               >
-                {data.reason.match(/.{1,32}/g)[0].concat("...")}
+                {data.reason
+                  .toLowerCase()
+                  .replace(/^\w/, (c) => c.toUpperCase())
+                  .match(/.{0,25}/g)[0]
+                  .concat("...")}
               </Text>
               <IconButton
                 icon="chevron-double-down"

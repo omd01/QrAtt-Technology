@@ -6,6 +6,7 @@ import History from "./History";
 import Footer from "../components/Footer";
 import Scanner from "./Scanner/Scanner";
 import Leave from "./Leave";
+import Attendance from "./Attendance";
 
 const Home = ({navigation,route} ) => {
   const [screen, setScreen] = useState("home");
@@ -48,6 +49,8 @@ useEffect(() => {
           <History />
         ) : screen === "profile" ? (
           <Profile />
+          ) : screen === "attendance" ? (
+            <Attendance />
         ) : <Scanner navigation={navigation} selfi={selfi}/>}
       </View>
       {keyboardStatus==="KeyboardHidden"? <Footer screen={screen} setScreen={setScreen}/> : null}

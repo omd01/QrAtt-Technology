@@ -1,10 +1,21 @@
+// ----- Light Mode -----
+// const Primary = "#D4D4D4"
+// const Secondary ="#C6C6C6"
+// const White ="#000"
+// const Btn ="#573F8B"
+// const Opacity ="rgba(212, 212, 212, 0.6)"
+
+// ----------------------
+
+// ----- Dark Mode --------
 const Primary = "#120F1C"
 const Secondary ="#3A2E54"
+const White ="#fff"
 const Btn ="#3FFF97"
 const Opacity ="rgba(0, 0, 0, 0.6)"
-const White ="#fff"
-const Dark ="#000"
+// ----------------------
 
+const Dark ="#000"
 const Full = "100%"
 const Small = 10
 const Midum = 15
