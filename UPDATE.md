@@ -12,4 +12,5 @@
 # 0.2.5 Implementing Leave Screen
 # 0.2.6 Implementing Teacher Profile Screen 
 # 0.2.7 History Page implementation
-# 0.2.8 add screen gesture and adding Attendence Page
+# 0.2.8  adding Attendence Page
+# 0.2.9 Designing Profile Page 
