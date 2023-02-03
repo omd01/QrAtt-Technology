@@ -4,6 +4,10 @@ import Signup from './Signup';
 import Camera from './Camera'
 import Splash from './Splash';
 import SignupSecond from "./SignupSecond"
+import Settings from "./Settings/Settings";
+import Account from "./Settings/Account";
+import EditProfile from "./Settings/EditProfile"
+import ChangePassword from "./Settings/ChangePassword"
 
 export const Screens = {
     Home,
@@ -12,4 +16,8 @@ export const Screens = {
     SignupSecond,
     Camera,
     Splash,
+    Settings,
+    Account,
+    EditProfile,
+    ChangePassword
 }

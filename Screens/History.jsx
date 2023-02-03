@@ -7,8 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
-import { Avatar, Button, IconButton } from "react-native-paper";
-import { ButtonD } from "../components/Buttons";
+import { Avatar,  IconButton } from "react-native-paper";
 import Leaves from "../Dumy/Leaves.json";
 import { RenderItem } from "../components/RenderItem";
 

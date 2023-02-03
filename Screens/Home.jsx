@@ -7,6 +7,8 @@ import Footer from "../components/Footer";
 import Scanner from "./Scanner/Scanner";
 import Leave from "./Leave";
 import Attendance from "./Attendance";
+import Settings from "./Settings/Settings";
+
 
 const Home = ({navigation,route} ) => {
   const [screen, setScreen] = useState("home");
@@ -48,7 +50,9 @@ useEffect(() => {
         ) : screen === "history" ? (
           <History />
         ) : screen === "profile" ? (
-          <Profile />
+          <Profile setScreen={setScreen} navigation={navigation}/>
+          ) : screen === "settings" ? (
+            <Settings setScreen={setScreen}/>
           ) : screen === "attendance" ? (
             <Attendance />
         ) : <Scanner navigation={navigation} selfi={selfi}/>}
@@ -59,4 +63,4 @@ useEffect(() => {
   );
 };
 
-export default Home;
+export default Home;  

@@ -89,33 +89,6 @@ export const RenderItem = ({ data }) => {
     return `${from} - To - ${to}`;
   }
 
-   
-  // function getTimeAgoFromUTC(utcDate) {
-  //   const date = new Date(utcDate);
-  //   const now = new Date();
-  //   const seconds = (now - date) / 1000;
-  
-  //   let interval = Math.floor(seconds / 31536000);
-    
-  //   interval = Math.floor(seconds / 3600);
-  //   if (interval >= 1) {
-  //     return date.toLocaleTimeString();
-  //   }
-  //   interval = Math.floor(seconds / 60);
-  //   if (interval >= 1) {
-  //     return interval + " minutes ago";
-  //   }
-  //   if(seconds < 3600)
-  //     return Math.floor(seconds) + " seconds ago";
-  //   else
-  //     return date.toLocaleString();
-  // }
-  
-
-
-
-
-  // console.log(getTimeAgoFromUTC(data.createdAt));
 
   const handerCancel = (id) => {
     console.log(id);
