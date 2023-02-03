@@ -8,6 +8,8 @@ import Settings from "./Settings/Settings";
 import Account from "./Settings/Account";
 import EditProfile from "./Settings/EditProfile"
 import ChangePassword from "./Settings/ChangePassword"
+import Notification from "./Scanner/Notification";
+import Theme from "./Settings/Theme";
 
 export const Screens = {
     Home,
@@ -19,5 +21,7 @@ export const Screens = {
     Settings,
     Account,
     EditProfile,
-    ChangePassword
+    ChangePassword,
+    Notification,
+    Theme,
 }

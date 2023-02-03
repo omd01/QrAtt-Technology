@@ -58,6 +58,7 @@ const Settings = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
+             onPress={()=>navigation.navigate("notification")}
             style={{
               flexDirection: "row",
               alignItems: "center",
@@ -65,7 +66,6 @@ const Settings = ({ navigation }) => {
               paddingHorizontal: 5,
               borderWidth: 0.5,
               borderColor: Color.Secondary,
-              //   marginVertical:10
             }}
           >
             <IconButton icon={"bell"} iconColor={Color.White} size={22} />
@@ -80,6 +80,8 @@ const Settings = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
+             onPress={()=>navigation.navigate("theme")}
+
             style={{
               flexDirection: "row",
               alignItems: "center",
@@ -106,15 +108,15 @@ const Settings = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{ width: "75%" ,marginVertical:10}}>
+        <View style={{ width: "50%" ,marginVertical:10}}>
             
           <ButtonD
             value={"Log Out"}
             textColor={Color.White}
-            style={{ backgroundColor: Color.Secondary }}
+            style={{ backgroundColor: Color.Secondary ,borderRadius:50 }}
             onPress={handelLogOut}
           />
-          <Text style={{color:Color.White,fontSize:Size.Midum,fontFamily:Font.regular,alignSelf:'center',marginVertical:5}}>Version 1.1.0</Text>
+          <Text style={{color:Color.White,fontSize:Size.Midum,fontFamily:Font.regular,alignSelf:'center',marginVertical:5 }}>App Version 1.1.0</Text>
         </View>
       </View>
     </View>

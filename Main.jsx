@@ -4,6 +4,7 @@ import { StatusBar, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { Screens } from "./Screens/index";
 import { Color } from "./constants/theme";
+
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
@@ -18,11 +19,15 @@ const Main = () => {
   });
 
   if (!loded) return null;
+
+
   const options = { headerShown: false };
+
 
   return (
     <>
       <StatusBar
+      barStyle={"light-content"}
         backgroundColor={Color.Primary}
         style={{
           flex: 1,
@@ -42,9 +47,10 @@ const Main = () => {
           <Stack.Screen name="account" component={Screens.Account} />
           <Stack.Screen name="editProfile" component={Screens.EditProfile} />
           <Stack.Screen name="changePassword" component={Screens.ChangePassword} />
+          <Stack.Screen name="notification" component={Screens.Notification} />
+          <Stack.Screen name="theme" component={Screens.Theme} />
 
-
-        </Stack.Navigator>
+  </Stack.Navigator>
       </NavigationContainer>
     </>
   );

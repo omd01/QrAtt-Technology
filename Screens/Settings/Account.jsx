@@ -38,7 +38,7 @@ const Account = ({ navigation }) => {
               alignItems: "center",
               height: 50,
               paddingLeft: 25,
-              backgroundColor: Color.Secondary,
+              backgroundColor: Color.Primary,
               justifyContent: "space-between",
               marginVertical: 10,
             }}
@@ -65,7 +65,7 @@ const Account = ({ navigation }) => {
               alignItems: "center",
               height: 50,
               paddingLeft: 25,
-              backgroundColor: Color.Secondary,
+              backgroundColor: Color.Primary,
               justifyContent: "space-between",
             //   marginVertical: 10,
             }}

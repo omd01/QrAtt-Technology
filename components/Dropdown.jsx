@@ -129,7 +129,7 @@ export const Dropdown = ({
   );
 };
 
-export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyle }) => {
+export const DropdownImg = ({ data, setSelected, label, micon, cstyle }) => {
  
   const [value, setValue] = useState(null);
   const animation = useSharedValue({ height: 0, borderWidth: 0 });
@@ -144,8 +144,11 @@ export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyl
   });
 
   const onPress = () => {
+    animation.value.height === 200 ?
+    [animation.value = { height: 0, borderWidth: 0 },setIcon("chevron-down")]:
+    [animation.value = { height: 200, borderWidth: 0.5 },setIcon("close")];
 
-    animation.value = { height: 200, borderWidth: 0.5 };
+  
     setIcon("close");
   };
 
@@ -188,7 +191,7 @@ export const DropdownImg = ({ data, setSelected, label, micon,onIconPress, cstyl
               style={{ paddingTop: Size.Small }}
               icon={icon}
               size={20}
-              iconColor="#cccccc"
+              iconColor={Color.White}
             />
           }
         />

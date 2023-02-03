@@ -100,16 +100,8 @@ const BeforeScan = ({screen,setScreen,setQrData}) => {
                   color: Color.White,
                 }}
               >
-                Scan the qr code present on the gate
-              </Text>
-              <Text
-                style={{
-                  fontSize: Size.Midum - 3,
-                  fontFamily: Font.semiBold,
-                  color: Color.White,
-                }}
-              >
-                 and make your attendence
+               {` Scan the qr code present on the gate and
+                make your attendence.`}
               </Text>
             </View>
           </View>
