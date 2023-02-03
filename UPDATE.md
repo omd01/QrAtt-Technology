@@ -13,4 +13,6 @@
 # 0.2.6 Implementing Teacher Profile Screen 
 # 0.2.7 History Page implementation
 # 0.2.8  adding Attendence Page
-# 0.2.9 Designing Profile Page 
+# 0.2.9 Designing Profile Page added {setting , account, edit profile}
+# 0.2.10 adding chnage password, notification, theme
+
