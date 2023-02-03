@@ -15,4 +15,6 @@
 # 0.2.8  adding Attendence Page
 # 0.2.9 Designing Profile Page added {setting , account, edit profile}
 # 0.2.10 adding chnage password, notification, theme
+# 0.2.11 work on forget password , reset password , miner chnage in login page
+
 
