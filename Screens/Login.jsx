@@ -13,6 +13,7 @@ const Login = ({ navigation }) => {
   return (
     <View style={{ height: Size.Full, backgroundColor: Color.Secondary }}>
       <View style={{ flex: 1 }}>
+
         <View
           style={{
             height: "40%",
@@ -40,6 +41,7 @@ const Login = ({ navigation }) => {
             Login if already have an account
           </Text>
         </View>
+
         <View
           style={{
             flex: 1,
@@ -51,11 +53,13 @@ const Login = ({ navigation }) => {
             borderBottomEndRadius: 0,
             borderBottomStartRadius: 0,
             paddingHorizontal: Size.Midum,
-            paddingVertical: Size.Large + 20,
+            paddingTop:30,
+            paddingBottom:10,
             marginHorizontal: 5,
+            justifyContent:'space-between'
           }}
         >
-          <View style={{ height: Size.Full }}>
+          <View>
             <Input
               icon={"email"}
               label={"Email"}
@@ -78,36 +82,59 @@ const Login = ({ navigation }) => {
               />
             </View>
           </View>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("signup")}
-            style={{
-              flexDirection: "row",
-              alignSelf: "center",
-              marginTop: 20,
-            }}
+
+
+          <View
+            style={{ width: "40%" ,alignItems:'center',alignSelf:'center'}}
           >
-            <Text
+            <TouchableOpacity onPress={() => navigation.navigate("signup")}
               style={{
-                color: Color.White,
-                fontSize: 12,
-                opacity: 0.6,
-                fontFamily: Font.semiBold,
-              }}
-            >
-              {`New to QrAtt `}
-            </Text>
-            <Text
+                flexDirection: "row",
+              }}>
+              <Text
+                style={{
+                  color: Color.White,
+                  fontSize: 12,
+                  opacity: 0.6,
+                  fontFamily: Font.semiBold,
+                }}
+              >
+                {`New to QrAtt `}
+              </Text>
+              <Text
+                style={{
+                  color: Color.Btn,
+                  fontSize: 12,
+                  opacity: 0.6,
+                  fontFamily: Font.semiBold,
+                }}
+              >
+                {`sign up`}
+              </Text>
+            </TouchableOpacity>
+            <View
               style={{
-                color: Color.Btn,
-                fontSize: 12,
-                opacity: 0.6,
-                fontFamily: Font.semiBold,
+                width: Size.Full,
+                backgroundColor: Color.White,
+                height: 1,
+                marginVertical:4
               }}
-            >
-              sign up
-            </Text>
-          </TouchableOpacity>
+            ></View>
+            <TouchableOpacity onPress={() => navigation.navigate("forgetPassword")}>
+              <Text
+                style={{
+                  color: Color.White,
+                  fontSize: 12,
+                  opacity: 0.6,
+                  fontFamily: Font.semiBold,
+                }}
+              >
+                {`Forget password`}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
       </View>
     </View>
   );

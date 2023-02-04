@@ -46,17 +46,18 @@ const Leave = () => {
     }
   };
 
-
   useEffect(() => {
     if (from) {
-      var tempDate = new Date(from).toLocaleDateString();
+      var tempDate = new Date(from).toLocaleString().split(" ");
+      tempDate = `${tempDate[1]} ${new Date(from).getDate()}, ${new Date(from).getFullYear()}`
       setFormatedFromDate(tempDate);
     }
   }, [from]);
 
   useEffect(() => {
     if (to) {
-      var tempDate = new Date(to).toLocaleDateString();
+      var tempDate = new Date(to).toLocaleString().split(" ");
+      tempDate = `${tempDate[1]} ${new Date(to).getDate()}, ${new Date(from).getFullYear()}`
       setFormatedToDate(tempDate);
     }
   }, [to]);

@@ -101,7 +101,7 @@ const BeforeScan = ({screen,setScreen,setQrData}) => {
                 }}
               >
                {` Scan the qr code present on the gate and
-                make your attendence.`}
+                make your attendance.`}
               </Text>
             </View>
           </View>

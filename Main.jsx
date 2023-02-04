@@ -4,6 +4,7 @@ import { StatusBar, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { Screens } from "./Screens/index";
 import { Color } from "./constants/theme";
+import Splash from "./Screens/Splash";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,7 @@ const Main = () => {
     NunitoRegular: require("./assets/Fonts/Nunito-Regular.ttf"),
   });
 
-  if (!loded) return null;
+  if (!loded) return <Splash/>;
 
 
   const options = { headerShown: false };
@@ -36,19 +37,21 @@ const Main = () => {
       />
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="home" screenOptions={options}>
+        <Stack.Navigator initialRouteName="signup" screenOptions={options}>
           <Stack.Screen name="home" component={Screens.Home} />
           <Stack.Screen name="login" component={Screens.Login} />
           <Stack.Screen name="signup" component={Screens.Signup} />
           <Stack.Screen name="signupSecond" component={Screens.SignupSecond} />
           <Stack.Screen name="camera" component={Screens.Camera} />
-          <Stack.Screen name="splash" component={Screens.Splash} />
           <Stack.Screen name="settings" component={Screens.Settings} />
           <Stack.Screen name="account" component={Screens.Account} />
           <Stack.Screen name="editProfile" component={Screens.EditProfile} />
           <Stack.Screen name="changePassword" component={Screens.ChangePassword} />
           <Stack.Screen name="notification" component={Screens.Notification} />
           <Stack.Screen name="theme" component={Screens.Theme} />
+          <Stack.Screen name="forgetPassword" component={Screens.ForgetPassword} />
+          <Stack.Screen name="resetPassword" component={Screens.ResetPassword} />
+
 
   </Stack.Navigator>
       </NavigationContainer>

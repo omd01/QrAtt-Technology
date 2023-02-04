@@ -66,9 +66,15 @@ export const RenderItem = ({ data }) => {
     if (interval > 1) {
       return interval + " months ago";
     }
+
     interval = Math.floor(seconds / 86400);
-    if (interval > 1) {
-      return interval + " days ago";
+    if (interval > 1 ) {
+      if (interval > 30) {
+        return  "1 month ago";
+      }
+      else{
+      return interval + " days ago"; 
+      }
     }
     interval = Math.floor(seconds / 3600);
     if (interval > 1) {

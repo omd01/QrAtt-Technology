@@ -1,17 +1,11 @@
-import { View, Image ,} from 'react-native'
+import { View, Image ,Text} from 'react-native'
 import React ,{useEffect} from 'react'
-import {Color,Size} from '../constants/theme';
+import {Color,Font,Size} from '../constants/theme';
 
 import assets from "../constants/assets.js"
-const Splash = ({navigation}) => {
 
-setTimeout(() => {
-        
-        navigation.navigate("signup")
-    }, 7* 1000);
- 
-  return (<>
-   
+const Splash = () => {
+  return (
     <View style={{
         backgroundColor: Color.Primary,
         height:Size.Full,
@@ -19,8 +13,12 @@ setTimeout(() => {
         alignItems:"center"
       }}>
      <Image source={assets.splashGif} style={{width:Size.Full,resizeMode:"contain"}}/>
+     <Text style={{fontSize:Size.Midum,color:Color.White}}>Welcome to</Text>
+     <Text style={{fontSize:Size.Large -2,color:Color.Btn}}>{`Q r A t t`}</Text>
+  
+
     </View>
-    </>
+  
   )
 }
 
