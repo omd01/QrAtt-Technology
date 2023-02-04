@@ -17,4 +17,6 @@
 # 0.2.10 adding chnage password, notification, theme
 # 0.2.11 work on forget password , reset password , miner chnage in login page
 
+# 0.3.1 Implement Validation Yup etc.
+
 
