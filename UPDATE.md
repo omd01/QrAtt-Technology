@@ -18,5 +18,6 @@
 # 0.2.11 work on forget password , reset password , miner chnage in login page
 
 # 0.3.1 Implement Validation Yup and Formik 
+# 0.3.2 Implementing Redux Toolkit basics 
 
 
