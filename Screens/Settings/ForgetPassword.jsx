@@ -5,17 +5,35 @@ import { ButtonD } from "../../components/Buttons";
 import React, { useState, } from "react";
 import { Input,} from "../../components/InputFields";
 
+import * as yup from "yup";
+import { Formik } from "formik";
+
+const forgetPasswordSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Please enter a valid email")
+    .required("Email is required")
+});
+
+
 const ForgetPassword = ({navigation}) => {
-    const [email, setEmail] = useState(null);
     
-   
-  
-    const handelSubmit = () => {
-  navigation.navigate("resetPassword")
-    };
-  
-  
     return (
+      <Formik
+      initialValues={{ email: "" }}
+      validateOnMount={true}
+      onSubmit={(values) => console.log(values)}
+      validationSchema={forgetPasswordSchema}
+    >
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        touched,
+        errors,
+        isValid,
+      }) => (
       <View style={{height:Size.Full}}>
          <Appbar.Header
           style={{
@@ -50,7 +68,7 @@ const ForgetPassword = ({navigation}) => {
               letterSpacing: 1,
               alignSelf: "center",
               color: Color.White,
-              fontSize: Size.Large + 3,
+              fontSize: Size.Large ,
               fontFamily: Font.bold,
             }}
           >
@@ -69,22 +87,38 @@ const ForgetPassword = ({navigation}) => {
             Enter the e-mail joined to your account to reset password
           </Text>
 
-          <View style={{ marginTop: 5, marginBottom: 20 }}>
-            <Input
-              icon={"email"}
-              label={"Email"}
-              val={email}
-              setval={setEmail}
-              iserror={false}
-            />
+          <View style={{  marginVertical: Size.Small +5 }}>
+          
+          <Input
+                    icon={"email"}
+                    keyboardType={"email-adress"}
+                    label={"Email"}
+                    value={values.email}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                  />
+
+                  {errors.email && touched.email && (
+                    <Text
+                      style={{
+                        color: "red",
+                        fontFamily: Font.light,
+                        marginLeft: 15,
+                      }}
+                    >
+                      {errors.email}
+                    </Text>
+                  )}
 
           </View>
   
-          <ButtonD value={"Send Mail"} onPress={handelSubmit} disabled={false} style={{width:150,borderRadius:50,alignSelf:'center'}} />
+          <ButtonD value={"Send Mail"} onPress={handleSubmit} disabled={isValid?false:true} style={{width:150,borderRadius:50,alignSelf:'center',marginVertical:5}} />
         </View>
   
         </View>
       </View>
+       )}
+       </Formik>
     )
   }
   

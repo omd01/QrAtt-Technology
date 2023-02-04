@@ -31,6 +31,7 @@ export const Dropdown = ({
 
   const renderItem = ({ item }) => (
     <ButtonD
+    
       value={item.value}
       onPress={() => {
         setValue(item.value);
@@ -49,7 +50,7 @@ export const Dropdown = ({
   const style = {
     backgroundColor: value === null ? Color.Primary : Color.Secondary,
     height: Size.ExtraLarge + 5,
-    marginVertical: Size.Small,
+    // marginVertical: Size.Small,
     ...cstyle,
   };
 

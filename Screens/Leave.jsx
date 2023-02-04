@@ -9,8 +9,8 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Teachers from "../Dumy/Teachers.json"
 
 const Leave = () => {
-  const [teacher, setTeacher] = useState(undefined);
-  const [reason, setReason] = useState(null);
+  const [teacher, setTeacher] = useState(null);
+  const [reason, setReason] = useState('');
   
   const [nowdate, setNowDate] = useState(new Date());
 
@@ -23,6 +23,7 @@ const Leave = () => {
   const [formatedFromDate, setFormatedFromDate] = useState(undefined);
   const [formatedToDate, setFormatedToDate] = useState(undefined);
 
+  const [error,setError]= useState([false,false,false,false])
 
   const onChangeFrom = (event, selectedDate) => {
     if (event.type === "dismissed") {
@@ -64,10 +65,10 @@ const Leave = () => {
 
 
   const handelSubmit = () => {
-    console.log(teacher);
-    console.log(reason);
-    console.log(from);
-    console.log(to);
+    teacher === null ? setError([true,false,false,false]):  from === null ? setError([false,true,false,false]): to === null ? setError([false,false,true,false]):reason === '' ? setError([false,false,false,true]): setError([false,false,false,false])
+   if (teacher!==null && from !==null && to !==null && reason !== '') {
+    console.log(teacher+from+to+reason);
+   }
   };
   
 
@@ -87,8 +88,7 @@ const Leave = () => {
         <Text
           style={{
             color: Color.White,
-            // fontSize: Size.Midum + 2,
-            fontSize: Size.Midum + 4, //change in size { 2 } /4
+            fontSize: Size.Midum + 4,
 
             fontFamily: Font.semiBold,
           }}
@@ -116,6 +116,17 @@ const Leave = () => {
           setSelected={setTeacher}
           cstyle={{ marginVertical: Size.Small - 8 }}
         />
+         {error[0] && (
+              <Text
+                style={{
+                 marginLeft:12,
+                  color: "red",
+                  fontFamily: Font.light,
+                }}
+              >
+                {`Please select a teacher from dropdown`}
+              </Text>
+            )}
       </View>
 
       <View style={{ marginVertical: 5 }}>
@@ -145,6 +156,17 @@ const Leave = () => {
             
           }}
         />
+          {error[1] && (
+              <Text
+                style={{
+                 marginLeft:12,
+                  color: "red",
+                  fontFamily: Font.light,
+                }}
+              >
+                {`From date must be required`}
+              </Text>
+            )}
 
         {showFromDate && (
           <DateTimePicker
@@ -182,7 +204,17 @@ const Leave = () => {
             borderColor:Color.Secondary,
           }}
         />
-
+ {error[2] && (
+              <Text
+                style={{
+                 marginLeft:12,
+                  color: "red",
+                  fontFamily: Font.light,
+                }}
+              >
+                {`To date must be required`}
+              </Text>
+            )}
         {showToDate && (
           <DateTimePicker
             value={nowdate}
@@ -209,6 +241,17 @@ const Leave = () => {
           Lines={10}
          placeholder={"Write a valid reason for leave request"}
         />
+         {error[3] && (
+              <Text
+                style={{
+                 marginLeft:12,
+                  color: "red",
+                  fontFamily: Font.light,
+                }}
+              >
+                {`Please give the valid reason`}
+              </Text>
+            )}
       </View>
 
       <View style={{ marginVertical: 15 }}>

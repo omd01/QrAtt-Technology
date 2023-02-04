@@ -3,20 +3,21 @@ import {  TouchableOpacity,  } from "react-native";
 import {  TextInput } from "react-native-paper";
 import { Color, Size, Font } from "../constants/theme";
 
-export const Input = ({ icon, iserror, label, val, setval, cstyle }) => {
+export const Input = ({ icon, iserror, label, value, onChangeText, cstyle,onBlur,keyboardType }) => {
   const style = {
-    backgroundColor: (val === null ? Color.Primary :Color.Secondary),
+    backgroundColor: (value === '' ? Color.Primary :Color.Secondary),
     height: Size.ExtraLarge + 5,
-    marginVertical: Size.Small,
     ...cstyle,
   };
   return (
     <TextInput
       label={label}
+      keyboardType={keyboardType}
       mode="outlined"
-      value={val}
+      value={value}
       error={iserror}
-      onChangeText={(text) => setval(text)}
+      onChangeText={onChangeText}
+      onBlur={onBlur}
       outlineStyle={{
         borderColor: Color.Secondary,
         borderRadius: 13,
@@ -35,23 +36,24 @@ export const Input = ({ icon, iserror, label, val, setval, cstyle }) => {
   );
 };
 
-export const InputSecure = ({ icon, iserror, label, val, setval }) => {
+export const InputSecure = ({ icon, iserror, label, value, onChangeText,onBlur }) => {
   const [secured, setSecured] = useState(true);
 
   const style = {
-    backgroundColor: (val === null ? Color.Primary :Color.Secondary),
+    backgroundColor: (value === '' ? Color.Primary :Color.Secondary),
     height: Size.ExtraLarge + 5,
 
-    marginVertical: Size.Small,
+    // marginVertical: Size.Small,
   };
   return (
     <TextInput
       label={label}
       mode="outlined"
-      value={val}
+      value={value}
       error={iserror}
       secureTextEntry={secured}
-      onChangeText={(text) => setval(text)}
+      onChangeText={onChangeText}
+      onBlur={onBlur}
       style={style}
       textColor={Color.White}
       outlineStyle={{
@@ -68,7 +70,7 @@ export const InputSecure = ({ icon, iserror, label, val, setval }) => {
       }
       right={
         <TextInput.Icon
-          onPress={() => setSecured((previousState) => !previousState)}
+          onPress={() => setSecured(!secured)}
           style={{ paddingTop: Size.Small }}
           icon={"eye"}
           size={20}
@@ -78,35 +80,6 @@ export const InputSecure = ({ icon, iserror, label, val, setval }) => {
     />
   );
 };
-
-// export const InputNonEdit = ({ icon, label, val }) => {
-//   return (
-//     <TextInput
-//       label={label}
-//       mode="outlined"
-//       value={val}
-//       editable={false}
-//       outlineStyle={{
-//         borderColor: Color.Secondary,
-//         borderRadius: 13,
-//         borderWidth: 1,
-//       }}
-//       style={{
-//         backgroundColor: Color.Secondary,
-//         height: Size.ExtraLarge + 5,
-//         // marginVertical: Size.Small,
-//       }}
-//       textColor={Color.White}
-//       // left={
-//       //   <TextInput.Icon
-//       //     style={{ marginTop: Size.Small + 1 }}
-//       //     icon={icon}
-//       //     iconColor={Color.White}
-//       //   />
-//       // }
-//     />
-//   );
-// };
 
 export const InputArea = ({ val,placeholder, setVal ,style,Lines}) => {
   return (
@@ -123,7 +96,7 @@ export const InputArea = ({ val,placeholder, setVal ,style,Lines}) => {
         borderWidth: 1,
       }}
       style={{
-        backgroundColor: (val === null ? Color.Primary :Color.Secondary),
+        backgroundColor: (val === '' ? Color.Primary :Color.Secondary),
         ...style
       }}
       textColor={Color.White}

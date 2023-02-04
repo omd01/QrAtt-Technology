@@ -3,14 +3,40 @@ import React, { useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
+import * as yup from "yup";
+import { Formik } from "formik";
+
+const loginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
+  
+  password: yup
+    .string()
+    .required("Password is required")
+    
+  
+});
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const handelSubmit = () => {
-    navigation.navigate("home");
-  };
+
   return (
+    <Formik
+    initialValues={{ email: "",password: ""}}
+    validateOnMount={true}
+    onSubmit={(values) => console.log(values)}
+    validationSchema={loginSchema}
+  >
+    {({
+      handleChange,
+      handleBlur,
+      handleSubmit,
+      values,
+      touched,
+      errors,
+      isValid,
+    }) => (
     <View style={{ height: Size.Full, backgroundColor: Color.Secondary }}>
       <View style={{ flex: 1 }}>
 
@@ -60,25 +86,51 @@ const Login = ({ navigation }) => {
           }}
         >
           <View>
-            <Input
-              icon={"email"}
-              label={"Email"}
-              val={email}
-              setval={setEmail}
-              iserror={false}
-            />
+          <View style={{ marginVertical: Size.Small }}>
+                  <Input
+                    icon={"email"}
+                    keyboardType={"email-adress"}
+                    label={"Email"}
+                    value={values.email}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                  />
+
+                  {errors.email && touched.email && (
+                    <Text
+                      style={{
+                        color: "red",
+                        fontFamily: Font.light,
+                        marginLeft: 15,
+                      }}
+                    >
+                      {errors.email}
+                    </Text>
+                  )}
+                </View>
             <InputSecure
-              icon={"lock"}
-              label={"Password"}
-              val={password}
-              setval={setPassword}
-              iserror={false}
-            />
-            <View style={{ marginVertical: 10 }}>
+                    icon={"lock"}
+                    label={"Password"}
+                    value={values.password}
+                    onChangeText={handleChange("password")}
+                    onBlur={handleBlur("password")}
+                  />
+                  {errors.password && touched.password && (
+                    <Text
+                      style={{
+                        color: "red",
+                        fontFamily: Font.light,
+                        marginLeft: 15,
+                      }}
+                    >
+                      {errors.password}
+                    </Text>
+                  )}
+            <View style={{ marginVertical: 20 }}>
               <ButtonD
                 value={"Log In"}
-                onPress={handelSubmit}
-                disabled={false}
+                onPress={handleSubmit}
+                disabled={isValid?false:true}
               />
             </View>
           </View>
@@ -137,6 +189,8 @@ const Login = ({ navigation }) => {
 
       </View>
     </View>
+          )}
+          </Formik>
   );
 };
 
