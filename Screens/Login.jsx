@@ -5,10 +5,9 @@ import { Input, InputSecure } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
 import * as yup from "yup";
 import { Formik } from "formik";
-
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/action";
-import { log } from "react-native-reanimated";
+import { clearError } from "../redux/reducer";
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -21,22 +20,27 @@ const loginSchema = yup.object().shape({
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { error, loading } = useSelector((state) => state.auth);
+  const { error, loading ,isAuthenticated} = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (error) {
-      console.log(error);
-      alert(error);
-      dispatch(clearError())
-    }
-  }, [error,dispatch,alert])
+    isAuthenticated && navigation.navigate("home")
+  }, [loading])
+  
 
+  // useEffect(() => {
+  //   if (error) {
+  //     // alert(error);
+  //     // dispatch(clearError())
+  //   console.log(error)
+  //   }
+  // }, [error,dispatch,alert])
 
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validateOnMount={true}
       onSubmit={(values) => {
+        dispatch(clearError());
         dispatch(login(values));
       }}
       validationSchema={loginSchema}
@@ -50,7 +54,6 @@ const Login = ({ navigation }) => {
         errors,
         isValid,
       }) => (
-
         <View style={{ height: Size.Full, backgroundColor: Color.Secondary }}>
           <View style={{ flex: 1 }}>
             <View
@@ -139,7 +142,23 @@ const Login = ({ navigation }) => {
                     {errors.password}
                   </Text>
                 )}
+                {error ? (
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: Size.Midum - 2,
+                        fontFamily: Font.light,
+                        // marginVertical
+                        marginTop:5,
+                      marginHorizontal:15
+                      }}
+                    >
+                      {error}
+                    </Text>
+                  ) : null}
+
                 <View style={{ marginVertical: 20 }}>
+                  
                   <ButtonD
                     value={"Log In"}
                     onPress={handleSubmit}

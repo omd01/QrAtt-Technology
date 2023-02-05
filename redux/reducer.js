@@ -21,7 +21,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.isAuthenticated = false;
       state.error = action.payload;
-      console.log(action.payload);
     },
 
     loadUserRequest: (state) => {
@@ -32,12 +31,13 @@ const authSlice = createSlice({
       state.loadingHome = false;
       state.isAuthenticated = true;
       state.user = action.payload.user;
+      state.theme ="dark"
     },
 
     loadUserFailure: (state, action) => {
       state.loadingHome = false;
       state.isAuthenticated = false;
-      state.error = action.payload;
+      // state.error = action.payload;
     },
 
     clearError: (state) => {
@@ -46,6 +46,9 @@ const authSlice = createSlice({
 
     clearMessage: (state) => {
       state.message = null;
+    },
+    changeTheme: (state) => {
+      state.theme = state.theme === "light" ? "dark" : "light";
     },
   },
 });
@@ -62,4 +65,5 @@ export const {
   loadUserFailure,
   clearError,
   clearMessage,
+  changeTheme
 } = authSlice.actions;

@@ -53,7 +53,7 @@ const Main = () => {
       />
 {loadingHome ? <Splash/> :
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={"login"} screenOptions={options}>
+        <Stack.Navigator initialRouteName={isAuthenticated?"home":"login"} screenOptions={options}>
           <Stack.Screen name="home" component={Screens.Home} />
           <Stack.Screen name="login" component={Screens.Login} />
           <Stack.Screen name="signup" component={Screens.Signup} />

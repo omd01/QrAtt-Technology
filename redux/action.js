@@ -1,6 +1,9 @@
 import axios from "axios";
 import {loadUserFailure, loadUserRequest, loadUserSuccess, loginFailure, loginRequest, loginSuccess} from "./reducer";
-const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
+// const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
+
+const serverUrl = "https://qratt-technology-server.onrender.com/api/v1";
+
 
 export const login = ({email, password}) => async (dispatch) => {
    

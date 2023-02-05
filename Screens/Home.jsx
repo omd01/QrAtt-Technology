@@ -8,9 +8,17 @@ import Scanner from "./Scanner/Scanner";
 import Leave from "./Leave";
 import Attendance from "./Attendance";
 import Settings from "./Settings/Settings";
-
+// import { useDispatch, useSelector } from "react-redux";
 
 const Home = ({navigation,route} ) => {
+  // const { error, loading } = useSelector((state) => state.auth);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //     // dispatch(changeTheme())
+  //   // console.log(theme);
+  // }, [])
+  
   const [screen, setScreen] = useState("home");
   const [selfi, setSelfi] = useState(null);
   const [keyboardStatus, setKeyboardStatus] = useState("KeyboardHidden");
