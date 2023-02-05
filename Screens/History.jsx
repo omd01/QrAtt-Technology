@@ -8,19 +8,42 @@ import {
 import React, { useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar,  IconButton } from "react-native-paper";
-import Leaves from "../Dumy/Leaves.json";
+// import Leaves from "../Dumy/Leaves.json";
 import { RenderItem } from "../components/RenderItem";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyLeaves } from "../redux/mainAction";
 
-const customShort = (a, b) => {
-  const dateA = new Date(a.createdAt);
-  const dateB = new Date(b.createdAt);
-  if (dateA > dateB) return 1;
-  else if (dateA < dateB) return -1;
-  return 0;
-};
-Leaves.sort(customShort).reverse();
+
+
 
 const History = () => {
+
+  
+  
+  const { error, message, loading ,myLeaves} = useSelector((state) => state.message);
+  // var Leaves = []
+
+  // const customShort = (a, b) => {
+  //   const dateA = new Date(a.createdAt);
+  //   const dateB = new Date(b.createdAt);
+  //   if (dateA > dateB) return 1;
+  //   else if (dateA < dateB) return -1;
+  //   return 0;
+  // };
+  
+
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+   dispatch(getMyLeaves())
+  // Leaves = myLeaves;
+  
+  }, [])
+  
+
+
   const [screen, setScreen] = useState("pending");
   // const [activeStyle,setActiveStyle] = useState({opacity:1})
 
@@ -57,6 +80,7 @@ const History = () => {
   };
 
   return (
+    loading ? <Text>Loading...</Text> :
     <View style={{ height: Size.Full }}>
       <View
         style={{
@@ -165,12 +189,14 @@ const History = () => {
       <SafeAreaView style={{ flex: 1, marginVertical: 5 }}>
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={Leaves}
+          data={myLeaves}
           renderItem={renderItem}
           keyExtractor={(item) => item._id}
         />
       </SafeAreaView>
+      
     </View>
+
   );
 };
 
