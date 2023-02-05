@@ -7,6 +7,7 @@ const authSlice = createSlice({
   reducers: {
     loginRequest: (state) => {
       state.loading = true;
+      
     },
 
     loginSuccess: (state, action) => {
@@ -20,20 +21,21 @@ const authSlice = createSlice({
       state.loading = false;
       state.isAuthenticated = false;
       state.error = action.payload;
+      console.log(action.payload);
     },
 
     loadUserRequest: (state) => {
-      state.loading = true;
+      state.loadingHome = true;
     },
 
     loadUserSuccess: (state, action) => {
-      state.loading = false;
+      state.loadingHome = false;
       state.isAuthenticated = true;
       state.user = action.payload.user;
     },
 
     loadUserFailure: (state, action) => {
-      state.loading = false;
+      state.loadingHome = false;
       state.isAuthenticated = false;
       state.error = action.payload;
     },

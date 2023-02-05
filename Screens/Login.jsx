@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
@@ -8,6 +8,7 @@ import { Formik } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/action";
+import { log } from "react-native-reanimated";
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -20,7 +21,17 @@ const loginSchema = yup.object().shape({
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { error, loading } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+      alert(error);
+      dispatch(clearError())
+    }
+  }, [error,dispatch,alert])
+
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -39,6 +50,7 @@ const Login = ({ navigation }) => {
         errors,
         isValid,
       }) => (
+
         <View style={{ height: Size.Full, backgroundColor: Color.Secondary }}>
           <View style={{ flex: 1 }}>
             <View

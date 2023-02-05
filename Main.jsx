@@ -5,10 +5,25 @@ import { useFonts } from "expo-font";
 import { Screens } from "./Screens/index";
 import { Color } from "./constants/theme";
 import Splash from "./Screens/Splash";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { loadUser } from "./redux/action";
+
 
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated, loadingHome } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+
+    dispatch(loadUser());
+
+
+  }, [dispatch])
+  
+
   const [loded] = useFonts({
     NunitoBold: require("./assets/Fonts/Nunito-Bold.ttf"),
     NunitoSemiBold: require("./assets/Fonts/Nunito-SemiBold.ttf"),
@@ -19,13 +34,14 @@ const Main = () => {
     NunitoRegular: require("./assets/Fonts/Nunito-Regular.ttf"),
   });
 
-  if (!loded) return <Splash/>;
+  if (!loded) return null;
 
-
+  
   const options = { headerShown: false };
 
 
   return (
+
     <>
       <StatusBar
         barStyle={"light-content"}
@@ -35,9 +51,9 @@ const Main = () => {
           paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         }}
       />
-
+{loadingHome ? <Splash/> :
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="login" screenOptions={options}>
+        <Stack.Navigator initialRouteName={"login"} screenOptions={options}>
           <Stack.Screen name="home" component={Screens.Home} />
           <Stack.Screen name="login" component={Screens.Login} />
           <Stack.Screen name="signup" component={Screens.Signup} />
@@ -55,6 +71,7 @@ const Main = () => {
 
   </Stack.Navigator>
       </NavigationContainer>
+      }
     </>
   );
 };

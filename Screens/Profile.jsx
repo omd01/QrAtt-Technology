@@ -2,12 +2,15 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Appbar, Avatar, IconButton } from "react-native-paper";
-import ProfileData from "../Dumy/Profile.json";
-import { ButtonD } from "../components/Buttons";
+// import ProfileData from "../Dumy/Profile.json";
 import LeaveData from "../Dumy/Leaves.json";
 import AttendanceData from "../Dumy/Attendance.json";
+import { useSelector } from "react-redux";
 
 const Profile = ({ setScreen, navigation }) => {
+  const {user} = useSelector((state) => state.auth);
+const ProfileData = user;
+
   const [leave, setLeave] = useState(0);
   const [checkIn, setCheckIn] = useState(0);
   const [checkOut, setCheckOut] = useState(0);
@@ -111,7 +114,7 @@ const Profile = ({ setScreen, navigation }) => {
             marginVertical: 4,
           }}
         >
-          {`Room :` + ProfileData.roomNo}
+          {`Room : ` + ProfileData.roomNo}
         </Text>
         {/* <ButtonD
           value={"Edit"}
