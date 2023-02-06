@@ -1,5 +1,5 @@
 import axios from "axios";
-import { leaveFailure, leaveRequest, leaveSuccess, myLeavesFailure, myLeavesRequest, myLeavesSuccess } from "./messageReducer";
+import { cancelLeaveFailure, cancelLeaveRequest, cancelLeaveSuccess, leaveFailure, leaveRequest, leaveSuccess, myLeavesFailure, myLeavesRequest, myLeavesSuccess } from "./messageReducer";
 
 
 // const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
@@ -9,7 +9,6 @@ const serverUrl = "https://qratt-technology-server.onrender.com/api/v1";
 
 export const leaveRequeste = (teacher,reason,from,to) => async (dispatch) => {
    
-    console.log(teacher,reason,from,to);
 dispatch(leaveRequest());
   try {
 
@@ -49,5 +48,20 @@ export const getMyLeaves = () => async (dispatch) => {
 
     } catch (error) {
       dispatch(myLeavesFailure(error.response.data.message));
+    }
+  };
+
+
+  export const cancelLeave = (leaveId) => async (dispatch) => {
+    try {
+      dispatch(cancelLeaveRequest());
+  
+      const { data } = await axios.delete(`${serverUrl}/leav/delete/${leaveId}`);
+
+      dispatch(cancelLeaveSuccess(data));
+      
+
+    } catch (error) {
+      dispatch(cancelLeaveFailure(error.response.data.message));
     }
   };

@@ -15,8 +15,11 @@ import { IconButton } from "react-native-paper";
 import { Color, Font, Size } from "../constants/theme";
 import Teachers from "../Dumy/Teachers.json";
 import { ButtonD } from "./Buttons";
+import { useDispatch } from "react-redux";
+import { cancelLeave } from "../redux/mainAction";
 
 export const RenderItem = ({ data }) => {
+  const dispatch = useDispatch();
   const animation = useSharedValue({ height: 0 });
   const [border, setBorder] = useState({});
   const [teacher, setTeacher] = useState("");
@@ -68,12 +71,11 @@ export const RenderItem = ({ data }) => {
     }
 
     interval = Math.floor(seconds / 86400);
-    if (interval > 1 ) {
+    if (interval > 1) {
       if (interval > 30) {
-        return  "1 month ago";
-      }
-      else{
-      return interval + " days ago"; 
+        return "1 month ago";
+      } else {
+        return interval + " days ago";
       }
     }
     interval = Math.floor(seconds / 3600);
@@ -89,15 +91,18 @@ export const RenderItem = ({ data }) => {
 
   function getFromTo(from, to) {
     var from_d = new Date(from).toLocaleString().split(" ");
-    var from = `${from_d[1]} ${new Date(from).getDate()}, ${new Date(from).getFullYear()}`;
+    var from = `${from_d[1]} ${new Date(from).getDate()}, ${new Date(
+      from
+    ).getFullYear()}`;
     var to_d = new Date(to).toLocaleString().split(" ");
-    var to = `${to_d[1]} ${new Date(to).getDate()}, ${new Date(to).getFullYear()}`;
+    var to = `${to_d[1]} ${new Date(to).getDate()}, ${new Date(
+      to
+    ).getFullYear()}`;
     return `${from} - To - ${to}`;
   }
 
-
-  const handerCancel = (id) => {
-    console.log(id);
+  const handerCancel = (leaveId) => {
+    dispatch(cancelLeave(leaveId));
   };
 
   return (
@@ -112,8 +117,7 @@ export const RenderItem = ({ data }) => {
           overflow: "hidden",
           alignItems: "center",
           flexDirection: "row",
-          // marginVertical:3,
-          marginTop:3,
+          marginTop: 3,
           ...border,
         }}
       >
@@ -127,7 +131,6 @@ export const RenderItem = ({ data }) => {
                 justifyContent: "center",
                 borderRightWidth: 1,
                 borderColor: Color.White,
-                
               }}
             >
               <Text
@@ -164,8 +167,6 @@ export const RenderItem = ({ data }) => {
                   fontFamily: Font.semiBold,
                   fontSize: Size.Midum + 2,
                   maxWidth: 230,
-                  // height:"100%",
-                  // overflow:'hidden'
                 }}
               >
                 {data.reason

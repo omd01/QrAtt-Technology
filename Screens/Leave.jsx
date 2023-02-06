@@ -12,8 +12,10 @@ import { leaveRequeste } from "../redux/mainAction";
 import { clearError, clearMessage } from "../redux/messageReducer";
 
 const Leave = () => {
-  const { error, message, loading ,myLeaves} = useSelector((state) => state.message);
-// console.log(leaves)
+  const { error, message, loading, myLeaves } = useSelector(
+    (state) => state.message
+  );
+
   useEffect(() => {
     if (error) {
       alert(error);
@@ -95,8 +97,6 @@ const Leave = () => {
       ? setLocalError([false, false, false, true])
       : setLocalError([false, false, false, false]);
     if (teacher !== null && from !== null && to !== null && reason !== "") {
-      // console.log(teacher+from+to+reason);
-
       dispatch(leaveRequeste(teacher, reason, from, to));
     }
   };
