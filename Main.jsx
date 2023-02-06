@@ -8,6 +8,7 @@ import Splash from "./Screens/Splash";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadUser } from "./redux/action";
+import { loadTeachers } from "./redux/mainAction";
 
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +20,7 @@ const Main = () => {
   useEffect(() => {
 
     dispatch(loadUser());
-
+    dispatch(loadTeachers());
 
   }, [dispatch])
   

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { cancelLeaveFailure, cancelLeaveRequest, cancelLeaveSuccess, leaveFailure, leaveRequest, leaveSuccess, myLeavesFailure, myLeavesRequest, myLeavesSuccess } from "./messageReducer";
+import { cancelLeaveFailure, cancelLeaveRequest, cancelLeaveSuccess, leaveFailure, leaveRequest, leaveSuccess, loadTeachersFailure, loadTeachersRequest, loadTeachersSuccess, myLeavesFailure, myLeavesRequest, myLeavesSuccess } from "./messageReducer";
 
 
 // const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
@@ -63,5 +63,19 @@ export const getMyLeaves = () => async (dispatch) => {
 
     } catch (error) {
       dispatch(cancelLeaveFailure(error.response.data.message));
+    }
+  };
+
+  export const loadTeachers = (leaveId) => async (dispatch) => {
+    try {
+      dispatch(loadTeachersRequest());
+  
+      const { data } = await axios.get(`${serverUrl}/getteacher`);
+
+      dispatch(loadTeachersSuccess(data));
+      
+
+    } catch (error) {
+      dispatch(loadTeachersFailure(error.response.data.message));
     }
   };

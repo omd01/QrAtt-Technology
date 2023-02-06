@@ -1,26 +1,28 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
-import { Appbar, Avatar, IconButton } from "react-native-paper";
-// import ProfileData from "../Dumy/Profile.json";
-import LeaveData from "../Dumy/Leaves.json";
+import { Avatar, IconButton } from "react-native-paper";
 import AttendanceData from "../Dumy/Attendance.json";
-import { useSelector } from "react-redux";
 
-const Profile = ({ setScreen, navigation }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { getMyLeaves } from "../redux/mainAction";
+
+const Profile = ({ navigation }) => {
+  const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
-const ProfileData = user;
+  const {myLeaves ,loading} = useSelector((state)=>state.message)
+  const ProfileData = user;
 
-  const [leave, setLeave] = useState(0);
+  // const [leave, setLeave] = useState(0);
   const [checkIn, setCheckIn] = useState(0);
   const [checkOut, setCheckOut] = useState(0);
 
   useEffect(() => {
-    var leave = 0;
+    // var leave = 0;
     var checkIn = 0;
     var checkOut = 0;
 
-    LeaveData.map(() => ++leave);
+    dispatch(getMyLeaves())
 
     AttendanceData.map((item) => {
       if (item.action == "check-in") {
@@ -30,7 +32,7 @@ const ProfileData = user;
       }
     });
 
-    setLeave(leave);
+    // setLeave(leave);
     setCheckIn(checkIn);
     setCheckOut(checkOut);
   }, []);
@@ -280,7 +282,7 @@ const ProfileData = user;
                 color: Color.White,
               }}
             >
-              {leave}
+              {myLeaves === undefined ? `0` :myLeaves.length}
             </Text>
           </View>
         </View>

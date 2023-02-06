@@ -12,9 +12,12 @@ import { leaveRequeste } from "../redux/mainAction";
 import { clearError, clearMessage } from "../redux/messageReducer";
 
 const Leave = () => {
-  const { error, message, loading, myLeaves } = useSelector(
+  const { error, message, loading ,teachers} = useSelector(
     (state) => state.message
   );
+
+  // console.log(teachers)
+  // console.log(Teachers)
 
   useEffect(() => {
     if (error) {
@@ -141,7 +144,7 @@ const Leave = () => {
             {`To Teacher`}
           </Text>
           <DropdownImg
-            data={Teachers}
+            data={teachers}
             micon={"human-male-board"}
             label={"Teacher's List"}
             value={"Teacher's"}
@@ -251,7 +254,7 @@ const Leave = () => {
             <DateTimePicker
               value={nowdate}
               mode={"date"}
-              minimumDate={new Date()}
+              minimumDate={from}
               onChange={onChangeTo}
             />
           )}

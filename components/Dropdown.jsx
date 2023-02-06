@@ -212,7 +212,7 @@ export const DropdownImg = ({ data, setSelected, label, micon, cstyle }) => {
           {data.map((item) => {
             return (
               <View
-              key={item._id}
+              key={item.id}
                 style={{
                   height: 50,
                   backgroundColor: Color.Secondary,
@@ -230,7 +230,7 @@ export const DropdownImg = ({ data, setSelected, label, micon, cstyle }) => {
                 <TouchableOpacity
                   onPress={() => {
                     setValue(item.name);
-                    setSelected(item._id);
+                    setSelected(item.id);
                     animation.value = { height: 0 };
                     setIcon("chevron-down");
                     setNewLabel(null);

@@ -49,6 +49,21 @@ const messageSlice = createSlice({
       state.error = action.payload;
     },
 
+    loadTeachersRequest: (state) => {
+      state.loading = true;
+    },
+
+    loadTeachersSuccess: (state, action) => {
+      state.loading = false;
+      state.teachers = action.payload.data;
+      state.message = action.payload.message;
+    },
+
+    loadTeachersFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
     clearError: (state) => {
       state.error = null;
     },
@@ -71,6 +86,9 @@ export const {
   cancelLeaveRequest,
   cancelLeaveSuccess,
   cancelLeaveFailure,
+  loadTeachersRequest,
+  loadTeachersSuccess,
+  loadTeachersFailure,
   clearError,
   clearMessage,
 } = messageSlice.actions;

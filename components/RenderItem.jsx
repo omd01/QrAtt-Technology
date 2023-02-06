@@ -13,9 +13,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { IconButton } from "react-native-paper";
 import { Color, Font, Size } from "../constants/theme";
-import Teachers from "../Dumy/Teachers.json";
+// import Teachers from "../Dumy/Teachers.json";
 import { ButtonD } from "./Buttons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cancelLeave } from "../redux/mainAction";
 
 export const RenderItem = ({ data }) => {
@@ -24,6 +24,10 @@ export const RenderItem = ({ data }) => {
   const [border, setBorder] = useState({});
   const [teacher, setTeacher] = useState("");
   const [show, setShow] = useState(true);
+
+  const { teachers} = useSelector(
+    (state) => state.message
+  );
 
   useEffect(() => {
     {
@@ -49,8 +53,8 @@ export const RenderItem = ({ data }) => {
       ? (animation.value = { height: 200 })
       : (animation.value = { height: 0 });
 
-    Teachers.map((item) => {
-      if (item._id === data.teacher) {
+      teachers.map((item) => {
+      if (item.id === data.teacher) {
         setTeacher(item);
       }
     });
