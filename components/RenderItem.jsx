@@ -83,12 +83,19 @@ export const RenderItem = ({ data }) => {
       }
     }
     interval = Math.floor(seconds / 3600);
-    if (interval > 1) {
-      return interval + " hours ago";
+    if(interval > 1) {
+    if (interval > 24) {
+      return "1 day ago";
     }
+    else{
+      return interval + " hours ago";
+    }}
     interval = Math.floor(seconds / 60);
     if (interval > 1) {
       return interval + " minutes ago";
+    }
+    if (Math.floor(seconds) > 60) {
+      return "1 minute ago";
     }
     return Math.floor(seconds) + " seconds ago";
   }

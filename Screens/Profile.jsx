@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar, IconButton } from "react-native-paper";
 import AttendanceData from "../Dumy/Attendance.json";
-
 import { useDispatch, useSelector } from "react-redux";
 import { getMyLeaves } from "../redux/mainAction";
+
 
 const Profile = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const Profile = ({ navigation }) => {
     var checkIn = 0;
     var checkOut = 0;
 
-    dispatch(getMyLeaves())
+    // dispatch(getMyLeaves())
 
     AttendanceData.map((item) => {
       if (item.action == "check-in") {
@@ -88,6 +88,8 @@ const Profile = ({ navigation }) => {
           style={{ backgroundColor: Color.Secondary }}
           size={120}
         />
+
+
         <Text
           style={{
             color: Color.White,

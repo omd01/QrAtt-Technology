@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar } from "react-native-paper";
@@ -6,31 +6,33 @@ import { InputArea } from "../components/InputFields";
 import { DropdownImg } from "../components/Dropdown";
 import { ButtonD } from "../components/Buttons";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import Teachers from "../Dumy/Teachers.json";
+// import Teachers from "../Dumy/Teachers.json";
 import { useDispatch, useSelector } from "react-redux";
 import { leaveRequeste } from "../redux/mainAction";
-import { clearError, clearMessage } from "../redux/messageReducer";
+// import { clearError, clearMessage } from "../redux/messageReducer";
+
+
 
 const Leave = () => {
-  const { error, message, loading ,teachers} = useSelector(
+  const dispatch = useDispatch();
+  const { error, message, pending ,teachers} = useSelector(
     (state) => state.message
   );
 
-  // console.log(teachers)
-  // console.log(Teachers)
 
-  useEffect(() => {
-    if (error) {
-      alert(error);
-      dispatch(clearError());
-    }
-    if (message) {
-      alert(message);
-      dispatch(clearMessage());
-    }
-  }, [message, error, dispatch, alert]);
 
-  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   // if (error) {
+  //   //   alert(error);
+  //   //   dispatch(clearError());
+  //   // }
+  //   // if (message) {
+  //   //   alert(message);
+  //   //   dispatch(clearMessage());
+  //   // }
+  // }, [message, error, dispatch, alert]);
+
+
   const [teacher, setTeacher] = useState(null);
   const [reason, setReason] = useState("");
 
@@ -105,7 +107,11 @@ const Leave = () => {
   };
 
   return (
+    
     <View style={{ height: Size.Full, paddingHorizontal: Size.Small }}>
+    
+
+
       <View
         style={{
           flexDirection: "row",
@@ -294,7 +300,6 @@ const Leave = () => {
             value={"Send Request"}
             onPress={handelSubmit}
             disabled={false}
-            loading={loading}
           />
         </View>
       </ScrollView>

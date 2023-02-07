@@ -5,16 +5,16 @@ const messageSlice = createSlice({
   initialState: {},
   reducers: {
     leaveRequest: (state) => {
-      state.loading = true;
+      state.pending = true;
     },
 
     leaveSuccess: (state, action) => {
-      state.loading = false;
+      state.pending = false;
       state.message = action.payload.message;
     },
 
     leaveFailure: (state, action) => {
-      state.loading = false;
+      state.pending = false;
       state.error = action.payload;
     },
 
@@ -31,21 +31,20 @@ const messageSlice = createSlice({
     myLeavesFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    
 
     },
 
     cancelLeaveRequest: (state) => {
-      state.loading = true;
+      state.pending = true;
     },
 
     cancelLeaveSuccess: (state, action) => {
-      state.loading = false;
+      state.pending = false;
       state.message = action.payload.message;
     },
 
     cancelLeaveFailure: (state, action) => {
-      state.loading = false;
+      state.pending = false;
       state.error = action.payload;
     },
 
@@ -61,6 +60,20 @@ const messageSlice = createSlice({
 
     loadTeachersFailure: (state, action) => {
       state.loading = false;
+      state.error = action.payload;
+    },
+    
+    makeAttendancesRequest: (state) => {
+      state.pending = true;
+    },
+
+    makeAttendancesSuccess: (state, action) => {
+      state.pending = false;
+      state.message = action.payload.message;
+    },
+
+    makeAttendancesFailure: (state, action) => {
+      state.pending = false;
       state.error = action.payload;
     },
 
@@ -89,6 +102,9 @@ export const {
   loadTeachersRequest,
   loadTeachersSuccess,
   loadTeachersFailure,
+  makeAttendancesRequest,
+  makeAttendancesSuccess,
+  makeAttendancesFailure,
   clearError,
   clearMessage,
 } = messageSlice.actions;

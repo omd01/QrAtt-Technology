@@ -10,7 +10,6 @@ const BeforeScan = ({screen,setScreen,setQrData}) => {
     const handleBarCodeScanned = ({ data }) => {
       Vibration.vibrate(200);
         setScreen("AfterScan");
-       console.log(data);
         setQrData(data)
       };
 

@@ -32,6 +32,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.theme ="dark"
+      
     },
 
     loadUserFailure: (state, action) => {

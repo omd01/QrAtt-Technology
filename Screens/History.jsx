@@ -12,31 +12,29 @@ import { RenderItem } from "../components/RenderItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  getMyLeaves } from "../redux/mainAction";
-import { clearError, clearMessage } from "../redux/messageReducer";
+// import { clearError, clearMessage } from "../redux/messageReducer";
 
 const History = () => {
   
-  const { error, message, loading ,myLeaves} = useSelector((state) => state.message);
-
+  const { error, message ,myLeaves} = useSelector((state) => state.message);
   const dispatch = useDispatch();
   const [screen, setScreen] = useState("pending");
 
 
+  //    useEffect(() => {
+  //   dispatch(getMyLeaves())
 
-     useEffect(() => {
-    dispatch(getMyLeaves())
+  //   // if(error){
+  //   //   alert(error)
+  //   //   dispatch(clearError())
 
-    if(error){
-      alert(error)
-      dispatch(clearError())
+  //   // }
+  //   // if(message){
+  //   //   alert(message)
+  //   //   dispatch(clearMessage())
 
-    }
-    if(message){
-      alert(message)
-      dispatch(clearMessage())
-
-    }
-  }, [dispatch,error,message,alert])
+  //   // }
+  // }, [error,message])
 
 
   const activeStyle = [

@@ -7,7 +7,7 @@ import Settings from "./Settings/Settings";
 import Account from "./Settings/Account";
 import EditProfile from "./Settings/EditProfile"
 import ChangePassword from "./Settings/ChangePassword"
-import Notification from "./Scanner/Notification";
+import Notification from "./Settings/Notification";
 import Theme from "./Settings/Theme";
 import ForgetPassword from "./Settings/ForgetPassword";
 import ResetPassword from "./Settings/ResetPassword";
