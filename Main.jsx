@@ -5,25 +5,23 @@ import { useFonts } from "expo-font";
 import { Screens } from "./Screens/index";
 import { Color } from "./constants/theme";
 import Splash from "./Screens/Splash";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { loadUser } from "./redux/action";
-import { getMyLeaves, loadTeachers } from "./redux/mainAction";
-
+import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
-  const dispatch = useDispatch();
-  const { isAuthenticated, loadingHome } = useSelector((state) => state.auth);
+const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  const checkAuth = async () => {
+    setIsAuthenticated(JSON.parse(await AsyncStorage.getItem("isAuthenticated")))
+    
+  }
 
   useEffect(() => {
-
-    dispatch(loadUser());
-    dispatch(loadTeachers());
-    dispatch(getMyLeaves())
-
-  }, [dispatch])
+    checkAuth()
+  }, [])
   
 
   const [loded] = useFonts({
@@ -36,7 +34,7 @@ const Main = () => {
     NunitoRegular: require("./assets/Fonts/Nunito-Regular.ttf"),
   });
 
-  if (!loded) return null;
+  if (!loded) return <Splash/>;
 
   
   const options = { headerShown: false };
@@ -53,7 +51,7 @@ const Main = () => {
           paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         }}
       />
-{loadingHome ? <Splash/> :
+
       <NavigationContainer>
         <Stack.Navigator initialRouteName={isAuthenticated?"home":"login"} screenOptions={options}>
           <Stack.Screen name="home" component={Screens.Home} />
@@ -69,11 +67,9 @@ const Main = () => {
           <Stack.Screen name="theme" component={Screens.Theme} />
           <Stack.Screen name="forgetPassword" component={Screens.ForgetPassword} />
           <Stack.Screen name="resetPassword" component={Screens.ResetPassword} />
-
-
   </Stack.Navigator>
       </NavigationContainer>
-      }
+
     </>
   );
 };

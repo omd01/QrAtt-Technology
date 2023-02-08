@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, View } from "react-native";
-import { Color, Font, Size } from "../../constants/theme";
+import { View } from "react-native";
+import { Color, Size } from "../../constants/theme";
 import { Appbar } from "react-native-paper";
 import AfterScan from "./AfterScan";
 import BeforeScan from "./BeforeScan";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, clearMessage } from "../../redux/messageReducer";
 import { makeAttendance } from "../../redux/mainAction";
 import mime from "mime";
 
@@ -17,19 +16,6 @@ const Scanner = ({ navigation, selfi }) => {
   const [verifyImg, setVerifyImg] = useState(null);
   const [qrData, setQrData] = useState(null);
 
-
-  // useEffect(() => {
-  //   if (error) {
-  //     alert(error);
-  //     dispatch(clearError());
-  //   }
-  //   if (message) {
-  //     alert(message);
-  //     dispatch(clearMessage());
-  //   }
-  // }, [message, error, dispatch, alert]);
-
-
   useEffect(() => {
     if (selfi) {
       setVerifyImg(selfi);
@@ -38,7 +24,7 @@ const Scanner = ({ navigation, selfi }) => {
 
   useEffect(() => {
     if (verifyImg) {
-     setScreen("BeforeScan");
+      setScreen("BeforeScan");
 
       if (action && qrData && verifyImg) {
         const myForm = new FormData();
@@ -51,12 +37,6 @@ const Scanner = ({ navigation, selfi }) => {
           name: verifyImg.split("/").pop(),
         });
         dispatch(makeAttendance(myForm));
-
-        // makeAttendance
-        // console.log(JSON.parse(qrData).gate);
-        // console.log(JSON.parse(qrData).uniqueCode);
-        // console.log(action);
-        // console.log(verifyImg);
       }
       if (qrData === null) {
         setScreen("BeforeScan");
@@ -64,11 +44,8 @@ const Scanner = ({ navigation, selfi }) => {
     }
   }, [verifyImg]);
 
-
-
   return (
     <View>
-    
       <Appbar.Header
         style={{ backgroundColor: Color.Primary, position: "absolute" }}
       >
@@ -96,16 +73,7 @@ const Scanner = ({ navigation, selfi }) => {
           />
         ) : screen === "AfterScan" ? (
           <AfterScan navigation={navigation} setAction={setAction} />
-        ) : null 
-        // (
-        //   <View
-        //     style={{ justifyContent: "center", flex: 1, alignItems: "center" }}
-        //   >
-        //     {/* '{loading ? <Image source={require("../../assets/Images/white.gif") }style={{width:Size.Full,resizeMode:"contain"} }/> : 
-        //     <Image source={require("../../assets/Images/success.gif") }style={{width:Size.Full,resizeMode:"contain"} }/> }' */}
-        //   </View>
-        // )
-        }
+        ) : null}
       </View>
     </View>
   );

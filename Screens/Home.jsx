@@ -9,19 +9,31 @@ import Leave from "./Leave";
 import Attendance from "./Attendance";
 import Settings from "./Settings/Settings";
 
+
 import {
   ErrorView,
   LoadingView,
   PendingView,
   SuccessView,
 } from "../components/CustomeView";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "../redux/action";
+import { getMyLeaves, loadTeachers, totalAttendance } from "../redux/mainAction";
 
 const Home = ({ navigation, route }) => {
+  const dispatch = useDispatch();
+
   const { loading, pending, error, message } = useSelector(
     (state) => state.message
   );
 
+  useEffect(() => {
+      dispatch(loadUser());
+      dispatch(loadTeachers());
+      dispatch(getMyLeaves())
+      dispatch(totalAttendance())
+  }, [dispatch])
+  
 
   const [screen, setScreen] = useState("home");
   const [selfi, setSelfi] = useState(null);

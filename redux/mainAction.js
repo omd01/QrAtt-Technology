@@ -111,7 +111,7 @@ export const totalAttendance = () => async (dispatch) => {
     // console.log(data.myAtt.sort(customShort).reverse());
 
 
-    dispatch(totalAttendanceSuccess(data.myAtt.sort(customShort).reverse()));
+    dispatch(totalAttendanceSuccess(data.data.sort(customShort).reverse()));
   } catch (error) {
     dispatch(totalAttendanceFailure(error.response.data.message));
   }

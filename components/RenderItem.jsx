@@ -125,6 +125,7 @@ export const RenderItem = ({ data }) => {
           backgroundColor: Color.Secondary,
           height: Size.ExtraLarge,
           borderRadius: 8,
+          marginHorizontal:5,
           overflow: "hidden",
           alignItems: "center",
           flexDirection: "row",
@@ -142,6 +143,7 @@ export const RenderItem = ({ data }) => {
                 justifyContent: "center",
                 borderRightWidth: 1,
                 borderColor: Color.White,
+                
               }}
             >
               <Text
@@ -230,6 +232,8 @@ export const RenderItem = ({ data }) => {
             backgroundColor: Color.Secondary,
             borderBottomRightRadius: 8,
             borderBottomLeftRadius: 8,
+          marginHorizontal:5,
+
           },
           animationStyle,
         ]}

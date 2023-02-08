@@ -20,6 +20,7 @@ import { Avatar } from "react-native-paper";
 export const Dropdown = ({
   data,
   setSelected,
+  setFieldValue,
   label,
   micon,
   cstyle,

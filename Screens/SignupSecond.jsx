@@ -19,11 +19,11 @@ const secondSignupSchema = yup.object().shape({
     )
     .required("Parents mobile number is required"),
   room: yup.number().required("Room number is required"),
+  branch: yup.string().required("Branch is required"),
 });
 
 const SignupSecond = ({ navigation, route }) => {
   const [cambar, setCambar] = useState(false);
-
   const [avatar, setAvatar] = useState(null);
   const [newBranch, setNewBranch] = useState(null);
   const [error, setError] = useState([false, false]);
@@ -49,7 +49,6 @@ const SignupSecond = ({ navigation, route }) => {
         handelGallary();
       }
       if (route.params.values) {
-        // console.log(route.params.values);
         setOldValues(route.params.values);
       }
     }
@@ -74,7 +73,7 @@ const SignupSecond = ({ navigation, route }) => {
 
   return (
     <Formik
-      initialValues={{ name: "", pmobile: "", room: "" }}
+      initialValues={{ name: "", pmobile: "", room: "", branch: "" }}
       validateOnMount={true}
       onSubmit={(values) => {
         newBranch === null

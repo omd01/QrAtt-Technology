@@ -23,18 +23,19 @@ const Login = ({ navigation }) => {
   const { error, loading ,isAuthenticated} = useSelector((state) => state.auth);
 
   useEffect(() => {
-    isAuthenticated && navigation.navigate("home")
+    isAuthenticated &&  navigation.navigate("home")
   }, [loading])
-  
+
 
 
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validateOnMount={true}
-      onSubmit={(values) => {
+      onSubmit={(values,action) => {
         dispatch(clearError());
         dispatch(login(values));
+        action.resetForm()
       }}
       validationSchema={loginSchema}
     >

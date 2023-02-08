@@ -3,23 +3,27 @@ import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar, IconButton } from "react-native-paper";
 import { useSelector } from "react-redux";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const Profile = ({ navigation }) => {
-  const {user} = useSelector((state) => state.auth);
+  const [ProfileData, setProfileData] = useState(null);
+  const getProfile = async () => {
+    setProfileData(JSON.parse(await AsyncStorage.getItem("user")))
+  }
+  
   const {myLeaves ,totalAttendance} = useSelector((state)=>state.message)
-  const ProfileData = user;
+
 
   const [checkIn, setCheckIn] = useState(0);
   const [checkOut, setCheckOut] = useState(0);
-
   useEffect(() => {
+  getProfile()
 
     var checkIn = 0;
     var checkOut = 0;
 
-
+if(totalAttendance){
     totalAttendance.map((item) => {
       if (item.action == "check-in") {
         ++checkIn;
@@ -27,12 +31,14 @@ const Profile = ({ navigation }) => {
         ++checkOut;
       }
     });
-
+  }
     setCheckIn(checkIn);
     setCheckOut(checkOut);
   }, []);
 
-  return (
+  return (<>
+    {ProfileData ? 
+   
     <View style={{ height: Size.Full, position: "relative" }}>
       <View
         style={{
@@ -79,7 +85,7 @@ const Profile = ({ navigation }) => {
         }}
       >
         <Avatar.Image
-          source={{ uri: ProfileData.avatar.url }}
+           source={ProfileData?{ uri: ProfileData.avatar.url }:null}
           style={{ backgroundColor: Color.Secondary }}
           size={120}
         />
@@ -93,7 +99,7 @@ const Profile = ({ navigation }) => {
             marginVertical: 5,
           }}
         >
-          {ProfileData.name}
+          {ProfileData.name?ProfileData.name:null}
         </Text>
         <Text
           style={{
@@ -272,6 +278,8 @@ const Profile = ({ navigation }) => {
         </View>
       </View>
     </View>
+    :null}
+    </>
   );
 };
 

@@ -3,10 +3,17 @@ import React from "react";
 import { Appbar, Button, IconButton } from "react-native-paper";
 import { Color, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../redux/action";
 
 const Settings = ({ navigation }) => {
-  const handelLogOut = () => {
-    console.log("log Out");
+  const dispatch = useDispatch();
+
+  const handelLogOut = async () => {
+    await dispatch(logOut())
+    navigation.navigate("login")
+     
+  
   };
   return (
     <View style={{ height: Size.Full }}>

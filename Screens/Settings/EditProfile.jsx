@@ -1,17 +1,18 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { Appbar, Button, IconButton, Avatar } from "react-native-paper";
+import { Appbar, IconButton, Avatar } from "react-native-paper";
 import { Color, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
 import React, { useState, useEffect } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { Input } from "../../components/InputFields";
-import ProfileData from "../../Dumy/Profile.json";
+import { useSelector } from "react-redux";
 
 const EditProfile = ({ route, navigation }) => {
-  const [name, setName] = useState(ProfileData.name);
-  const [room, setRoom] = useState(ProfileData.roomNo.toString());
+  const {user} = useSelector((state) => state.auth);
+  const [name, setName] = useState(user.name);
+  const [room, setRoom] = useState(user.roomNo.toString());
   const [cambar, setCambar] = useState(false);
-  const [avatar, setAvatar] = useState(ProfileData.avatar.url);
+  const [avatar, setAvatar] = useState(user.avatar.url);
 
   useEffect(() => {
     if (route.params) {

@@ -24,21 +24,36 @@ const authSlice = createSlice({
     },
 
     loadUserRequest: (state) => {
-      state.loadingHome = true;
+      state.loading = true;
     },
 
     loadUserSuccess: (state, action) => {
-      state.loadingHome = false;
+      state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload.user;
-      state.theme ="dark"
       
     },
 
     loadUserFailure: (state, action) => {
-      state.loadingHome = false;
+      state.loading = false;
       state.isAuthenticated = false;
-      // state.error = action.payload;
+    },
+    logOutRequest: (state) => {
+      state.loading = true;
+
+    },
+
+    logOutSuccess: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.user = null;
+
+    },
+
+    logOutFailure: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = true;
+
     },
 
     clearError: (state) => {
@@ -65,7 +80,11 @@ export const {
   loadUserRequest,
   loadUserSuccess,
   loadUserFailure,
+  logOutRequest,
+  logOutSuccess,
+  logOutFailure,
   clearError,
   clearMessage,
-  changeTheme
+  changeTheme,
+
 } = authSlice.actions;
