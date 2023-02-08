@@ -12,14 +12,16 @@ import {
   myLeavesFailure,
   myLeavesRequest,
   myLeavesSuccess,
+  totalAttendanceFailure,
+  totalAttendanceRequest,
+  totalAttendanceSuccess,
 } from "./messageReducer";
 
 // const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
 
 const serverUrl = "https://qratt-technology-server.onrender.com/api/v1";
 
-export const leaveRequeste =
-  (teacher, reason, from, to) => async (dispatch) => {
+export const leaveRequeste = (teacher, reason, from, to) => async (dispatch) => {
     dispatch(leaveRequest());
     try {
       const { data } = await axios.post(
@@ -30,8 +32,7 @@ export const leaveRequeste =
         }
       );
 
-       dispatch(leaveSuccess(data));
-      
+      dispatch(leaveSuccess(data));
     } catch (error) {
       dispatch(leaveFailure(error.response.data.message));
     }
@@ -69,7 +70,7 @@ export const cancelLeave = (leaveId) => async (dispatch) => {
   }
 };
 
-export const loadTeachers = (leaveId) => async (dispatch) => {
+export const loadTeachers = () => async (dispatch) => {
   try {
     dispatch(loadTeachersRequest());
 
@@ -90,5 +91,28 @@ export const makeAttendance = (myForm) => async (dispatch) => {
     dispatch(leaveSuccess(data));
   } catch (error) {
     dispatch(leaveFailure(error.response.data.message));
+  }
+};
+
+export const totalAttendance = () => async (dispatch) => {
+  try {
+    dispatch(totalAttendanceRequest());
+
+    const { data } = await axios.get(`${serverUrl}/attendence/getmyattendence`);
+
+    const customShort = (a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      if (dateA > dateB) return 1;
+      else if (dateA < dateB) return -1;
+      return 0;
+    };
+
+    // console.log(data.myAtt.sort(customShort).reverse());
+
+
+    dispatch(totalAttendanceSuccess(data.myAtt.sort(customShort).reverse()));
+  } catch (error) {
+    dispatch(totalAttendanceFailure(error.response.data.message));
   }
 };

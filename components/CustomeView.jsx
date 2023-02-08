@@ -4,7 +4,7 @@ import { Color, Font, Size } from "../constants/theme";
 import { useDispatch } from "react-redux";
 import { ButtonD } from "./Buttons";
 import { clearError, clearMessage } from "../redux/messageReducer";
-import { getMyLeaves } from "../redux/mainAction";
+import { getMyLeaves, totalAttendance } from "../redux/mainAction";
 
 export const LoadingView = () => {
   return (
@@ -27,7 +27,7 @@ export const PendingView = () => {
   return (
     <View
       style={{
-        backgroundColor: Color.Primary,
+        backgroundColor: Color.Opacity,
         height: Size.Full,
         width: Size.Full,
         position: "absolute",
@@ -60,7 +60,7 @@ export const PendingView = () => {
           }}
         >
           <Image
-            source={require("../assets/Images/loading-black.gif")}
+            source={require("../assets/Images/loading-pending.gif")}
             style={{ width: 110, height: 90, resizeMode: "contain" }}
           />
         </View>
@@ -98,7 +98,7 @@ export const SuccessView = ({ message }) => {
   return (
     <View
       style={{
-        backgroundColor: Color.Primary,
+        backgroundColor: Color.Opacity,
         height: Size.Full,
         width: Size.Full,
         position: "absolute",
@@ -123,7 +123,7 @@ export const SuccessView = ({ message }) => {
           style={{
             width: 90,
             height: 90,
-            backgroundColor: Color.Btn,
+            backgroundColor: Color.White,
             marginTop: 40,
             borderRadius: 50,
             borderWidth: 1,
@@ -157,10 +157,10 @@ export const SuccessView = ({ message }) => {
         </Text>
         <ButtonD
           value={"DONE"}
-          onPress={() => {dispatch(clearMessage()),dispatch(getMyLeaves())}}
+          onPress={() => {dispatch(clearMessage()),dispatch(getMyLeaves()),dispatch(totalAttendance())}}
           textColor={Color.White}
           labelStyle={{ fontFamily: Font.bold, fontSize: 16, letterSpacing: 1 }}
-          contentStyle={{}}
+          // contentStyle={{}}
           style={{
             width: 120,
             marginTop: 40,
@@ -171,7 +171,7 @@ export const SuccessView = ({ message }) => {
         />
       </View>
       <Image
-        source={require("../assets/Images/loading-success2.gif")}
+        source={require("../assets/Images/loading-success.gif")}
         style={{
           width: 440,
           height: 300,
@@ -189,7 +189,7 @@ export const ErrorView = ({ error }) => {
   return (
     <View
       style={{
-        backgroundColor: Color.Primary,
+        backgroundColor: Color.Opacity,
         height: Size.Full,
         width: Size.Full,
         position: "absolute",

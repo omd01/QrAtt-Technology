@@ -1,19 +1,16 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useState, useEffect } from "react";
 import { Color, Size, Font } from "../constants/theme";
-import AttendData from "../Dumy/Attendance.json";
+// import AttendData from "../Dumy/Attendance.json";
 import { Avatar, IconButton } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
 
-const customShort = (a, b) => {
-  const dateA = new Date(a.createdAt);
-  const dateB = new Date(b.createdAt);
-  if (dateA > dateB) return 1;
-  else if (dateA < dateB) return -1;
-  return 0;
-};
-AttendData.sort(customShort).reverse();
 
 const Attendance = () => {
+  const { totalAttendance} = useSelector(
+    (state) => state.message
+  );
+
+
   const dateTime = (date) => {
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -44,18 +41,11 @@ const Attendance = () => {
     else return date.toLocaleString();
   }
 
-  // console.log(new Date().toTimeString());
-  // console.log(new Date().toLocaleTimeString('en-US', {
-  //   hour: 'numeric', minute: 'numeric', hour12: true
-  //   }));
-
-  //  console.log(dateTime(new Date()));
-
   const Item = ({ item }) => (
     <View
       style={{
         backgroundColor: Color.Secondary,
-        height: Size.ExtraLarge + 5,
+        height: Size.ExtraLarge + 10,
         borderRadius: 8,
         overflow: "hidden",
         alignItems: "center",
@@ -63,7 +53,6 @@ const Attendance = () => {
         marginVertical: 3,
       }}
     >
-    
       <>
         <View
           style={{
@@ -109,11 +98,22 @@ const Attendance = () => {
                 marginLeft: 8,
                 color: Color.White,
                 fontFamily: Font.semiBold,
-                fontSize: Size.Midum + 2,
+                fontSize: Size.Midum + 3,
               }}
             >
               {item.action.replace(/^\w/, (c) => c.toUpperCase()) +
-                ` at ` +
+                ` From ` +
+                `Main Gate`}
+            </Text>
+            <Text
+              style={{
+                marginLeft: 8,
+                color: Color.White,
+                fontFamily: Font.semiBold,
+                fontSize: Size.Small +2,
+              }}
+            >
+              {
                 getTimeAgoFromUTC(item.actionAt)}
             </Text>
           </View>
@@ -129,7 +129,6 @@ const Attendance = () => {
           />
         </View>
       </>
-      
     </View>
   );
 
@@ -146,7 +145,6 @@ const Attendance = () => {
           alignItems: "center",
           backgroundColor: Color.Primary,
           marginVertical: Size.Small,
-          // backgroundColor:Color.Secondary //Chnage In Color Remove This
         }}
       >
         <Avatar.Icon
@@ -158,8 +156,8 @@ const Attendance = () => {
         <Text
           style={{
             color: Color.White,
-            fontSize: Size.Midum + 4, //change in size { 2 } /4
-            fontFamily: Font.semiBold, // change in font { semi Bold} /bold
+            fontSize: Size.Midum + 4,
+            fontFamily: Font.semiBold,
           }}
         >
           {`Total Attandance`}
@@ -167,7 +165,7 @@ const Attendance = () => {
       </View>
 
       <FlatList
-        data={AttendData}
+        data={totalAttendance}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
       />

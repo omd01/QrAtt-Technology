@@ -77,6 +77,21 @@ const messageSlice = createSlice({
       state.error = action.payload;
     },
 
+    totalAttendanceRequest: (state) => {
+      state.loading = true;
+    },
+
+    totalAttendanceSuccess: (state, action) => {
+      state.loading = false;
+      state.totalAttendance = action.payload;
+      state.message = action.payload.message;
+    },
+
+    totalAttendanceFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
     clearError: (state) => {
       state.error = null;
     },
@@ -105,6 +120,9 @@ export const {
   makeAttendancesRequest,
   makeAttendancesSuccess,
   makeAttendancesFailure,
+  totalAttendanceRequest,
+  totalAttendanceSuccess,
+  totalAttendanceFailure,
   clearError,
   clearMessage,
 } = messageSlice.actions;
