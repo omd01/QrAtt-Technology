@@ -95,15 +95,13 @@ const CameraComponent = ({ navigation, route }) => {
       { flip: FlipType.Horizontal },
     ]);
     if (manipResult) {
-     
-      {fromUpdate ?  navigation.navigate("editProfile", { image: manipResult.uri }):
-      
-        fromScan
+      {
+        fromUpdate
+          ? navigation.navigate("editProfile", { image: manipResult.uri })
+          : fromScan
           ? navigation.navigate("home", { image: manipResult.uri })
           : navigation.navigate("signupSecond", { image: manipResult.uri });
-      
-    
-    }
+      }
     }
   };
 

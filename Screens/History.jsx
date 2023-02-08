@@ -9,32 +9,15 @@ import React, { useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar,  IconButton } from "react-native-paper";
 import { RenderItem } from "../components/RenderItem";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {  getMyLeaves } from "../redux/mainAction";
-// import { clearError, clearMessage } from "../redux/messageReducer";
+import {useSelector } from "react-redux";
+
 
 const History = () => {
   
-  const { error, message ,myLeaves} = useSelector((state) => state.message);
-  const dispatch = useDispatch();
+  const {myLeaves} = useSelector((state) => state.message);
+
   const [screen, setScreen] = useState("pending");
 
-
-  //    useEffect(() => {
-  //   dispatch(getMyLeaves())
-
-  //   // if(error){
-  //   //   alert(error)
-  //   //   dispatch(clearError())
-
-  //   // }
-  //   // if(message){
-  //   //   alert(message)
-  //   //   dispatch(clearMessage())
-
-  //   // }
-  // }, [error,message])
 
 
   const activeStyle = [
@@ -70,7 +53,6 @@ const History = () => {
   };
 
   return (
-    // loading ? <Text>Loading...</Text> :
     <View style={{ height: Size.Full }}>
       <View
         style={{
@@ -99,8 +81,6 @@ const History = () => {
           {`Leave Request History`}
         </Text>
       </View>
-
-   
       <View
         style={{
           flexDirection: "row",
@@ -175,7 +155,6 @@ const History = () => {
           </Text>
         </TouchableOpacity>
       </View>
-
       <SafeAreaView style={{ flex: 1, marginVertical: 5 }}>
         <FlatList
           showsVerticalScrollIndicator={false}

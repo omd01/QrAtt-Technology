@@ -27,13 +27,6 @@ const Login = ({ navigation }) => {
   }, [loading])
   
 
-  // useEffect(() => {
-  //   if (error) {
-  //     // alert(error);
-  //     // dispatch(clearError())
-  //   console.log(error)
-  //   }
-  // }, [error,dispatch,alert])
 
   return (
     <Formik

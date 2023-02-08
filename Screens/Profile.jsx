@@ -2,29 +2,25 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar, IconButton } from "react-native-paper";
-import AttendanceData from "../Dumy/Attendance.json";
-import { useDispatch, useSelector } from "react-redux";
-import { getMyLeaves } from "../redux/mainAction";
+import { useSelector } from "react-redux";
+
 
 
 const Profile = ({ navigation }) => {
-  const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
-  const {myLeaves ,loading} = useSelector((state)=>state.message)
+  const {myLeaves ,totalAttendance} = useSelector((state)=>state.message)
   const ProfileData = user;
 
-  // const [leave, setLeave] = useState(0);
   const [checkIn, setCheckIn] = useState(0);
   const [checkOut, setCheckOut] = useState(0);
 
   useEffect(() => {
-    // var leave = 0;
+
     var checkIn = 0;
     var checkOut = 0;
 
-    // dispatch(getMyLeaves())
 
-    AttendanceData.map((item) => {
+    totalAttendance.map((item) => {
       if (item.action == "check-in") {
         ++checkIn;
       } else {
@@ -32,7 +28,6 @@ const Profile = ({ navigation }) => {
       }
     });
 
-    // setLeave(leave);
     setCheckIn(checkIn);
     setCheckOut(checkOut);
   }, []);
@@ -120,19 +115,7 @@ const Profile = ({ navigation }) => {
         >
           {`Room : ` + ProfileData.roomNo}
         </Text>
-        {/* <ButtonD
-          value={"Edit"}
-          onPress={() => navigation.navigate('editProfile')}
-          contentStyle={{ height: 35 }}
-          icon={"pencil-outline"}
-          bgColor={Color.Primary}
-          style={{
-            borderWidth: 1,
-            borderColor: Color.Secondary,
-            marginVertical: 10,
-          }}
-          textColor={Color.White}
-        /> */}
+
       </View>
 
       <View style={{ flex: 1, width: "80%", alignSelf: "center" }}>
@@ -141,7 +124,6 @@ const Profile = ({ navigation }) => {
             backgroundColor: Color.Secondary,
             height: Size.ExtraLarge,
             borderRadius: 8,
-            // overflow: "hidden",
             alignItems: "center",
             flexDirection: "row",
             marginVertical: 5,

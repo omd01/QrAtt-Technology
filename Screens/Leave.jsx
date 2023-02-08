@@ -6,37 +6,19 @@ import { InputArea } from "../components/InputFields";
 import { DropdownImg } from "../components/Dropdown";
 import { ButtonD } from "../components/Buttons";
 import DateTimePicker from "@react-native-community/datetimepicker";
-// import Teachers from "../Dumy/Teachers.json";
 import { useDispatch, useSelector } from "react-redux";
 import { leaveRequeste } from "../redux/mainAction";
-// import { clearError, clearMessage } from "../redux/messageReducer";
 
 
 
-const Leave = () => {
+const Leave = ({setScreen}) => {
   const dispatch = useDispatch();
-  const { error, message, pending ,teachers} = useSelector(
+  const { teachers} = useSelector(
     (state) => state.message
   );
 
-
-
-  // useEffect(() => {
-  //   // if (error) {
-  //   //   alert(error);
-  //   //   dispatch(clearError());
-  //   // }
-  //   // if (message) {
-  //   //   alert(message);
-  //   //   dispatch(clearMessage());
-  //   // }
-  // }, [message, error, dispatch, alert]);
-
-
   const [teacher, setTeacher] = useState(null);
   const [reason, setReason] = useState("");
-
-  const [nowdate, setNowDate] = useState(new Date());
 
   const [showFromDate, setshowFromDate] = useState(false);
   const [showToDate, setshowToDate] = useState(false);
@@ -91,7 +73,7 @@ const Leave = () => {
     }
   }, [to]);
 
-  const handelSubmit = () => {
+  const handelSubmit = async () => {
     teacher === null
       ? setLocalError([true, false, false, false])
       : from === null
@@ -102,7 +84,8 @@ const Leave = () => {
       ? setLocalError([false, false, false, true])
       : setLocalError([false, false, false, false]);
     if (teacher !== null && from !== null && to !== null && reason !== "") {
-      dispatch(leaveRequeste(teacher, reason, from, to));
+     await dispatch(leaveRequeste(teacher, reason, from, to));
+      setScreen("history")
     }
   };
 
@@ -211,7 +194,7 @@ const Leave = () => {
 
           {showFromDate && (
             <DateTimePicker
-              value={nowdate}
+              value={new Date()}
               mode={"date"}
               minimumDate={new Date()}
               onChange={onChangeFrom}
@@ -258,7 +241,7 @@ const Leave = () => {
           )}
           {showToDate && (
             <DateTimePicker
-              value={nowdate}
+              value={new Date()}
               mode={"date"}
               minimumDate={from}
               onChange={onChangeTo}
