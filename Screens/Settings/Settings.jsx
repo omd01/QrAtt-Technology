@@ -11,10 +11,10 @@ const Settings = ({ navigation }) => {
 
   const handelLogOut = async () => {
     await dispatch(logOut())
-    navigation.navigate("login")
-     
-  
+     navigation.navigate("login")
+
   };
+
   return (
     <View style={{ height: Size.Full }}>
       <Appbar.Header style={{ height: 45, backgroundColor: Color.Primary ,marginVertical:5 }}>

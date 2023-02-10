@@ -8,6 +8,11 @@ import { Input } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
 import * as yup from "yup";
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import mime from "mime";
+import { signUp } from "../redux/action";
+import { clearError } from "../redux/reducer";
+
 
 const secondSignupSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -19,24 +24,25 @@ const secondSignupSchema = yup.object().shape({
     )
     .required("Parents mobile number is required"),
   room: yup.number().required("Room number is required"),
-  branch: yup.string().required("Branch is required"),
 });
 
 const SignupSecond = ({ navigation, route }) => {
   const [cambar, setCambar] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [newBranch, setNewBranch] = useState(null);
-  const [error, setError] = useState([false, false]);
+  const [localError, setLocalError] = useState([false, false]);
   const [oldValues, setOldValues] = useState(null);
+  const dispatch = useDispatch();
+  const { error, loading ,isAuthenticated} = useSelector((state) => state.auth);
 
   const data = [
     { key: "1", value: "Information Technology" },
-    { key: "2", value: "Computer" },
-    { key: "3", value: "Electronics" },
-    { key: "5", value: "Machinical" },
-    { key: "6", value: "Civil" },
-    { key: "7", value: "Electrical" },
-    { key: "8", value: "Ai" },
+    { key: "2", value: "Computer Engineering" },
+    { key: "3", value: "Mechanical Engineering" },
+    { key: "5", value: "Electrical Engineering" },
+    { key: "6", value: "Electronic Engineering" },
+    { key: "7", value: "Civil Engineering" },
+    { key: "8", value: "Ai and Machine Learning" },
   ];
 
   useEffect(() => {
@@ -70,25 +76,44 @@ const SignupSecond = ({ navigation, route }) => {
       setCambar(true);
     }
   };
+ useEffect(() => {
+    isAuthenticated &&  navigation.navigate("home")
+  }, [loading])
+
 
   return (
     <Formik
-      initialValues={{ name: "", pmobile: "", room: "", branch: "" }}
+      initialValues={{ name: "", pmobile: "", room: ""}}
       validateOnMount={true}
       onSubmit={(values) => {
         newBranch === null
-          ? setError([true, false])
+          ? setLocalError([true, false])
           : avatar === null
-          ? setError([false, true])
-          : setError([false, false]);
+          ? setLocalError([false, true])
+          : setLocalError([false, false]);
         if (newBranch !== null && avatar !== null) {
-          console.log(oldValues);
-          console.log(values);
-          console.log(newBranch);
-          console.log(avatar);
+          const myForm = new FormData();
+          myForm.append('email', oldValues.email);
+          myForm.append('mobile', oldValues.mobile);
+          myForm.append('password', oldValues.password);
+          myForm.append('branch', newBranch);
+          myForm.append('name', values.name);
+          myForm.append('parentsMob', values.pmobile);
+          myForm.append('roomNo', values.room);
+          myForm.append('avatar', {
+            uri: avatar,
+            type: mime.getType(avatar),
+            name: avatar.split("/").pop(),
+          });
+
+          // console.log(myForm);
+          dispatch(clearError());
+          dispatch(signUp(myForm))
+
         }
       }}
       validationSchema={secondSignupSchema}
+    
     >
       {({
         handleChange,
@@ -151,7 +176,7 @@ const SignupSecond = ({ navigation, route }) => {
             >
               {`Add Profile Photo`}
             </Text>
-            {error[1] && (
+            {localError[1] && (
               <Text
                 style={{
                   alignSelf: "center",
@@ -170,7 +195,7 @@ const SignupSecond = ({ navigation, route }) => {
                   label={"Branch"}
                   micon={"application-edit"}
                 />
-                {error[0] && (
+                {localError[0] && (
                   <Text
                     style={{
                       color: "red",
@@ -246,10 +271,24 @@ const SignupSecond = ({ navigation, route }) => {
                 )}
               </View>
             </View>
-
+            {error ? (
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: Size.Midum - 2,
+                        fontFamily: Font.light,
+                        // marginVertical
+                        marginTop:5,
+                      marginHorizontal:15
+                      }}
+                    >
+                      {error}
+                    </Text>
+                  ) : null}
             <ButtonD
               value={"Submit"}
               onPress={handleSubmit}
+              loading={loading}
               disabled={isValid ? false : true}
             />
           </View>

@@ -11,6 +11,7 @@ import Notification from "./Settings/Notification";
 import Theme from "./Settings/Theme";
 import ForgetPassword from "./Settings/ForgetPassword";
 import ResetPassword from "./Settings/ResetPassword";
+import Verify from "./Verify";
 
 export const Screens = {
     Home,
@@ -25,5 +26,6 @@ export const Screens = {
     Notification,
     Theme,
     ForgetPassword,
-    ResetPassword
+    ResetPassword,
+    Verify
 }

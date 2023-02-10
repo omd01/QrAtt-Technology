@@ -23,19 +23,56 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
 
-    loadUserRequest: (state) => {
+    singUpRequest: (state) => {
       state.loading = true;
+      
+    },
+
+    singUpSuccess: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = true;
+      state.user = action.payload.user;
+      state.message = action.payload.message;
+    },
+
+    singUpFailure: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.error = action.payload;
+    },
+
+    verifyUserRequest: (state) => {
+      state.loading = true;
+      
+    },
+
+    verifyUserSuccess: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = true;
+      state.user = action.payload.user;
+      state.message = action.payload.message;
+    },
+
+    verifyUserFailure: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.error = action.payload;
+    },
+
+
+    loadUserRequest: (state) => {
+      state.loadingUser = true;
     },
 
     loadUserSuccess: (state, action) => {
-      state.loading = false;
+      state.loadingUser = false;
       state.isAuthenticated = true;
       state.user = action.payload.user;
       
     },
 
     loadUserFailure: (state, action) => {
-      state.loading = false;
+      state.loadingUser = false;
       state.isAuthenticated = false;
     },
     logOutRequest: (state) => {
@@ -77,6 +114,12 @@ export const {
   loginRequest,
   loginSuccess,
   loginFailure,
+  singUpRequest,
+  singUpSuccess,
+  singUpFailure,
+  verifyUserRequest,
+  verifyUserSuccess,
+  verifyUserFailure,
   loadUserRequest,
   loadUserSuccess,
   loadUserFailure,

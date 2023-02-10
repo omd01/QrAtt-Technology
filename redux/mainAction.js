@@ -94,7 +94,7 @@ export const makeAttendance = (myForm) => async (dispatch) => {
   }
 };
 
-export const totalAttendance = () => async (dispatch) => {
+export const getMyAttendance = () => async (dispatch) => {
   try {
     dispatch(totalAttendanceRequest());
 

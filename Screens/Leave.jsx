@@ -92,8 +92,6 @@ const Leave = ({setScreen}) => {
   return (
     
     <View style={{ height: Size.Full, paddingHorizontal: Size.Small }}>
-    
-
 
       <View
         style={{

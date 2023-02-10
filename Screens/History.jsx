@@ -4,21 +4,30 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
+  RefreshControl,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState ,useCallback } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar,  IconButton } from "react-native-paper";
 import { RenderItem } from "../components/RenderItem";
-import {useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getMyLeaves } from "../redux/mainAction";
 
 const History = () => {
-  
+  const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = useState(false);
+
   const {myLeaves} = useSelector((state) => state.message);
 
   const [screen, setScreen] = useState("pending");
 
-
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    dispatch(getMyLeaves())
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 500);
+  }, []);
 
   const activeStyle = [
     {
@@ -53,7 +62,7 @@ const History = () => {
   };
 
   return (
-    <View style={{ height: Size.Full }}>
+    <View style={{ height: Size.Full }} >
       <View
         style={{
           flexDirection: "row",
@@ -161,6 +170,9 @@ const History = () => {
           data={myLeaves}
           renderItem={renderItem}
           keyExtractor={(item) => item._id}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         />
       </SafeAreaView>
       

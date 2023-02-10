@@ -4,7 +4,7 @@ import { Color, Font, Size } from "../constants/theme";
 import { useDispatch } from "react-redux";
 import { ButtonD } from "./Buttons";
 import { clearError, clearMessage } from "../redux/messageReducer";
-import { getMyLeaves, totalAttendance } from "../redux/mainAction";
+import { getMyLeaves, getMyAttendance } from "../redux/mainAction";
 
 export const LoadingView = () => {
   return (
@@ -27,7 +27,7 @@ export const PendingView = () => {
   return (
     <View
       style={{
-        backgroundColor: Color.Opacity,
+        backgroundColor: Color.Primary,
         height: Size.Full,
         width: Size.Full,
         position: "absolute",
@@ -40,9 +40,10 @@ export const PendingView = () => {
         style={{
           height: 300,
           width: 300,
-          backgroundColor: "redrgba(255, 255, 255, 0.6)",
+          backgroundColor: Color.Secondary,
           borderRadius: 30,
-          // justifyContent: "center",
+          borderColor: Color.White,
+          borderWidth: 1,
           alignItems: "center",
         }}
       >
@@ -98,7 +99,7 @@ export const SuccessView = ({ message }) => {
   return (
     <View
       style={{
-        backgroundColor: Color.Opacity,
+        backgroundColor: Color.Primary,
         height: Size.Full,
         width: Size.Full,
         position: "absolute",
@@ -112,8 +113,11 @@ export const SuccessView = ({ message }) => {
         style={{
           height: 300,
           width: 300,
-          backgroundColor: "redrgba(255, 255, 255, 0.6)",
+          // backgroundColor: "redrgba(255, 255, 255, 0.6)",
+          backgroundColor: Color.Secondary,
           borderRadius: 30,
+          borderColor: Color.White,
+          borderWidth: 1,
           // justifyContent: "center",
           alignItems: "center",
           overflow: "hidden",
@@ -157,7 +161,7 @@ export const SuccessView = ({ message }) => {
         </Text>
         <ButtonD
           value={"DONE"}
-          onPress={() => {dispatch(clearMessage()),dispatch(getMyLeaves()),dispatch(totalAttendance())}}
+          onPress={() => {dispatch(clearMessage()),dispatch(getMyLeaves()),dispatch(getMyAttendance())}}
           textColor={Color.White}
           labelStyle={{ fontFamily: Font.bold, fontSize: 16, letterSpacing: 1 }}
           // contentStyle={{}}
@@ -189,7 +193,7 @@ export const ErrorView = ({ error }) => {
   return (
     <View
       style={{
-        backgroundColor: Color.Opacity,
+        backgroundColor: Color.Primary,
         height: Size.Full,
         width: Size.Full,
         position: "absolute",
@@ -203,9 +207,10 @@ export const ErrorView = ({ error }) => {
         style={{
           height: 300,
           width: 300,
-          backgroundColor: "redrgba(255, 255, 255, 0.6)",
+          backgroundColor: Color.Secondary,
+          borderColor: Color.White,
+          borderWidth: 1,
           borderRadius: 30,
-          // justifyContent: "center",
           alignItems: "center",
           overflow: "hidden",
         }}
@@ -247,7 +252,7 @@ export const ErrorView = ({ error }) => {
           {error}
         </Text>
         <ButtonD
-          value={"DONE"}
+          value={"RETRY"}
           onPress={() => {dispatch(clearError())}}
           textColor={Color.White}
           labelStyle={{ fontFamily: Font.bold, fontSize: 16, letterSpacing: 1 }}
@@ -272,6 +277,35 @@ export const ErrorView = ({ error }) => {
         }}
       />
       </View>
+     
+    </View>
+  );
+};
+
+export const LoadingUser = () => {
+ 
+  return (
+    <View
+      style={{
+        backgroundColor: Color.Secondary,
+        height: Size.Full,
+        width: Size.Full,
+        position: "absolute",
+        zIndex: 15,
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+      }}
+    >     
+         <Image
+        source={require("../assets/Images/loading-white.gif")}
+        style={{
+          width: 100,
+          height: 100,
+          resizeMode: "contain",
+        }}
+      />
+  
      
     </View>
   );

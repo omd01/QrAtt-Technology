@@ -8,18 +8,28 @@ import Splash from "./Screens/Splash";
 import { useEffect } from "react";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSelector ,useDispatch} from "react-redux";
+import { loadUser } from "./redux/action";
+import { LoadingUser } from "./components/CustomeView";
+import Verify from "./Screens/Verify";
+
 
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
-const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const dispatch = useDispatch()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const { user ,loadingUser } = useSelector(
+    (state) => state.auth
+  );
+
 
   const checkAuth = async () => {
     setIsAuthenticated(JSON.parse(await AsyncStorage.getItem("isAuthenticated")))
-    
   }
 
   useEffect(() => {
+    dispatch(loadUser())
     checkAuth()
   }, [])
   
@@ -36,12 +46,20 @@ const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   if (!loded) return <Splash/>;
 
+  if(loadingUser){
+    return <LoadingUser/>
+  }
   
-  const options = { headerShown: false };
-
+  
+  if(user !== undefined){
+  if(user !== null){
+    if(user.verified === false ){
+      return <Verify/>
+    }
+  }
+  }
 
   return (
-
     <>
       <StatusBar
         barStyle={"light-content"}
@@ -52,8 +70,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(false)
         }}
       />
 
+
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={isAuthenticated?"home":"login"} screenOptions={options}>
+        <Stack.Navigator initialRouteName={isAuthenticated?'home':'login'} screenOptions={{headerShown:false}}>
           <Stack.Screen name="home" component={Screens.Home} />
           <Stack.Screen name="login" component={Screens.Login} />
           <Stack.Screen name="signup" component={Screens.Signup} />
@@ -67,7 +86,8 @@ const [isAuthenticated, setIsAuthenticated] = useState(false)
           <Stack.Screen name="theme" component={Screens.Theme} />
           <Stack.Screen name="forgetPassword" component={Screens.ForgetPassword} />
           <Stack.Screen name="resetPassword" component={Screens.ResetPassword} />
-  </Stack.Navigator>
+          <Stack.Screen name="verify" component={Screens.Verify} />
+        </Stack.Navigator>
       </NavigationContainer>
 
     </>

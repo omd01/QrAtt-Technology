@@ -1,15 +1,26 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList ,RefreshControl} from "react-native";
 import { Color, Size, Font } from "../constants/theme";
 // import AttendData from "../Dumy/Attendance.json";
 import { Avatar, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
+import { getMyAttendance } from "../redux/mainAction";
 
+import { useState ,useCallback } from "react";
 
 const Attendance = () => {
+  const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = useState(false);
   const { totalAttendance} = useSelector(
     (state) => state.message
   );
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    dispatch(getMyAttendance())
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   const dateTime = (date) => {
     let hours = date.getHours();
@@ -168,7 +179,10 @@ const Attendance = () => {
         data={totalAttendance}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
-      />
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        />
     </View>
   );
 };

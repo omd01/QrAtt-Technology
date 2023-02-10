@@ -3,22 +3,16 @@ import React, { useEffect, useState } from "react";
 import { Color, Size, Font } from "../constants/theme";
 import { Avatar, IconButton } from "react-native-paper";
 import { useSelector } from "react-redux";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 const Profile = ({ navigation }) => {
-  const [ProfileData, setProfileData] = useState(null);
-  const getProfile = async () => {
-    setProfileData(JSON.parse(await AsyncStorage.getItem("user")))
-  }
-  
+  const { user } = useSelector((state) => state.auth);
+  const ProfileData = user
   const {myLeaves ,totalAttendance} = useSelector((state)=>state.message)
-
 
   const [checkIn, setCheckIn] = useState(0);
   const [checkOut, setCheckOut] = useState(0);
+
   useEffect(() => {
-  getProfile()
 
     var checkIn = 0;
     var checkOut = 0;
@@ -36,9 +30,9 @@ if(totalAttendance){
     setCheckOut(checkOut);
   }, []);
 
+  if (ProfileData === null) return null;
   return (<>
-    {ProfileData ? 
-   
+
     <View style={{ height: Size.Full, position: "relative" }}>
       <View
         style={{
@@ -278,7 +272,7 @@ if(totalAttendance){
         </View>
       </View>
     </View>
-    :null}
+
     </>
   );
 };

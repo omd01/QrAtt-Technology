@@ -9,30 +9,36 @@ import Leave from "./Leave";
 import Attendance from "./Attendance";
 import Settings from "./Settings/Settings";
 
-
 import {
   ErrorView,
+  LoadingUser,
   LoadingView,
   PendingView,
   SuccessView,
 } from "../components/CustomeView";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUser } from "../redux/action";
-import { getMyLeaves, loadTeachers, totalAttendance } from "../redux/mainAction";
+import { getMyLeaves, loadTeachers, getMyAttendance } from "../redux/mainAction";
+// import Verify from "./Verify";
+
 
 const Home = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
-  const { loading, pending, error, message } = useSelector(
+  const { loading, pending, error, message  } = useSelector(
     (state) => state.message
   );
+  // const { user ,loadingUser } = useSelector(
+  //   (state) => state.auth
+  // );
+
 
   useEffect(() => {
-      dispatch(loadUser());
       dispatch(loadTeachers());
       dispatch(getMyLeaves())
-      dispatch(totalAttendance())
+      dispatch(getMyAttendance())
+      
   }, [dispatch])
+
   
 
   const [screen, setScreen] = useState("home");
@@ -58,6 +64,21 @@ const Home = ({ navigation, route }) => {
       setSelfi(route.params.image);
     }
   }, [route]);
+
+
+// if(loadingUser){
+//   return <LoadingUser/>
+// }
+
+
+// if(user !== undefined){
+// if(user !== null){
+//   if(user.verified === false ){
+//     return <Verify/>
+//   }
+// }
+// }
+
 
   return (
     <View
