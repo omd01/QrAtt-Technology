@@ -24,6 +24,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/Images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.odtech.qrattstudent"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0f5b66ab-2662-4043-a453-c1817587717c"
       }
     }
   }

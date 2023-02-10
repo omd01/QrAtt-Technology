@@ -6,7 +6,8 @@ import React, { useState } from "react";
 import { InputSecure } from "../../components/InputFields";
 import * as yup from "yup";
 import { Formik } from "formik";
-
+import { useDispatch, useSelector } from "react-redux";
+import { changePassword } from "../../redux/action";
 const changePasswordSchema = yup.object().shape({
   oldPassword: yup.string().required("Old password is required"),
 
@@ -25,17 +26,16 @@ const changePasswordSchema = yup.object().shape({
 });
 
 const ChangePassword = ({ navigation }) => {
-
-  const handelSubmit = () => {
-    console.log();
-  };
+  const { loading, error, message } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   return (
     <Formik
       initialValues={{ oldPassword: "",newPassword:"", cpassword: "" }}
       validateOnMount={true}
       onSubmit={(values) =>
-        console.log(values)
+        dispatch(changePassword(values.oldPassword,values.newPassword))
+        
       }
       validationSchema={changePasswordSchema}
     >
@@ -96,7 +96,7 @@ const ChangePassword = ({ navigation }) => {
                 <View style={{ marginVertical: Size.Small }}>
                   <InputSecure
                     icon={"lock"}
-                    label={"oldPassword"}
+                    label={"Old Password"}
                     value={values.oldPassword}
                     onChangeText={handleChange("oldPassword")}
                     onBlur={handleBlur("oldPassword")}

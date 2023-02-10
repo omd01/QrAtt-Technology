@@ -17,6 +17,18 @@ import {
   verifyUserRequest,
   verifyUserSuccess,
   verifyUserFailure,
+  updateAvatarRequest,
+  updateAvatarSuccess,
+  updateAvatarFailure,
+  updateNameRequest,
+  updateNameSuccess,
+  updateNameFailure,
+  updateRoomRequest,
+  updateRoomSuccess,
+  updateRoomFailure,
+  chnagePasswordRequest,
+  chnagePasswordSuccess,
+  chnagePasswordFailure,
 } from "./reducer";
 // const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
 
@@ -86,6 +98,66 @@ export const loadUser = () => async (dispatch) => {
    
   }
 };
+
+export const updateAvatar = (myForm) => async (dispatch) => {
+
+  dispatch(updateAvatarRequest());
+  try {
+    const { data } = await axios.put(`${serverUrl}/updateavatar`, myForm, {
+      headers: { "Content-Type": "multipart/form-data" },
+
+    });
+    dispatch(updateAvatarSuccess(data));
+
+  } catch (error) {
+    dispatch(updateAvatarFailure(error.response.data.message));
+  }
+};
+
+export const updateName = (name) => async (dispatch) => {
+
+  dispatch(updateNameRequest());
+  try {
+    const { data } = await axios.put(`${serverUrl}/updateName`, {name}, {
+      headers: { "Content-Type": "application/json" },
+
+    });
+    dispatch(updateNameSuccess(data));
+
+  } catch (error) {
+    dispatch(updateNameFailure(error.response.data.message));
+  }
+};
+
+export const updateRoom = (roomNo) => async (dispatch) => {
+
+  dispatch(updateRoomRequest());
+  try {
+    const { data } = await axios.put(`${serverUrl}/updateroom`, {roomNo}, {
+      headers: { "Content-Type": "application/json" },
+
+    });
+    dispatch(updateRoomSuccess(data));
+
+  } catch (error) {
+    dispatch(updateRoomFailure(error.response.data.message));
+  }
+};
+
+export const changePassword = (oldPassword,newPassword) => async (dispatch) => {
+
+    dispatch(chnagePasswordRequest());
+    try {
+      const { data } = await axios.put(`${serverUrl}/updatepassword`, {oldPassword,newPassword}, {
+        headers: { "Content-Type": "application/json" },
+  
+      });
+      dispatch(chnagePasswordSuccess(data));
+  
+    } catch (error) {
+      dispatch(chnagePasswordFailure(error.response.data.message));
+    }
+  };
 
 export const logOut = () => async (dispatch) => {
   try {

@@ -30,7 +30,7 @@ const authSlice = createSlice({
 
     singUpSuccess: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = true;
+      state.isAuthenticated = false;
       state.user = action.payload.user;
       state.message = action.payload.message;
     },
@@ -47,16 +47,9 @@ const authSlice = createSlice({
     },
 
     verifyUserSuccess: (state, action) => {
-      state.loading = false;
+      state.loading = false
       state.isAuthenticated = true;
       state.user = action.payload.user;
-      state.message = action.payload.message;
-    },
-
-    verifyUserFailure: (state, action) => {
-      state.loading = false;
-      state.isAuthenticated = false;
-      state.error = action.payload;
     },
 
 
@@ -85,6 +78,71 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.user = null;
 
+    },
+
+    verifyUserFailure: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.error = action.payload;
+    },
+
+
+    updateAvatarRequest: (state) => {
+      state.loading = true;
+    },
+
+    updateAvatarSuccess: (state, action) => {
+      state.loading = false
+      state.user = action.payload.user;
+      state.message = action.payload.message;
+    },
+
+    updateAvatarFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    updateNameRequest: (state) => {
+      state.loading = true;
+    },
+
+    updateNameSuccess: (state, action) => {
+      state.loading = false
+      state.user = action.payload.user;
+      state.message = action.payload.message;
+    },
+
+    updateNameFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    updateRoomRequest: (state) => {
+      state.loading = true;
+    },
+
+    updateRoomSuccess: (state, action) => {
+      state.loading = false
+      state.user = action.payload.user;
+      state.message = action.payload.message;
+    },
+
+    updateRoomFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    chnagePasswordRequest: (state) => {
+      state.loading = true;
+    },
+
+    chnagePasswordSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message;
+    },
+
+    chnagePasswordFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
 
     logOutFailure: (state, action) => {
@@ -126,6 +184,18 @@ export const {
   logOutRequest,
   logOutSuccess,
   logOutFailure,
+  updateAvatarRequest,
+  updateAvatarSuccess,
+  updateAvatarFailure,
+  updateNameRequest,
+  updateNameSuccess,
+  updateNameFailure,
+  updateRoomRequest,
+  updateRoomSuccess,
+  updateRoomFailure,
+  chnagePasswordRequest,
+  chnagePasswordSuccess,
+  chnagePasswordFailure,
   clearError,
   clearMessage,
   changeTheme,

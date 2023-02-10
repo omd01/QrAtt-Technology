@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector ,useDispatch} from "react-redux";
-import { loadUser } from "./redux/action";
+import { loadUser, logOut } from "./redux/action";
 import { LoadingUser } from "./components/CustomeView";
 import Verify from "./Screens/Verify";
 
@@ -29,7 +29,7 @@ const Main = () => {
   }
 
   useEffect(() => {
-    dispatch(loadUser())
+  dispatch(loadUser())
     checkAuth()
   }, [])
   
@@ -50,6 +50,9 @@ const Main = () => {
     return <LoadingUser/>
   }
   
+if(isAuthenticated && user === undefined){
+  dispatch(logOut())
+}
   
   if(user !== undefined){
   if(user !== null){

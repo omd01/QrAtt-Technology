@@ -10,16 +10,14 @@ import Attendance from "./Attendance";
 import Settings from "./Settings/Settings";
 
 import {
+  CustomMessage,
   ErrorView,
-  LoadingUser,
   LoadingView,
   PendingView,
   SuccessView,
 } from "../components/CustomeView";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyLeaves, loadTeachers, getMyAttendance } from "../redux/mainAction";
-// import Verify from "./Verify";
-
 
 const Home = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -27,6 +25,8 @@ const Home = ({ navigation, route }) => {
   const { loading, pending, error, message  } = useSelector(
     (state) => state.message
   );
+
+  const Usermessage = useSelector((state) => state.auth).message
   // const { user ,loadingUser } = useSelector(
   //   (state) => state.auth
   // );
@@ -93,6 +93,8 @@ const Home = ({ navigation, route }) => {
         {pending && <PendingView />}
         {error && <ErrorView error={error}/>}
         {message && <SuccessView message={message} />}
+        {Usermessage && <CustomMessage message={Usermessage} />}
+        
 
         {screen === "leave" ? (
           <Leave  setScreen={setScreen}/>

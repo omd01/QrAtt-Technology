@@ -5,10 +5,14 @@ import { ButtonD } from "../../components/Buttons";
 import React, { useState, useEffect } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { Input } from "../../components/InputFields";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAvatar, updateName, updateRoom } from "../../redux/action";
+import mime from "mime";
+
 
 const EditProfile = ({ route, navigation }) => {
-  const {user} = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const {user,loading ,error ,message} = useSelector((state) => state.auth);
   const [name, setName] = useState(user.name);
   const [room, setRoom] = useState(user.roomNo.toString());
   const [cambar, setCambar] = useState(false);
@@ -26,7 +30,26 @@ const EditProfile = ({ route, navigation }) => {
     }
   }, [route]);
 
-  const handelSubmit = () => {};
+  const handelSubmit = () => {
+    if(avatar !== user.avatar.url){
+    const myForm = new FormData();
+     myForm.append('avatar', {
+      uri: avatar,
+    type: mime.getType(avatar),
+     name: avatar.split("/").pop(),
+    });
+     dispatch(updateAvatar(myForm))
+    }
+    if(name !== user.name){
+      dispatch(updateName(name))
+      setName(name)
+    }
+    if( parseInt(room) !== user.roomNo){
+       dispatch(updateRoom(parseInt(room)))
+        setRoom(room.toString())
+    }
+
+  };
 
   const handelGallary = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -132,10 +155,38 @@ const EditProfile = ({ route, navigation }) => {
               onChangeText={(value) => setRoom(value)}
             />
           </View>
-
+          {error ? (
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: Size.Midum - 2,
+                        fontFamily: Font.light,
+                        // marginVertical
+                        marginTop:5,
+                      marginHorizontal:15
+                      }}
+                    >
+                      {error}
+                    </Text>
+                  ) : null}
+                  {message ? (
+                    <Text
+                      style={{
+                        color: Color.Btn,
+                        fontSize: Size.Midum - 2,
+                        fontFamily: Font.light,
+                        // marginVertical
+                        marginTop:5,
+                      marginHorizontal:15
+                      }}
+                    >
+                      {message}
+                    </Text>
+                  ) : null}
           <ButtonD
             value={"Update"}
             onPress={handelSubmit}
+            loading={loading}
             disabled={false}
             style={{ width: 150, borderRadius: 50, alignSelf: "center" }}
           />
