@@ -26,7 +26,7 @@ const changePasswordSchema = yup.object().shape({
 });
 
 const ChangePassword = ({ navigation }) => {
-  const { loading, error, message } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   return (
@@ -34,7 +34,8 @@ const ChangePassword = ({ navigation }) => {
       initialValues={{ oldPassword: "",newPassword:"", cpassword: "" }}
       validateOnMount={true}
       onSubmit={(values) =>
-        dispatch(changePassword(values.oldPassword,values.newPassword))
+       { dispatch(changePassword(values.oldPassword,values.newPassword))
+        }
         
       }
       validationSchema={changePasswordSchema}
@@ -179,6 +180,7 @@ const ChangePassword = ({ navigation }) => {
                 value={"Update"}
                 onPress={handleSubmit}
                 disabled={isValid?false:true}
+                loading={loading}
                 style={{ width: 150, borderRadius: 50, alignSelf: "center" }}
               />
             </View>

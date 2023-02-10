@@ -29,6 +29,12 @@ import {
   chnagePasswordRequest,
   chnagePasswordSuccess,
   chnagePasswordFailure,
+  forgetPasswordRequest,
+  forgetPasswordSuccess,
+  forgetPasswordFailure,
+  resetPasswordRequest,
+  resetPasswordSuccess,
+  resetPasswordFailure,
 } from "./reducer";
 // const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
 
@@ -157,7 +163,38 @@ export const changePassword = (oldPassword,newPassword) => async (dispatch) => {
     } catch (error) {
       dispatch(chnagePasswordFailure(error.response.data.message));
     }
-  };
+};
+
+export const forgetPassword = (email) => async (dispatch) => {
+
+    dispatch(forgetPasswordRequest());
+    try {
+      const { data } = await axios.post(`${serverUrl}/forgetpassword`, {email}, {
+        headers: { "Content-Type": "application/json" },
+  
+      });
+      dispatch(forgetPasswordSuccess(data));
+  
+    } catch (error) {
+      dispatch(forgetPasswordFailure(error.response.data.message));
+    }
+};
+
+export const resetPassword = (otp,newPassword) => async (dispatch) => {
+
+    dispatch(resetPasswordRequest());
+    try {
+      const { data } = await axios.post(`${serverUrl}/resetpassword`, {otp,newPassword}, {
+        headers: { "Content-Type": "application/json" },
+  
+      });
+      dispatch(resetPasswordSuccess(data));
+  
+    } catch (error) {
+      dispatch(resetPasswordFailure(error.response.data.message));
+    }
+};
+
 
 export const logOut = () => async (dispatch) => {
   try {
