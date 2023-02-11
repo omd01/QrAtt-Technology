@@ -18,6 +18,7 @@ import {
 } from "../components/CustomeView";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyLeaves, loadTeachers, getMyAttendance } from "../redux/mainAction";
+import { setNotify } from "../redux/notification";
 
 const Home = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Home = ({ navigation, route }) => {
       dispatch(loadTeachers());
       dispatch(getMyLeaves())
       dispatch(getMyAttendance())
-      
+      dispatch(setNotify())
   }, [dispatch])
 
   
