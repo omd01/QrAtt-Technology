@@ -4,40 +4,36 @@ import { StatusBar, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { Screens } from "./Screens/index";
 import { colors } from "./constants/theme";
-
 import { useEffect } from "react";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useSelector ,useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { loadUser, logOut } from "./redux/action";
 import Verify from "./Screens/Verify";
 import { useContext } from "react";
 import { ThemeContext } from "./constants/ThemeContext";
 import { SplashView } from "./components/CustomeView";
 
-
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
-  const {theme} = useContext(ThemeContext);
-const Color = colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
 
-  const dispatch = useDispatch()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const { user ,loadingUser } = useSelector(
-    (state) => state.auth
-  );
-
+  const dispatch = useDispatch();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, loadingUser } = useSelector((state) => state.auth);
 
   const checkAuth = async () => {
-    setIsAuthenticated(JSON.parse(await AsyncStorage.getItem("isAuthenticated")))
-  }
+    setIsAuthenticated(
+      JSON.parse(await AsyncStorage.getItem("isAuthenticated"))
+    );
+  };
 
   useEffect(() => {
-  dispatch(loadUser())
-    checkAuth()
-  }, [])
-  
+    dispatch(loadUser());
+    checkAuth();
+  }, []);
 
   const [loded] = useFonts({
     NunitoBold: require("./assets/Fonts/Nunito-Bold.ttf"),
@@ -49,28 +45,28 @@ const Color = colors[theme.mode]
     NunitoRegular: require("./assets/Fonts/Nunito-Regular.ttf"),
   });
 
-  if (!loded) return <SplashView/>;
+  if (!loded) return <SplashView />;
 
-  if(loadingUser){
-    return <SplashView/>
+  if (loadingUser) {
+    return <SplashView />;
   }
-  
-if(isAuthenticated && user === undefined){
-  dispatch(logOut())
-}
-  
-  if(user !== undefined){
-  if(user !== null){
-    if(user.verified === false ){
-      return <Verify/>
+
+  if (isAuthenticated && user === undefined) {
+    dispatch(logOut());
+  }
+
+  if (user !== undefined) {
+    if (user !== null) {
+      if (user.verified === false) {
+        return <Verify />;
+      }
     }
-  }
   }
 
   return (
     <>
       <StatusBar
-        barStyle={theme.mode == "dark"?"light-content":"dark-content"}
+        barStyle={theme.mode == "dark" ? "light-content" : "dark-content"}
         backgroundColor={Color.Secondary}
         style={{
           flex: 1,
@@ -78,9 +74,11 @@ if(isAuthenticated && user === undefined){
         }}
       />
 
-
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={isAuthenticated?'home':'login'} screenOptions={{headerShown:false}}>
+        <Stack.Navigator
+          initialRouteName={isAuthenticated ? "home" : "login"}
+          screenOptions={{ headerShown: false }}
+        >
           <Stack.Screen name="home" component={Screens.Home} />
           <Stack.Screen name="login" component={Screens.Login} />
           <Stack.Screen name="signup" component={Screens.Signup} />
@@ -89,15 +87,23 @@ if(isAuthenticated && user === undefined){
           <Stack.Screen name="settings" component={Screens.Settings} />
           <Stack.Screen name="account" component={Screens.Account} />
           <Stack.Screen name="editProfile" component={Screens.EditProfile} />
-          <Stack.Screen name="changePassword" component={Screens.ChangePassword} />
+          <Stack.Screen
+            name="changePassword"
+            component={Screens.ChangePassword}
+          />
           <Stack.Screen name="notification" component={Screens.Notification} />
           <Stack.Screen name="theme" component={Screens.Theme} />
-          <Stack.Screen name="forgetPassword" component={Screens.ForgetPassword} />
-          <Stack.Screen name="resetPassword" component={Screens.ResetPassword} />
+          <Stack.Screen
+            name="forgetPassword"
+            component={Screens.ForgetPassword}
+          />
+          <Stack.Screen
+            name="resetPassword"
+            component={Screens.ResetPassword}
+          />
           <Stack.Screen name="verify" component={Screens.Verify} />
         </Stack.Navigator>
       </NavigationContainer>
-
     </>
   );
 };
