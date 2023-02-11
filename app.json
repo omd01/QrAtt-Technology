@@ -4,7 +4,7 @@
     "slug": "snack-a208d48a-4366-4391-b64c-6451be79d568",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Images/icon_2.png",
+    "icon": "./assets/Images/icon.png",
     "userInterfaceStyle": "automatic",
     "updates": {
       "fallbackToCacheTimeout": 0
