@@ -19,5 +19,8 @@
 
 # 0.3.1 Implement Validation Yup and Formik 
 # 0.3.2 Implementing Redux Toolkit basics 
-# 0.3.3 Adding Firebase And Push Notification
+# 0.3.3 Adding Firebase And Push Notification !Not Succeed
+# 0.3.4 added Theme Settings 
+# 0.3.5 Adding Expo And Push Notification
+
 
