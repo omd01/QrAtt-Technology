@@ -54,6 +54,78 @@ export const SplashView = () => {
   );
 };
 
+export const PendingView = () => {
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
+  return (
+    <View
+      style={{
+        backgroundColor: Color.Primary,
+        height: Size.Full,
+        width: Size.Full,
+        position: "absolute",
+        zIndex: 15,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <View
+        style={{
+          height: 300,
+          width: 300,
+          backgroundColor: Color.Secondary,
+          borderRadius: 30,
+          borderColor: Color.White,
+          borderWidth: 1,
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            width: 90,
+            height: 90,
+            backgroundColor: "orange",
+            marginTop: 40,
+            borderRadius: 50,
+            borderWidth: 1,
+            borderColor: Color.White,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            source={require("../assets/Images/loading-pending.gif")}
+            style={{ width: 110, height: 90, resizeMode: "contain" }}
+          />
+        </View>
+
+        <Text
+          style={{
+            marginTop: 10,
+            color: "orange",
+            fontFamily: Font.bold,
+            fontSize: 22,
+            letterSpacing: 5,
+          }}
+        >
+          PROCESSING
+        </Text>
+        <Text
+          style={{
+            marginTop: 10,
+            color: Color.Dark,
+            fontFamily: Font.bold,
+            fontSize: 15,
+            letterSpacing: 1,
+          }}
+        >
+          {`Please wait while we process 
+              your request`}
+        </Text>
+      </View>
+    </View>
+  );
+};
 export const SuccessView = ({ message }) => {
   const { theme } = useContext(ThemeContext);
   const Color = colors[theme.mode];
@@ -259,34 +331,6 @@ export const ErrorView = ({ error }) => {
           }}
         />
       </View>
-    </View>
-  );
-};
-
-export const LoadingUser = () => {
-  const { theme } = useContext(ThemeContext);
-  const Color = colors[theme.mode];
-  return (
-    <View
-      style={{
-        backgroundColor: Color.Secondary,
-        height: Size.Full,
-        width: Size.Full,
-        position: "absolute",
-        zIndex: 15,
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
-      }}
-    >
-      <Image
-        source={require("../assets/Images/loading-white.gif")}
-        style={{
-          width: 100,
-          height: 100,
-          resizeMode: "contain",
-        }}
-      />
     </View>
   );
 };
