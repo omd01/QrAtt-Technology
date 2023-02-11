@@ -21,10 +21,7 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/Images/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
+      
       "package": "com.odtech.qrattstudent"
     },
     "extra": {

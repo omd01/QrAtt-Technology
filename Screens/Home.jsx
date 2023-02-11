@@ -27,9 +27,6 @@ const Home = ({ navigation, route }) => {
   );
 
   const Usermessage = useSelector((state) => state.auth).message
-  // const { user ,loadingUser } = useSelector(
-  //   (state) => state.auth
-  // );
 
 
   useEffect(() => {
@@ -64,21 +61,6 @@ const Home = ({ navigation, route }) => {
       setSelfi(route.params.image);
     }
   }, [route]);
-
-
-// if(loadingUser){
-//   return <LoadingUser/>
-// }
-
-
-// if(user !== undefined){
-// if(user !== null){
-//   if(user.verified === false ){
-//     return <Verify/>
-//   }
-// }
-// }
-
 
   return (
     <View
