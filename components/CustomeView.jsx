@@ -8,11 +8,9 @@ import { clearMessage as clearUserMessage } from "../redux/reducer";
 import { useContext } from "react";
 import { ThemeContext } from "../constants/ThemeContext";
 
-
-
 export const LoadingView = () => {
-  const {theme} = useContext(ThemeContext);
-const Color = colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
   return (
     <View
       style={{
@@ -30,31 +28,35 @@ const Color = colors[theme.mode]
 };
 
 export const SplashView = () => {
-  
-    const {theme} = useContext(ThemeContext);
-    const Color = colors[theme.mode]
-  
-    return (
-      <View style={{
-          backgroundColor: Color.Primary,
-          height:Size.Full,
-          justifyContent:"center",
-          alignItems:"center"
-        }}>
-       <Image source={require("../assets/Images/splash.gif")} style={{width:Size.Full,resizeMode:"contain"}}/>
-       <Text style={{fontSize:Size.Midum,color:Color.White}}>Welcome to</Text>
-       <Text style={{fontSize:Size.Large -2,color:Color.Btn}}>{`Q r A t t`}</Text>
-    
-  
-      </View>
-    
-    )
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
 
+  return (
+    <View
+      style={{
+        backgroundColor: Color.Primary,
+        height: Size.Full,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Image
+        source={require("../assets/Images/splash.gif")}
+        style={{ width: Size.Full, resizeMode: "contain" }}
+      />
+      <Text style={{ fontSize: Size.Midum, color: Color.White }}>
+        Welcome to
+      </Text>
+      <Text
+        style={{ fontSize: Size.Large - 2, color: Color.Btn }}
+      >{`Q r A t t`}</Text>
+    </View>
+  );
 };
 
 export const SuccessView = ({ message }) => {
-  const {theme} = useContext(ThemeContext);
-const Color = colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
   const dispatch = useDispatch();
   return (
     <View
@@ -68,98 +70,105 @@ const Color = colors[theme.mode]
         alignItems: "center",
       }}
     >
-      <View style={{
-         width: 300,
+      <View
+        style={{
+          width: 300,
           height: 500,
           alignItems: "center",
           justifyContent: "center",
-          position:'relative',
-          
-      }}>
-
-      <View
-        style={{
-          height: 300,
-          width: 300,
-          // backgroundColor: "redrgba(255, 255, 255, 0.6)",
-          backgroundColor: Color.Secondary,
-          borderRadius: 30,
-          borderColor: Color.White,
-          borderWidth: 1,
-          // justifyContent: "center",
-          alignItems: "center",
-          overflow: "hidden",
+          position: "relative",
         }}
       >
         <View
           style={{
-            width: 90,
-            height: 90,
-            backgroundColor: Color.White,
-            marginTop: 40,
-            borderRadius: 50,
-            borderWidth: 1,
+            height: 300,
+            width: 300,
+            // backgroundColor: "redrgba(255, 255, 255, 0.6)",
+            backgroundColor: Color.Secondary,
+            borderRadius: 30,
             borderColor: Color.White,
-            justifyContent: "center",
+            borderWidth: 1,
+            // justifyContent: "center",
             alignItems: "center",
+            overflow: "hidden",
           }}
-        ></View>
+        >
+          <View
+            style={{
+              width: 90,
+              height: 90,
+              backgroundColor: Color.White,
+              marginTop: 40,
+              borderRadius: 50,
+              borderWidth: 1,
+              borderColor: Color.White,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          ></View>
 
-        <Text
+          <Text
+            style={{
+              marginTop: 10,
+              color: Color.Btn,
+              fontFamily: Font.bold,
+              fontSize: 22,
+              letterSpacing: 5,
+            }}
+          >
+            SUCCESS!
+          </Text>
+          <Text
+            style={{
+              marginTop: 10,
+              color: Color.White,
+              fontFamily: Font.bold,
+              fontSize: 15,
+              letterSpacing: 1,
+            }}
+          >
+            {message}
+          </Text>
+          <ButtonD
+            value={"DONE"}
+            onPress={() => {
+              dispatch(clearMessage()),
+                dispatch(getMyLeaves()),
+                dispatch(getMyAttendance());
+            }}
+            textColor={Color.White}
+            labelStyle={{
+              fontFamily: Font.bold,
+              fontSize: 16,
+              letterSpacing: 1,
+            }}
+            // contentStyle={{}}
+            style={{
+              width: 120,
+              marginTop: 40,
+              height: 38,
+              backgroundColor: Color.Btn,
+              justifyContent: "center",
+            }}
+          />
+        </View>
+        <Image
+          source={require("../assets/Images/loading-success.gif")}
           style={{
-            marginTop: 10,
-            color: Color.Btn,
-            fontFamily: Font.bold,
-            fontSize: 22,
-            letterSpacing: 5,
-          }}
-        >
-          SUCCESS!
-        </Text>
-        <Text
-          style={{
-            marginTop: 10,
-            color: Color.White,
-            fontFamily: Font.bold,
-            fontSize: 15,
-            letterSpacing: 1,
-          }}
-        >
-          {message}
-        </Text>
-        <ButtonD
-          value={"DONE"}
-          onPress={() => {dispatch(clearMessage()),dispatch(getMyLeaves()),dispatch(getMyAttendance())}}
-          textColor={Color.White}
-          labelStyle={{ fontFamily: Font.bold, fontSize: 16, letterSpacing: 1 }}
-          // contentStyle={{}}
-          style={{
-            width: 120,
-            marginTop: 40,
-            height: 38,
-            backgroundColor: Color.Btn,
-            justifyContent: "center",
+            height: 300,
+            resizeMode: "contain",
+            position: "absolute",
+            top: 36,
           }}
         />
       </View>
-      <Image
-        source={require("../assets/Images/loading-success.gif")}
-        style={{
-          height: 300,
-          resizeMode: "contain",
-          position: "absolute",
-          top: 36,
-        }}
-      />
-      </View>
-      
     </View>
   );
 };
 
 export const ErrorView = ({ error }) => {
-  const {theme} = useContext(ThemeContext);
-const Color = colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
   const dispatch = useDispatch();
   return (
     <View
@@ -224,7 +233,9 @@ const Color = colors[theme.mode]
         </Text>
         <ButtonD
           value={"RETRY"}
-          onPress={() => {dispatch(clearError())}}
+          onPress={() => {
+            dispatch(clearError());
+          }}
           textColor={Color.White}
           labelStyle={{ fontFamily: Font.bold, fontSize: 16, letterSpacing: 1 }}
           contentStyle={{}}
@@ -236,26 +247,25 @@ const Color = colors[theme.mode]
             justifyContent: "center",
           }}
         />
-         <Image
-        source={require("../assets/Images/loading-error.gif")}
-        style={{
-          width: 215,
-          height: 200,
-          resizeMode: "contain",
-          position: "absolute",
-          top: -18,
-          // alignSelf:'center'
-        }}
-      />
+        <Image
+          source={require("../assets/Images/loading-error.gif")}
+          style={{
+            width: 215,
+            height: 200,
+            resizeMode: "contain",
+            position: "absolute",
+            top: -18,
+            // alignSelf:'center'
+          }}
+        />
       </View>
-     
     </View>
   );
 };
 
 export const LoadingUser = () => {
-  const {theme} = useContext(ThemeContext);
-  const Color = colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
   return (
     <View
       style={{
@@ -268,8 +278,8 @@ export const LoadingUser = () => {
         alignItems: "center",
         position: "relative",
       }}
-    >     
-         <Image
+    >
+      <Image
         source={require("../assets/Images/loading-white.gif")}
         style={{
           width: 100,
@@ -277,15 +287,13 @@ export const LoadingUser = () => {
           resizeMode: "contain",
         }}
       />
-  
-     
     </View>
   );
 };
 
 export const CustomMessage = ({ message }) => {
-  const {theme} = useContext(ThemeContext);
-const Color = colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
   const dispatch = useDispatch();
   return (
     <View
@@ -314,7 +322,6 @@ const Color = colors[theme.mode]
           overflow: "hidden",
         }}
       >
-       
         <Text
           style={{
             marginTop: 10,
@@ -329,20 +336,21 @@ const Color = colors[theme.mode]
 
         <ButtonD
           value={"OK !"}
-          onPress={() => {dispatch(clearUserMessage())}}
+          onPress={() => {
+            dispatch(clearUserMessage());
+          }}
           textColor={Color.White}
           labelStyle={{ fontFamily: Font.bold, fontSize: 12, letterSpacing: 1 }}
-        contentStyle={{ height: 35}}
+          contentStyle={{ height: 35 }}
           style={{
             width: 100,
             marginTop: 15,
-           
+
             backgroundColor: Color.Btn,
             justifyContent: "center",
           }}
         />
       </View>
-     
     </View>
   );
 };

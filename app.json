@@ -17,6 +17,16 @@
     },
     "android": {
       "package": "com.odtech.qratt.student"
-    }
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/Images/icon.png",
+          "color": "#ffffff"
+        
+        }
+      ]
+    ]
   }
 }
