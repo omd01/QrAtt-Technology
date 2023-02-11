@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/Images/icon_2.png",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/Images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -21,13 +16,7 @@
       "supportsTablet": true
     },
     "android": {
-      
-      "package": "com.odtech.qrattstudent"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "0f5b66ab-2662-4043-a453-c1817587717c"
-      }
+      "package": "com.odtech.qratt.student"
     }
   }
 }
