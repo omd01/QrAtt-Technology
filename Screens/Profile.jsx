@@ -1,10 +1,15 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Color, Size, Font } from "../constants/theme";
+import { Size, Font, colors } from "../constants/theme";
 import { Avatar, IconButton } from "react-native-paper";
 import { useSelector } from "react-redux";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 const Profile = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
   const { user } = useSelector((state) => state.auth);
   const ProfileData = user
   const {myLeaves ,totalAttendance} = useSelector((state)=>state.message)

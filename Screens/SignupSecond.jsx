@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Avatar } from "react-native-paper";
-import { Color, Size, Font } from "../constants/theme";
+import { Size, Font, colors } from "../constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import { Dropdown } from "../components/Dropdown";
 import { Input } from "../components/InputFields";
@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import mime from "mime";
 import { signUp } from "../redux/action";
 import { clearError } from "../redux/reducer";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 
 const secondSignupSchema = yup.object().shape({
@@ -27,6 +29,9 @@ const secondSignupSchema = yup.object().shape({
 });
 
 const SignupSecond = ({ navigation, route }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const [cambar, setCambar] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [newBranch, setNewBranch] = useState(null);

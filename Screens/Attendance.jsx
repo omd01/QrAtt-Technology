@@ -1,13 +1,16 @@
 import { View, Text, FlatList ,RefreshControl} from "react-native";
-import { Color, Size, Font } from "../constants/theme";
-// import AttendData from "../Dumy/Attendance.json";
+import { Size, Font, colors } from "../constants/theme";
 import { Avatar, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyAttendance } from "../redux/mainAction";
-
 import { useState ,useCallback } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../constants/ThemeContext";
 
 const Attendance = () => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
   const { totalAttendance} = useSelector(

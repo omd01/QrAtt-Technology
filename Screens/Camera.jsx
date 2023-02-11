@@ -2,10 +2,15 @@ import { Camera, CameraType } from "expo-camera";
 import { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import { IconButton, Button } from "react-native-paper";
-import { Color, Size, Font } from "../constants/theme";
+import { Size, Font, colors } from "../constants/theme";
 import { manipulateAsync, FlipType } from "expo-image-manipulator";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 const CameraComponent = ({ navigation, route }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const [type, setType] = useState(CameraType.front);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [camera, setCamera] = useState(null);

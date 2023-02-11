@@ -1,8 +1,13 @@
 import { View } from 'react-native'
 import React from 'react'
-import { Color, Size, Font } from "../constants/theme";
+import { colors } from "../constants/theme";
 import { IconButton } from "react-native-paper";
+import { useContext } from 'react';
+import { ThemeContext } from '../constants/ThemeContext';
 const Footer = ({screen,setScreen}) => {  
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
 return(
   <View
   style={{
@@ -56,5 +61,3 @@ return(
 }
 
 export default Footer
-
-// swap-horizontal

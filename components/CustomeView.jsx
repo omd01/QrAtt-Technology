@@ -1,12 +1,18 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
-import { Color, Font, Size } from "../constants/theme";
+import { colors, Font, Size } from "../constants/theme";
 import { useDispatch } from "react-redux";
 import { ButtonD } from "./Buttons";
 import { clearError, clearMessage } from "../redux/messageReducer";
 import { getMyLeaves, getMyAttendance } from "../redux/mainAction";
 import { clearMessage as clearUserMessage } from "../redux/reducer";
+import { useContext } from "react";
+import { ThemeContext } from "../constants/ThemeContext";
+
+
+
 export const LoadingView = () => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   return (
     <View
       style={{
@@ -23,78 +29,32 @@ export const LoadingView = () => {
   );
 };
 
-export const PendingView = () => {
-  return (
-    <View
-      style={{
-        backgroundColor: Color.Primary,
-        height: Size.Full,
-        width: Size.Full,
-        position: "absolute",
-        zIndex: 15,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <View
-        style={{
-          height: 300,
-          width: 300,
-          backgroundColor: Color.Secondary,
-          borderRadius: 30,
-          borderColor: Color.White,
-          borderWidth: 1,
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            width: 90,
-            height: 90,
-            backgroundColor: "orange",
-            marginTop: 40,
-            borderRadius: 50,
-            borderWidth: 1,
-            borderColor: Color.White,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Image
-            source={require("../assets/Images/loading-pending.gif")}
-            style={{ width: 110, height: 90, resizeMode: "contain" }}
-          />
-        </View>
-
-        <Text
-          style={{
-            marginTop: 10,
-            color: "orange",
-            fontFamily: Font.bold,
-            fontSize: 22,
-            letterSpacing: 5,
-          }}
-        >
-          PROCESSING
-        </Text>
-        <Text
-          style={{
-            marginTop: 10,
-            color: Color.Dark,
-            fontFamily: Font.bold,
-            fontSize: 15,
-            letterSpacing: 1,
-          }}
-        >
-          {`Please wait while we process 
-              your request`}
-        </Text>
+export const SplashView = () => {
+  
+    const {theme} = useContext(ThemeContext);
+    const Color = colors[theme.mode]
+  
+    return (
+      <View style={{
+          backgroundColor: Color.Primary,
+          height:Size.Full,
+          justifyContent:"center",
+          alignItems:"center"
+        }}>
+       <Image source={require("../assets/Images/splash.gif")} style={{width:Size.Full,resizeMode:"contain"}}/>
+       <Text style={{fontSize:Size.Midum,color:Color.White}}>Welcome to</Text>
+       <Text style={{fontSize:Size.Large -2,color:Color.Btn}}>{`Q r A t t`}</Text>
+    
+  
       </View>
-    </View>
-  );
+    
+    )
+
 };
 
 export const SuccessView = ({ message }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   const dispatch = useDispatch();
   return (
     <View
@@ -198,6 +158,8 @@ export const SuccessView = ({ message }) => {
 };
 
 export const ErrorView = ({ error }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   const dispatch = useDispatch();
   return (
     <View
@@ -292,7 +254,8 @@ export const ErrorView = ({ error }) => {
 };
 
 export const LoadingUser = () => {
- 
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
   return (
     <View
       style={{
@@ -321,6 +284,8 @@ export const LoadingUser = () => {
 };
 
 export const CustomMessage = ({ message }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   const dispatch = useDispatch();
   return (
     <View

@@ -1,9 +1,14 @@
 import { View, Text, Image, Vibration } from "react-native";
 import React, { useEffect, useState } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { Color, Font, Size } from "../../constants/theme";
+import {  colors, Font, Size } from "../../constants/theme";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 const BeforeScan = ({ screen, setScreen, setQrData }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const [hasPermission, setHasPermission] = useState(null);
   const handleBarCodeScanned = ({ data }) => {
     Vibration.vibrate(200);

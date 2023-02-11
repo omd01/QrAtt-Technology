@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useEffect } from "react";
-import { Color, Size, Font } from "../constants/theme";
+import { Size, Font, colors } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
 import * as yup from "yup";
@@ -8,6 +8,8 @@ import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/action";
 import { clearError } from "../redux/reducer";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -19,6 +21,9 @@ const loginSchema = yup.object().shape({
 });
 
 const Login = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
   const { error, loading ,isAuthenticated} = useSelector((state) => state.auth);
 

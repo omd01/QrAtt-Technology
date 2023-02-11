@@ -1,13 +1,14 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Appbar } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import {  colors, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
-import React, { useState } from "react";
 import { InputSecure } from "../../components/InputFields";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { changePassword } from "../../redux/action";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 const changePasswordSchema = yup.object().shape({
   oldPassword: yup.string().required("Old password is required"),
 
@@ -26,6 +27,9 @@ const changePasswordSchema = yup.object().shape({
 });
 
 const ChangePassword = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 

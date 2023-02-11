@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Image } from "react-native";
 import React, { useState, useEffect } from "react";
-import { Color, Size, Font } from "../constants/theme";
+import {  Size, Font, colors } from "../constants/theme";
 import { Avatar } from "react-native-paper";
 import { InputArea } from "../components/InputFields";
 import { DropdownImg } from "../components/Dropdown";
@@ -8,10 +8,12 @@ import { ButtonD } from "../components/Buttons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useDispatch, useSelector } from "react-redux";
 import { leaveRequeste } from "../redux/mainAction";
-
-
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 const Leave = ({setScreen}) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
   const dispatch = useDispatch();
   const { teachers} = useSelector(
     (state) => state.message

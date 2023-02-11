@@ -12,13 +12,17 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { IconButton } from "react-native-paper";
-import { Color, Font, Size } from "../constants/theme";
-// import Teachers from "../Dumy/Teachers.json";
+import {colors, Font, Size } from "../constants/theme";
 import { ButtonD } from "./Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelLeave } from "../redux/mainAction";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 export const RenderItem = ({ data }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
   const animation = useSharedValue({ height: 0 });
   const [border, setBorder] = useState({});

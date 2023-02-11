@@ -1,10 +1,13 @@
 import { View, Text   } from "react-native";
-import React, { useState } from "react";
 import { Appbar, RadioButton } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import { colors, Font, Size } from "../../constants/theme";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 const Theme = ({navigation}) => {
-    const [theme, setTheme] = useState('dark')
+  const {theme ,updateTheme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   return (
     <View style={{ height: Size.Full }}>
       <Appbar.Header
@@ -31,7 +34,7 @@ const Theme = ({navigation}) => {
           backgroundColor: Color.Primary,
         }}
       >
-        <RadioButton.Group onValueChange={newValue => setTheme(newValue)} value={theme}>
+        <RadioButton.Group onValueChange={newValue => updateTheme()} value={theme.mode}>
         <View
           style={{
             flexDirection: "row",

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Appbar, IconButton, Avatar } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import { colors, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
 import React, { useState, useEffect } from "react";
 import * as ImagePicker from "expo-image-picker";
@@ -8,9 +8,14 @@ import { Input } from "../../components/InputFields";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAvatar, updateName, updateRoom } from "../../redux/action";
 import mime from "mime";
+import { useContext } from "react";
+import { ThemeContext } from "../../constants/ThemeContext";
 
 
 const EditProfile = ({ route, navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
   const {user,loading ,error ,message} = useSelector((state) => state.auth);
   const [name, setName] = useState(user.name);

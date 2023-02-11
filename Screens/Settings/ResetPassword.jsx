@@ -1,13 +1,14 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Appbar } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import {  colors, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
-import React, { useState } from "react";
 import { Input, InputSecure } from "../../components/InputFields";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPassword } from "../../redux/action";
+import { logOut, resetPassword } from "../../redux/action";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 
 const resetPasswordSchema = yup.object().shape({
@@ -28,6 +29,9 @@ const resetPasswordSchema = yup.object().shape({
 });
 
 const ResetPassword = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -35,10 +39,12 @@ const ResetPassword = ({ navigation }) => {
     <Formik
       initialValues={{ otp: "",newPassword:"", cpassword: "" }}
       validateOnMount={true}
-      onSubmit={(values) =>
-        dispatch(resetPassword(values.otp,values.newPassword))
-        
-      }
+      onSubmit={async(values) =>
+        {
+       await dispatch(resetPassword(values.otp,values.newPassword))
+       await dispatch(logOut())
+        navigation.navigate("login")
+      }}
       validationSchema={resetPasswordSchema}
     >
       {({
@@ -94,6 +100,19 @@ const ResetPassword = ({ navigation }) => {
               >
                 {`Note:- Your Password must be more than eight characters long and include a combination of numbers, letters and special characters (!$@%&).`}
               </Text>
+              <Text
+                style={{
+                  alignSelf: "center",
+                  color: Color.White,
+                  marginVertical: 1,
+                  marginHorizontal: 4,
+                  fontSize: Size.Midum - 3,
+                  fontFamily: Font.light,
+                }}
+              >
+                {`Email has been sent to your registered email address. Also check your spam folder.`}
+              </Text>
+
               <View style={{ marginTop: 5, marginBottom: 20 }}>
                 <View style={{ marginVertical: Size.Small }}>
                   <Input

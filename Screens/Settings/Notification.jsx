@@ -1,9 +1,14 @@
 import { View, TouchableOpacity, Text   } from "react-native";
 import React, { useState } from "react";
 import { Appbar ,Switch} from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import { colors, Font, Size } from "../../constants/theme";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 const Notification = ({navigation}) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
     const [allNotifications, setAllNotifications] = useState(true);
     const [muteNotification, setMuteNotification] = useState(false);
 

@@ -1,9 +1,14 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { Avatar, Button } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import { colors, Font, Size } from "../../constants/theme";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 const AfterScan = ({ navigation, setAction }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   return (
     <View
       style={{

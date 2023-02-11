@@ -1,12 +1,16 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
-import { Appbar, Button, IconButton } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import { Appbar, IconButton } from "react-native-paper";
+import {  colors, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/action";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 const Settings = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
 
   const handelLogOut = async () => {

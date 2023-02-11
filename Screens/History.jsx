@@ -7,13 +7,18 @@ import {
   RefreshControl,
 } from "react-native";
 import React, { useState ,useCallback } from "react";
-import { Color, Size, Font } from "../constants/theme";
+import { Color, Size, Font, colors } from "../constants/theme";
 import { Avatar,  IconButton } from "react-native-paper";
 import { RenderItem } from "../components/RenderItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyLeaves } from "../redux/mainAction";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 const History = () => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
 

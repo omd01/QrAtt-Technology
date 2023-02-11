@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
-import { Color, Size } from "../../constants/theme";
+import {  colors, Size } from "../../constants/theme";
 import { Appbar } from "react-native-paper";
 import AfterScan from "./AfterScan";
 import BeforeScan from "./BeforeScan";
 import { useDispatch, useSelector } from "react-redux";
 import { makeAttendance } from "../../redux/mainAction";
 import mime from "mime";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 const Scanner = ({ navigation, selfi }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
-  const { error, message, loading } = useSelector((state) => state.message);
   const [screen, setScreen] = useState("BeforeScan");
   const [action, setAction] = useState(null);
   const [verifyImg, setVerifyImg] = useState(null);

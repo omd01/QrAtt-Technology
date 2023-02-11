@@ -1,8 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Appbar,  IconButton } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import { colors, Font, Size } from "../../constants/theme";
+import { useContext } from "react";
+import { ThemeContext } from "../../constants/ThemeContext";
 const Account = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
   return (
     <View style={{ height: Size.Full }}>
       <Appbar.Header

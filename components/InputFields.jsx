@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { useState } from "react";
-import {  TouchableOpacity,  } from "react-native";
 import {  TextInput } from "react-native-paper";
-import { Color, Size, Font } from "../constants/theme";
+import {  Size, Font, colors } from "../constants/theme";
+import { ThemeContext } from "../constants/ThemeContext";
+
 
 export const Input = ({ icon, iserror, label, value, onChangeText, cstyle,onBlur,keyboardType }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   const style = {
     backgroundColor: (value === '' ? Color.Primary :Color.Secondary),
     height: Size.ExtraLarge + 5,
@@ -37,6 +41,8 @@ export const Input = ({ icon, iserror, label, value, onChangeText, cstyle,onBlur
 };
 
 export const InputSecure = ({ icon, iserror, label, value, onChangeText,onBlur }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   const [secured, setSecured] = useState(true);
 
   const style = {
@@ -82,6 +88,8 @@ export const InputSecure = ({ icon, iserror, label, value, onChangeText,onBlur }
 };
 
 export const InputArea = ({ val,placeholder, setVal ,style,Lines}) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   return (
     <TextInput
       multiline

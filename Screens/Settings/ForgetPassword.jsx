@@ -1,13 +1,14 @@
 import { View, Text } from "react-native";
 import { Appbar } from "react-native-paper";
-import { Color, Font, Size } from "../../constants/theme";
+import { colors, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
-import React, { useState } from "react";
 import { Input } from "../../components/InputFields";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { forgetPassword } from "../../redux/action";
+import { ThemeContext } from "../../constants/ThemeContext";
+import { useContext } from "react";
 
 const forgetPasswordSchema = yup.object().shape({
   email: yup
@@ -17,6 +18,9 @@ const forgetPasswordSchema = yup.object().shape({
 });
 
 const ForgetPassword = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 

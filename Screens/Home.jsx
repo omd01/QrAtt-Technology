@@ -1,6 +1,6 @@
 import { View, Keyboard } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Color, Size } from "../constants/theme";
+import {colors, Size } from "../constants/theme";
 import Profile from "./Profile";
 import History from "./History";
 import Footer from "../components/Footer";
@@ -18,8 +18,14 @@ import {
 } from "../components/CustomeView";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyLeaves, loadTeachers, getMyAttendance } from "../redux/mainAction";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
 
 const Home = ({ navigation, route }) => {
+
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
   const dispatch = useDispatch();
 
   const { loading, pending, error, message  } = useSelector(

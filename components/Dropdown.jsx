@@ -13,22 +13,27 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { IconButton, TextInput } from "react-native-paper";
-import { Color, Size, Font } from "../constants/theme";
+import { Size, Font, colors } from "../constants/theme";
 import { ButtonD } from "./Buttons";
 import { Avatar } from "react-native-paper";
+import { ThemeContext } from "../constants/ThemeContext";
+import { useContext } from "react";
+
 
 export const Dropdown = ({
   data,
   setSelected,
-  setFieldValue,
   label,
   micon,
   cstyle,
   iserror,
 }) => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
   const [value, setValue] = useState(null);
   const animation = useSharedValue({ height: 0, borderWidth: 0 });
   const [icon, setIcon] = useState("chevron-down");
+
 
   const renderItem = ({ item }) => (
     <ButtonD
@@ -132,7 +137,8 @@ export const Dropdown = ({
 };
 
 export const DropdownImg = ({ data, setSelected, label, micon, cstyle }) => {
- 
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
   const [value, setValue] = useState(null);
   const animation = useSharedValue({ height: 0, borderWidth: 0 });
   const [icon, setIcon] = useState("chevron-down");

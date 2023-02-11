@@ -1,8 +1,15 @@
+import { useContext } from "react";
 import { Button } from "react-native-paper";
-import { Color, Font, Size } from "../constants/theme";
+import {  colors, Font, Size } from "../constants/theme";
+import { ThemeContext } from "../constants/ThemeContext";
 
 export const ButtonD = ({ value, onPress, disabled ,style,bgColor ,textColor,contentStyle ,labelStyle ,border ,loading,icon}) => {
-  
+  // const theme = {mode : "light"}
+  // const Color = colors[theme.mode]
+
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
+
   return (
     <Button
       mode="contained"

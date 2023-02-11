@@ -1,11 +1,13 @@
 import { View, Text, TouchableOpacity, Keyboard } from "react-native";
 import React, { useState, useEffect } from "react";
-import { Color, Size, Font } from "../constants/theme";
+import {Size, Font, colors } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
 import { ButtonD } from "../components/Buttons";
 
 import * as yup from "yup";
 import { Formik } from "formik";
+import { useContext } from "react";
+import { ThemeContext } from "../constants/ThemeContext";
 
 const signupSchema = yup.object().shape({
   email: yup
@@ -33,6 +35,8 @@ const signupSchema = yup.object().shape({
 });
 
 const Signup = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  const Color = colors[theme.mode]
 
   const [keyboardStatus, setKeyboardStatus] = useState("KeyboardHidden");
 

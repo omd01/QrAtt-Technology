@@ -183,10 +183,7 @@ const authSlice = createSlice({
 
     clearMessage: (state) => {
       state.message = null;
-    },
-    changeTheme: (state) => {
-      state.theme = state.theme === "light" ? "dark" : "light";
-    },
+    }
   },
 });
 

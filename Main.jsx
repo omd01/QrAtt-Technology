@@ -3,20 +3,25 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar, Platform } from "react-native";
 import { useFonts } from "expo-font";
 import { Screens } from "./Screens/index";
-import { Color } from "./constants/theme";
-import Splash from "./Screens/Splash";
+import { colors } from "./constants/theme";
+
 import { useEffect } from "react";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector ,useDispatch} from "react-redux";
 import { loadUser, logOut } from "./redux/action";
-// import { LoadingUser } from "./components/CustomeView";
 import Verify from "./Screens/Verify";
+import { useContext } from "react";
+import { ThemeContext } from "./constants/ThemeContext";
+import { SplashView } from "./components/CustomeView";
 
 
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
+  const {theme} = useContext(ThemeContext);
+const Color = colors[theme.mode]
+
   const dispatch = useDispatch()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const { user ,loadingUser } = useSelector(
@@ -44,10 +49,10 @@ const Main = () => {
     NunitoRegular: require("./assets/Fonts/Nunito-Regular.ttf"),
   });
 
-  if (!loded) return <Splash/>;
+  if (!loded) return <SplashView/>;
 
   if(loadingUser){
-    return <Splash/>
+    return <SplashView/>
   }
   
 if(isAuthenticated && user === undefined){
@@ -65,8 +70,8 @@ if(isAuthenticated && user === undefined){
   return (
     <>
       <StatusBar
-        barStyle={"light-content"}
-        backgroundColor={Color.Primary}
+        barStyle={theme.mode == "dark"?"light-content":"dark-content"}
+        backgroundColor={Color.Secondary}
         style={{
           flex: 1,
           paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
