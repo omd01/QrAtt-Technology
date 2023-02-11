@@ -106,9 +106,17 @@ export const SuccessView = ({ message }) => {
         zIndex: 15,
         justifyContent: "center",
         alignItems: "center",
-        position: "relative",
       }}
     >
+      <View style={{
+         width: 300,
+          height: 500,
+          alignItems: "center",
+          justifyContent: "center",
+          position:'relative',
+          
+      }}>
+
       <View
         style={{
           height: 300,
@@ -177,13 +185,14 @@ export const SuccessView = ({ message }) => {
       <Image
         source={require("../assets/Images/loading-success.gif")}
         style={{
-          width: 440,
           height: 300,
           resizeMode: "contain",
           position: "absolute",
-          top: 113,
+          top: 36,
         }}
       />
+      </View>
+      
     </View>
   );
 };
