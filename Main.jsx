@@ -10,7 +10,7 @@ import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector ,useDispatch} from "react-redux";
 import { loadUser, logOut } from "./redux/action";
-import { LoadingUser } from "./components/CustomeView";
+// import { LoadingUser } from "./components/CustomeView";
 import Verify from "./Screens/Verify";
 
 
@@ -47,7 +47,7 @@ const Main = () => {
   if (!loded) return <Splash/>;
 
   if(loadingUser){
-    return <LoadingUser/>
+    return <Splash/>
   }
   
 if(isAuthenticated && user === undefined){
