@@ -22,8 +22,7 @@ const Main = () => {
 
   const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const { user, loadingUser } = useSelector((state) => state.auth);
-
+  
   const checkAuth = async () => {
     setIsAuthenticated(
       JSON.parse(await AsyncStorage.getItem("isAuthenticated"))
@@ -47,22 +46,7 @@ const Main = () => {
 
   if (!loded) return <SplashView />;
 
-  if (loadingUser) {
-    return <SplashView />;
-  }
-
-  if (isAuthenticated && user === undefined) {
-    dispatch(logOut());
-  }
-
-  if (user !== undefined) {
-    if (user !== null) {
-      if (user.verified === false) {
-        return <Verify />;
-      }
-    }
-  }
-
+  
   return (
     <>
       <StatusBar

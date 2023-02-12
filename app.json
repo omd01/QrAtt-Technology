@@ -16,6 +16,10 @@
       "supportsTablet": true
     },
     "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/Images/adaptiveIcon.png",
+        "backgroundColor": "#3A2E54"
+      },
       "package": "com.odtech.qratt.student",
       "googleServicesFile": "./google-services.json"
     },
@@ -24,8 +28,8 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/Images/icon.png",
-          "color": "#ffffff"
+          "icon": "./assets/Images/notification.png",
+          "color": "#3A2E54"
         }
       ]
     ],

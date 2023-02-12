@@ -13,6 +13,7 @@ import {
   ErrorView,
   LoadingView,
   PendingView,
+  SplashView,
   SuccessView,
 } from "../components/CustomeView";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,7 +50,7 @@ const Home = ({ navigation, route }) => {
   const { loading, pending, error, message } = useSelector(
     (state) => state.message
   );
-
+  const { user, loadingUser } = useSelector((state) => state.auth);
 
 /***************  Notification settings  **************/
 
@@ -62,15 +63,16 @@ const Home = ({ navigation, route }) => {
     registerForPushNotificationsAsync().then(token =>{ 
       dispatch(setToken(token))
       setExpoPushToken(token)
-      console.log(token)
     });
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
+    
     });
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
+      navigation.navigate("home")
+      setScreen("leave")
     });
 
     return () => {
@@ -78,12 +80,6 @@ const Home = ({ navigation, route }) => {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
-
-  
- const NotificationAction = {
-    identifier: "button",
-    buttonTitle: "string",
-  }
 
   async function registerForPushNotificationsAsync() {
 
@@ -99,10 +95,6 @@ const Home = ({ navigation, route }) => {
 
     
     }
-
-   
-
-    Notifications.setNotificationCategoryAsync("button",NotificationAction)
   
     if (Device.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -130,9 +122,6 @@ const Home = ({ navigation, route }) => {
 /*******************************************************/
 
 
-
-
-
   useEffect(() => {
     dispatch(loadTeachers());
     dispatch(getMyLeaves());
@@ -158,6 +147,23 @@ const Home = ({ navigation, route }) => {
       setSelfi(route.params.image);
     }
   }, [route]);
+
+
+  if (loadingUser) {
+    return <SplashView />;
+  }
+
+  if (user === undefined) {
+    dispatch(logOut());
+  }
+
+  if (user !== undefined) {
+    if (user !== null) {
+      if (user.verified === false) {
+        return <Verify />;
+      }
+    }
+  }
 
   return (
     <View
