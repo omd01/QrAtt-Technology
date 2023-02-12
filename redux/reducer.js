@@ -171,6 +171,8 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
 
+  
+
     logOutFailure: (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;

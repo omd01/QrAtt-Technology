@@ -1,4 +1,4 @@
-import { View, Keyboard } from "react-native";
+import { View, Keyboard ,Linking } from "react-native";
 import React, {  useState, useEffect, useRef  } from "react";
 import { colors, Size } from "../constants/theme";
 import Profile from "./Profile";
@@ -25,6 +25,7 @@ import { ThemeContext } from "../constants/ThemeContext";
 import { useContext } from "react";
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { setToken } from "../redux/notification";
 
 
 Notifications.setNotificationHandler({
@@ -58,7 +59,11 @@ const Home = ({ navigation, route }) => {
   const responseListener = useRef();
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    registerForPushNotificationsAsync().then(token =>{ 
+      dispatch(setToken(token))
+      setExpoPushToken(token)
+      console.log(token)
+    });
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
@@ -74,7 +79,14 @@ const Home = ({ navigation, route }) => {
     };
   }, []);
 
+  
+ const NotificationAction = {
+    identifier: "button",
+    buttonTitle: "string",
+  }
+
   async function registerForPushNotificationsAsync() {
+
     let token;
   
     if (Platform.OS === 'android') {
@@ -84,10 +96,17 @@ const Home = ({ navigation, route }) => {
         vibrationPattern: [0, 250, 250, 250],
         lightColor: '#FF231F7C',
       });
+
+    
     }
+
+   
+
+    Notifications.setNotificationCategoryAsync("button",NotificationAction)
   
     if (Device.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      
       let finalStatus = existingStatus;
       if (existingStatus !== 'granted') {
         const { status } = await Notifications.requestPermissionsAsync();
@@ -98,7 +117,7 @@ const Home = ({ navigation, route }) => {
         return;
       }
       token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log(token);
+
     } else {
       alert('Must use physical device for Push Notifications');
     }

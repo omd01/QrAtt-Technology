@@ -16,17 +16,23 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.odtech.qratt.student"
+      "package": "com.odtech.qratt.student",
+      "googleServicesFile": "./google-services.json"
     },
+    
     "plugins": [
       [
         "expo-notifications",
         {
           "icon": "./assets/Images/icon.png",
           "color": "#ffffff"
-        
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0f5b66ab-2662-4043-a453-c1817587717c"
+      }
+    }
   }
 }
