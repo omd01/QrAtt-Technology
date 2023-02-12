@@ -7,12 +7,10 @@ import { colors } from "./constants/theme";
 import { useEffect } from "react";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./redux/action";
-import Verify from "./Screens/Verify";
 import { useContext } from "react";
 import { ThemeContext } from "./constants/ThemeContext";
-import { SplashView } from "./components/CustomeView";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +20,7 @@ const Main = () => {
 
   const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+
   const checkAuth = async () => {
     setIsAuthenticated(
       JSON.parse(await AsyncStorage.getItem("isAuthenticated"))
@@ -46,7 +44,6 @@ const Main = () => {
 
   if (!loded) return null;
 
-  
   return (
     <>
       <StatusBar
