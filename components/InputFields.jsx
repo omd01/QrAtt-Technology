@@ -77,10 +77,10 @@ const Color = colors[theme.mode]
       right={
         <TextInput.Icon
           onPress={() => setSecured(!secured)}
-          style={{ paddingTop: Size.Small }}
+          style={{ paddingTop: Size.Small ,opacity:0.5}}
           icon={"eye"}
           size={20}
-          iconColor="#cccccc"
+          iconColor= {Color.White}
         />
       }
     />

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
-import { Avatar } from "react-native-paper";
+import { Appbar, Avatar } from "react-native-paper";
 import { Size, Font, colors } from "../constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import { Dropdown } from "../components/Dropdown";
@@ -136,6 +136,18 @@ const SignupSecond = ({ navigation, route }) => {
             backgroundColor: Color.Primary,
           }}
         >
+           <Appbar.Header
+            style={{
+              height: 45,
+              backgroundColor: Color.Primary,
+              
+            }}
+          >
+            <Appbar.BackAction
+              onPress={() => navigation.goBack()}
+              iconColor={Color.White}
+            />
+          </Appbar.Header>
           <View
             pointerEvents={cambar ? "none" : "auto"}
             style={{

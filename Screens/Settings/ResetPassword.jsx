@@ -88,6 +88,19 @@ const ResetPassword = ({ navigation }) => {
                 justifyContent: "center",
               }}
             >
+               <Text
+                style={{
+                  alignSelf: "center",
+                  color: Color.White,
+                  marginVertical: 1,
+                  marginHorizontal: 4,
+                  fontSize: Size.Midum ,
+                  fontFamily: Font.light,
+                }}
+              >
+                {`Email has been sent to your registered email address. Also check your spam folder.`}
+              </Text>
+              
               <Text
                 style={{
                   alignSelf: "center",
@@ -100,18 +113,7 @@ const ResetPassword = ({ navigation }) => {
               >
                 {`Note:- Your Password must be more than eight characters long and include a combination of numbers, letters and special characters (!$@%&).`}
               </Text>
-              <Text
-                style={{
-                  alignSelf: "center",
-                  color: Color.White,
-                  marginVertical: 1,
-                  marginHorizontal: 4,
-                  fontSize: Size.Midum - 3,
-                  fontFamily: Font.light,
-                }}
-              >
-                {`Email has been sent to your registered email address. Also check your spam folder.`}
-              </Text>
+             
 
               <View style={{ marginTop: 5, marginBottom: 20 }}>
                 <View style={{ marginVertical: Size.Small }}>

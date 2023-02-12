@@ -46,17 +46,21 @@ const ForgetPassword = ({ navigation }) => {
       }) => (
         <View style={{ height: Size.Full }}>
           <Appbar.Header
-            style={{
-              height: 45,
-              backgroundColor: Color.Primary,
-              marginVertical: 5,
-            }}
-          >
-            <Appbar.BackAction
-              onPress={() => navigation.goBack()}
-              iconColor={Color.White}
-            />
-          </Appbar.Header>
+        style={{
+          height: 45,
+          backgroundColor: Color.Primary,
+          marginVertical: 5,
+        }}
+      >
+        <Appbar.BackAction
+          onPress={() => navigation.goBack()}
+          iconColor={Color.White}
+        />
+        <Appbar.Content
+          title="Forget Password"
+          titleStyle={{ color: Color.White, fontFamily: Font.semiBold }}
+        />
+      </Appbar.Header>
 
           <View
             style={{
@@ -72,24 +76,14 @@ const ForgetPassword = ({ navigation }) => {
                 justifyContent: "center",
               }}
             >
-              <Text
-                style={{
-                  letterSpacing: 1,
-                  alignSelf: "center",
-                  color: Color.White,
-                  fontSize: Size.Large,
-                  fontFamily: Font.bold,
-                }}
-              >
-                Forget Password
-              </Text>
+              
 
               <Text
                 style={{
                   alignSelf: "center",
                   color: Color.White,
                   marginVertical: 1,
-                  fontSize: Size.Midum - 2,
+                  fontSize: Size.Midum ,
                   fontFamily: Font.light,
                 }}
               >
