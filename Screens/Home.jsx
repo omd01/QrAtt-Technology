@@ -1,4 +1,4 @@
-import { View, Keyboard, Linking } from "react-native";
+import { View, Keyboard, } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { colors, Size } from "../constants/theme";
 import Profile from "./Profile";
@@ -25,7 +25,7 @@ import { useContext } from "react";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { setToken } from "../redux/notification";
-import { OnBackDoublePress } from "../backAction";
+
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -48,6 +48,7 @@ const Home = ({ navigation, route }) => {
   const { user, loadingUser } = useSelector((state) => state.auth);
 
   /***************  Notification settings  **************/
+
 
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
@@ -172,30 +173,30 @@ const Home = ({ navigation, route }) => {
           {message && <SuccessView message={message} />}
 
           {screen === "leave" ? (
-            <>
+           
               <Leave setScreen={setScreen} />
-              <OnBackDoublePress />
-            </>
+              
+            
           ) : screen === "history" ? (
-            <>
+          
               <History />
-              <OnBackDoublePress />
-            </>
+              
+            
           ) : screen === "profile" ? (
-            <>
+           
               <Profile navigation={navigation} setScreen={setScreen} />
-              {/* <OnBackDoublePress /> */}
-            </>
+              
+            
           ) : screen === "attendance" ? (
-            <>
+           
               <Attendance />
-              <OnBackDoublePress />
-            </>
+              
+            
           ) : (
-            <>
+         
               <Scanner navigation={navigation} selfi={selfi} />
-              <OnBackDoublePress />
-            </>
+              
+            
           )}
         </View>
         {keyboardStatus === "KeyboardHidden" ? (

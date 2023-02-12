@@ -10,7 +10,7 @@ import { login } from "../redux/action";
 import { clearError } from "../redux/reducer";
 import { ThemeContext } from "../constants/ThemeContext";
 import { useContext } from "react";
-import { OnBackDoublePress } from "../backAction";
+
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -55,7 +55,7 @@ const Login = ({ navigation }) => {
         isValid,
       }) => (
         <View style={{ height: Size.Full, backgroundColor: Color.Secondary }}>
-          <OnBackDoublePress />
+
           <View style={{ flex: 1 }}>
             <View
               style={{
