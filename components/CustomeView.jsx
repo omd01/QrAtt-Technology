@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { ButtonD } from "./Buttons";
 import { clearError, clearMessage } from "../redux/messageReducer";
 import { getMyLeaves, getMyAttendance } from "../redux/mainAction";
-import { clearMessage as clearUserMessage } from "../redux/reducer";
 import { useContext } from "react";
 import { ThemeContext } from "../constants/ThemeContext";
 
@@ -335,66 +334,3 @@ export const ErrorView = ({ error }) => {
   );
 };
 
-export const CustomMessage = ({ message }) => {
-  const { theme } = useContext(ThemeContext);
-  const Color = colors[theme.mode];
-  const dispatch = useDispatch();
-  return (
-    <View
-      style={{
-        // backgroundColor: Color.Opacity,
-        height: Size.Full,
-        width: Size.Full,
-        position: "absolute",
-        zIndex: 15,
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
-      }}
-    >
-      <View
-        style={{
-          height: 150,
-          width: 300,
-          // backgroundColor: "redrgba(255, 255, 255, 0.6)",
-          backgroundColor: Color.Secondary,
-          borderRadius: 30,
-          borderColor: Color.White,
-          borderWidth: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          overflow: "hidden",
-        }}
-      >
-        <Text
-          style={{
-            marginTop: 10,
-            color: Color.White,
-            fontFamily: Font.semiBold,
-            fontSize: 20,
-            // letterSpacing: 1,
-          }}
-        >
-          {message}
-        </Text>
-
-        <ButtonD
-          value={"OK !"}
-          onPress={() => {
-            dispatch(clearUserMessage());
-          }}
-          textColor={Color.White}
-          labelStyle={{ fontFamily: Font.bold, fontSize: 12, letterSpacing: 1 }}
-          contentStyle={{ height: 35 }}
-          style={{
-            width: 100,
-            marginTop: 15,
-
-            backgroundColor: Color.Btn,
-            justifyContent: "center",
-          }}
-        />
-      </View>
-    </View>
-  );
-};

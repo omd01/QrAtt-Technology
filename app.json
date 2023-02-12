@@ -7,7 +7,8 @@
     "icon": "./assets/Images/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/Images/adaptiveIcon.png",
+      "image": "./assets/Images/onload.png",
+      "resizeMode": "contain",
       "backgroundColor": "#3A2E54"
     },
     "updates": {

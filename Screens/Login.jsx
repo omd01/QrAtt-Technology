@@ -10,6 +10,7 @@ import { login } from "../redux/action";
 import { clearError } from "../redux/reducer";
 import { ThemeContext } from "../constants/ThemeContext";
 import { useContext } from "react";
+import { OnBackDoublePress } from "../backAction";
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -21,26 +22,26 @@ const loginSchema = yup.object().shape({
 });
 
 const Login = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-const Color = colors[theme.mode]
 
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
   const dispatch = useDispatch();
-  const { error, loading ,isAuthenticated} = useSelector((state) => state.auth);
+  const { error, loading, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
-    isAuthenticated &&  navigation.navigate("home")
-  }, [loading])
-
-
+    isAuthenticated && navigation.navigate("home");
+  }, [loading]);
 
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validateOnMount={true}
-      onSubmit={(values,action) => {
+      onSubmit={(values, action) => {
         dispatch(clearError());
         dispatch(login(values));
-        action.resetForm()
+        action.resetForm();
       }}
       validationSchema={loginSchema}
     >
@@ -54,6 +55,7 @@ const Color = colors[theme.mode]
         isValid,
       }) => (
         <View style={{ height: Size.Full, backgroundColor: Color.Secondary }}>
+          <OnBackDoublePress />
           <View style={{ flex: 1 }}>
             <View
               style={{
@@ -142,22 +144,21 @@ const Color = colors[theme.mode]
                   </Text>
                 )}
                 {error ? (
-                    <Text
-                      style={{
-                        color: "red",
-                        fontSize: Size.Midum - 2,
-                        fontFamily: Font.light,
-                        // marginVertical
-                        marginTop:5,
-                      marginHorizontal:15
-                      }}
-                    >
-                      {error}
-                    </Text>
-                  ) : null}
+                  <Text
+                    style={{
+                      color: "red",
+                      fontSize: Size.Midum - 2,
+                      fontFamily: Font.light,
+                      // marginVertical
+                      marginTop: 5,
+                      marginHorizontal: 15,
+                    }}
+                  >
+                    {error}
+                  </Text>
+                ) : null}
 
                 <View style={{ marginVertical: 20 }}>
-                  
                   <ButtonD
                     value={"Log In"}
                     onPress={handleSubmit}

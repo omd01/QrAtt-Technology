@@ -44,7 +44,7 @@ const Main = () => {
     NunitoRegular: require("./assets/Fonts/Nunito-Regular.ttf"),
   });
 
-  if (!loded) return <SplashView />;
+  if (!loded) return null;
 
   
   return (
