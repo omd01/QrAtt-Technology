@@ -1,16 +1,16 @@
-import { View, TouchableOpacity, Text   } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import React, { useState } from "react";
-import { Appbar ,Switch} from "react-native-paper";
+import { Appbar, Switch } from "react-native-paper";
 import { colors, Font, Size } from "../../constants/theme";
 import { ThemeContext } from "../../constants/ThemeContext";
 import { useContext } from "react";
 
-const Notification = ({navigation}) => {
-  const {theme} = useContext(ThemeContext);
-  const Color = colors[theme.mode]
+const Notification = ({ navigation }) => {
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
 
-    const [allNotifications, setAllNotifications] = useState(true);
-    const [muteNotification, setMuteNotification] = useState(false);
+  const [allNotifications, setAllNotifications] = useState(true);
+  const [muteNotification, setMuteNotification] = useState(false);
 
   return (
     <View style={{ height: Size.Full }}>
@@ -44,8 +44,8 @@ const Notification = ({navigation}) => {
             height: 50,
             paddingHorizontal: 5,
             marginVertical: 10,
-            justifyContent:'space-between',
-            paddingLeft:25
+            justifyContent: "space-between",
+            paddingLeft: 25,
           }}
         >
           <Text
@@ -57,7 +57,10 @@ const Notification = ({navigation}) => {
           >
             All notification
           </Text>
-          <Switch value={allNotifications}  onValueChange={()=>setAllNotifications(!allNotifications)}  />
+          <Switch
+            value={allNotifications}
+            onValueChange={() => setAllNotifications(!allNotifications)}
+          />
         </View>
         <View
           style={{
@@ -65,8 +68,8 @@ const Notification = ({navigation}) => {
             alignItems: "center",
             height: 50,
             paddingHorizontal: 5,
-            justifyContent:'space-between',
-            paddingLeft:25
+            justifyContent: "space-between",
+            paddingLeft: 25,
           }}
         >
           <Text
@@ -78,7 +81,10 @@ const Notification = ({navigation}) => {
           >
             Mute notification
           </Text>
-          <Switch value={muteNotification}  onValueChange={()=>setMuteNotification(!muteNotification)}  />
+          <Switch
+            value={muteNotification}
+            onValueChange={() => setMuteNotification(!muteNotification)}
+          />
         </View>
       </View>
     </View>

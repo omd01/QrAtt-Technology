@@ -10,6 +10,7 @@ import { updateAvatar, updateName, updateRoom } from "../../redux/action";
 import mime from "mime";
 import { useContext } from "react";
 import { ThemeContext } from "../../constants/ThemeContext";
+import { clearError, clearMessage } from "../../redux/reducer";
 
 
 const EditProfile = ({ route, navigation }) => {
@@ -53,6 +54,8 @@ const EditProfile = ({ route, navigation }) => {
        dispatch(updateRoom(parseInt(room)))
         setRoom(room.toString())
     }
+    dispatch(clearError())
+    dispatch(clearMessage())
 
   };
 
@@ -159,15 +162,14 @@ const EditProfile = ({ route, navigation }) => {
               keyboardType={"phone-pad"}
               onChangeText={(value) => setRoom(value)}
             />
-          </View>
-          {error ? (
+             {error ? (
                     <Text
                       style={{
                         color: "red",
                         fontSize: Size.Midum - 2,
                         fontFamily: Font.light,
                         // marginVertical
-                        marginTop:5,
+                        marginTop:10,
                       marginHorizontal:15
                       }}
                     >
@@ -181,13 +183,15 @@ const EditProfile = ({ route, navigation }) => {
                         fontSize: Size.Midum - 2,
                         fontFamily: Font.light,
                         // marginVertical
-                        marginTop:5,
+                        marginTop:10,
                       marginHorizontal:15
                       }}
                     >
                       {message}
                     </Text>
                   ) : null}
+          </View>
+         
           <ButtonD
             value={"Update"}
             onPress={handelSubmit}
