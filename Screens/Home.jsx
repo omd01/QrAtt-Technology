@@ -1,4 +1,4 @@
-import { View, Keyboard, } from "react-native";
+import { View, Keyboard, BackHandler ,ToastAndroid } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { colors, Size } from "../constants/theme";
 import Profile from "./Profile";
@@ -25,6 +25,12 @@ import { useContext } from "react";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { setToken } from "../redux/notification";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
+
+
+
 
 
 Notifications.setNotificationHandler({
@@ -48,6 +54,37 @@ const Home = ({ navigation, route }) => {
   const { user, loadingUser } = useSelector((state) => state.auth);
 
   /***************  Notification settings  **************/
+
+
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  const checkAuth = async () => {
+    setIsAuthenticated(
+      JSON.parse(await AsyncStorage.getItem("isAuthenticated"))
+    );
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+  const backAction = () => {
+   
+    if (isAuthenticated  && screen === "home") {
+      BackHandler.exitApp();
+    }
+    return false;
+  };
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
+  });
+
+
+
+
 
 
   const [expoPushToken, setExpoPushToken] = useState("");

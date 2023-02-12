@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, BackHandler } from "react-native";
 import React, { useEffect } from "react";
 import { Size, Font, colors } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
@@ -33,6 +33,22 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     isAuthenticated && navigation.navigate("home");
   }, [loading]);
+
+
+  const backAction = () => {
+   
+    if (isAuthenticated === false) {
+      BackHandler.exitApp();
+    }
+    return false;
+  };
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
+  });
 
   return (
     <Formik
