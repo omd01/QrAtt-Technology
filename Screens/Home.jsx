@@ -1,4 +1,4 @@
-import { View, Keyboard,ToastAndroid } from "react-native";
+import { View, Keyboard } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { colors, Size } from "../constants/theme";
 import Profile from "./Profile";
@@ -63,9 +63,11 @@ const Home = ({ navigation, route }) => {
       setExpoPushToken(token);
     });
 
+
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
         setNotification(notification);
+     
       });
 
     responseListener.current =
@@ -83,6 +85,7 @@ const Home = ({ navigation, route }) => {
   }, []);
 
   async function registerForPushNotificationsAsync() {
+
     let token;
 
     if (Platform.OS === "android") {
@@ -91,7 +94,9 @@ const Home = ({ navigation, route }) => {
         importance: Notifications.AndroidImportance.MAX,
         vibrationPattern: [0, 250, 250, 250],
         lightColor: "#FF231F7C",
+        showBadge: false,
       });
+      
     }
 
     if (Device.isDevice) {
@@ -99,6 +104,7 @@ const Home = ({ navigation, route }) => {
         await Notifications.getPermissionsAsync();
 
       let finalStatus = existingStatus;
+
       if (existingStatus !== "granted") {
         const { status } = await Notifications.requestPermissionsAsync();
         finalStatus = status;
@@ -108,6 +114,8 @@ const Home = ({ navigation, route }) => {
         return;
       }
       token = (await Notifications.getExpoPushTokenAsync()).data;
+      const deviceToken = await Notifications.getDevicePushTokenAsync();
+      alert(deviceToken.data)
     } else {
       alert("Must use physical device for Push Notifications");
     }
