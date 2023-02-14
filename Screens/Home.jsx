@@ -1,4 +1,4 @@
-import { View, Keyboard, BackHandler ,ToastAndroid } from "react-native";
+import { View, Keyboard,ToastAndroid } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { colors, Size } from "../constants/theme";
 import Profile from "./Profile";
@@ -25,12 +25,8 @@ import { useContext } from "react";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { setToken } from "../redux/notification";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-
-
-
-
+import Verify from "./Verify";
+import { logOut } from "../redux/action";
 
 
 Notifications.setNotificationHandler({
@@ -53,39 +49,8 @@ const Home = ({ navigation, route }) => {
   );
   const { user, loadingUser } = useSelector((state) => state.auth);
 
-  /***************  Notification settings  **************/
 
-
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-
-  const checkAuth = async () => {
-    setIsAuthenticated(
-      JSON.parse(await AsyncStorage.getItem("isAuthenticated"))
-    );
-  };
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
-  const backAction = () => {
-   
-    if (isAuthenticated  && screen === "home") {
-      BackHandler.exitApp();
-    }
-    return false;
-  };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
-    return () => backHandler.remove();
-  });
-
-
-
-
-
+/***************  Notification settings  **************/
 
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
@@ -152,6 +117,8 @@ const Home = ({ navigation, route }) => {
 
   /*******************************************************/
 
+
+
   useEffect(() => {
     dispatch(loadTeachers());
     dispatch(getMyLeaves());
@@ -172,11 +139,13 @@ const Home = ({ navigation, route }) => {
     };
   }, []);
 
+
   useEffect(() => {
     if (route.params) {
       setSelfi(route.params.image);
     }
   }, [route]);
+
 
   if (loadingUser) {
     return <SplashView />;
@@ -186,62 +155,65 @@ const Home = ({ navigation, route }) => {
     dispatch(logOut());
   }
 
-  if (user !== undefined) {
+  else{
+if (user !== undefined) {
     if (user !== null) {
       if (user.verified === false) {
-        return <Verify />;
+        return <Verify/>;
+      }
+      else{
+        return (
+          <>
+            <View
+              style={{
+                height: Size.Full,
+                backgroundColor: Color.Primary,
+                position: "relative",
+              }}
+            >
+              <View style={{ flex: 1, zIndex: 10 }}>
+                {loading && <LoadingView />}
+                {pending && <PendingView />}
+                {error && <ErrorView error={error} />}
+                {message && <SuccessView message={message} />}
+      
+                {screen === "leave" ? (
+                 
+                    <Leave setScreen={setScreen} />
+                    
+                  
+                ) : screen === "history" ? (
+                
+                    <History />
+                    
+                  
+                ) : screen === "profile" ? (
+                 
+                    <Profile navigation={navigation} setScreen={setScreen} />
+                    
+                  
+                ) : screen === "attendance" ? (
+                 
+                    <Attendance />
+                    
+                  
+                ) : (
+               
+                    <Scanner navigation={navigation} selfi={selfi} />
+                    
+                  
+                )}
+              </View>
+              {keyboardStatus === "KeyboardHidden" ? (
+                <Footer screen={screen} setScreen={setScreen} />
+              ) : null}
+            </View>
+          </>
+        );
       }
     }
+}
   }
-
-  return (
-    <>
-      <View
-        style={{
-          height: Size.Full,
-          backgroundColor: Color.Primary,
-          position: "relative",
-        }}
-      >
-        <View style={{ flex: 1, zIndex: 10 }}>
-          {loading && <LoadingView />}
-          {pending && <PendingView />}
-          {error && <ErrorView error={error} />}
-          {message && <SuccessView message={message} />}
-
-          {screen === "leave" ? (
-           
-              <Leave setScreen={setScreen} />
-              
-            
-          ) : screen === "history" ? (
-          
-              <History />
-              
-            
-          ) : screen === "profile" ? (
-           
-              <Profile navigation={navigation} setScreen={setScreen} />
-              
-            
-          ) : screen === "attendance" ? (
-           
-              <Attendance />
-              
-            
-          ) : (
-         
-              <Scanner navigation={navigation} selfi={selfi} />
-              
-            
-          )}
-        </View>
-        {keyboardStatus === "KeyboardHidden" ? (
-          <Footer screen={screen} setScreen={setScreen} />
-        ) : null}
-      </View>
-    </>
-  );
 };
 
 export default Home;

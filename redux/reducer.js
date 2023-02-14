@@ -30,7 +30,7 @@ const authSlice = createSlice({
 
     singUpSuccess: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = false;
+      state.isAuthenticated = true;
       state.user = action.payload.user;
       state.message = action.payload.message;
     },
@@ -51,6 +51,13 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
     },
+
+    verifyUserFailure: (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.error = action.payload;
+    },
+
 
 
     loadUserRequest: (state) => {
@@ -73,17 +80,17 @@ const authSlice = createSlice({
 
     },
 
-    logOutSuccess: (state, action) => {
+    logOutSuccess: (state) => {
       state.loading = false;
       state.isAuthenticated = false;
       state.user = null;
 
     },
 
-    verifyUserFailure: (state, action) => {
+    logOutFailure: (state) => {
       state.loading = false;
-      state.isAuthenticated = false;
-      state.error = action.payload;
+      state.isAuthenticated = true;
+
     },
 
 
@@ -171,13 +178,6 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
 
-  
-
-    logOutFailure: (state, action) => {
-      state.loading = false;
-      state.isAuthenticated = true;
-
-    },
 
     clearError: (state) => {
       state.error = null;

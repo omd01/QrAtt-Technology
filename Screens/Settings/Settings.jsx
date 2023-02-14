@@ -1,27 +1,40 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity ,ToastAndroid } from "react-native";
 import { Appbar, IconButton } from "react-native-paper";
-import {  colors, Font, Size } from "../../constants/theme";
+import { colors, Font, Size } from "../../constants/theme";
 import { ButtonD } from "../../components/Buttons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/action";
 import { ThemeContext } from "../../constants/ThemeContext";
 import { useContext } from "react";
+import { useEffect } from "react";
+import { clearMessage } from "../../redux/reducer";
 
 const Settings = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-  const Color = colors[theme.mode]
-
+  const { theme } = useContext(ThemeContext);
+  const Color = colors[theme.mode];
   const dispatch = useDispatch();
+  const { message } = useSelector((state) => state.auth);
+  
+  useEffect(() => {
+    if (message) {
+      ToastAndroid.show(message, ToastAndroid.SHORT);
+    dispatch(clearMessage())
+    }
+  }, [dispatch,message]);
 
-  const handelLogOut = async () => {
-    await dispatch(logOut())
-     navigation.navigate("login")
-
+  const handelLogOut =() => {
+   dispatch(logOut());
   };
 
   return (
     <View style={{ height: Size.Full }}>
-      <Appbar.Header style={{ height: 45, backgroundColor: Color.Primary ,marginVertical:5 }}>
+      <Appbar.Header
+        style={{
+          height: 45,
+          backgroundColor: Color.Primary,
+          marginVertical: 5,
+        }}
+      >
         <Appbar.BackAction
           onPress={() => navigation.goBack()}
           iconColor={Color.White}
@@ -42,7 +55,7 @@ const Settings = ({ navigation }) => {
       >
         <View style={{ width: Size.Full }}>
           <TouchableOpacity
-          onPress={()=>navigation.navigate("account")}
+            onPress={() => navigation.navigate("account")}
             style={{
               flexDirection: "row",
               alignItems: "center",
@@ -69,7 +82,7 @@ const Settings = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-             onPress={()=>navigation.navigate("notification")}
+            onPress={() => navigation.navigate("notification")}
             style={{
               flexDirection: "row",
               alignItems: "center",
@@ -91,8 +104,7 @@ const Settings = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-             onPress={()=>navigation.navigate("theme")}
-
+            onPress={() => navigation.navigate("theme")}
             style={{
               flexDirection: "row",
               alignItems: "center",
@@ -119,15 +131,24 @@ const Settings = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{ width: "50%" ,marginVertical:10}}>
-            
+        <View style={{ width: "50%", marginVertical: 10 }}>
           <ButtonD
             value={"Log Out"}
             textColor={Color.White}
-            style={{ backgroundColor: Color.Secondary ,borderRadius:50 }}
+            style={{ backgroundColor: Color.Secondary, borderRadius: 50 }}
             onPress={handelLogOut}
           />
-          <Text style={{color:Color.White,fontSize:Size.Midum,fontFamily:Font.regular,alignSelf:'center',marginVertical:5 }}>App Version 1.1.0</Text>
+          <Text
+            style={{
+              color: Color.White,
+              fontSize: Size.Midum,
+              fontFamily: Font.regular,
+              alignSelf: "center",
+              marginVertical: 5,
+            }}
+          >
+            App Version 1.1.0
+          </Text>
         </View>
       </View>
     </View>

@@ -110,8 +110,6 @@ const SignupSecond = ({ navigation, route }) => {
             type: mime.getType(avatar),
             name: avatar.split("/").pop(),
           });
-
-          // console.log(myForm);
           dispatch(clearError());
           dispatch(signUp(myForm))
 

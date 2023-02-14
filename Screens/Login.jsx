@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, BackHandler } from "react-native";
+import { View, Text, TouchableOpacity, ToastAndroid } from "react-native";
 import React, { useEffect } from "react";
 import { Size, Font, colors } from "../constants/theme";
 import { Input, InputSecure } from "../components/InputFields";
@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/action";
-import { clearError } from "../redux/reducer";
+import { clearError, clearMessage } from "../redux/reducer";
 import { ThemeContext } from "../constants/ThemeContext";
 import { useContext } from "react";
 
@@ -26,29 +26,20 @@ const Login = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const Color = colors[theme.mode];
   const dispatch = useDispatch();
-  const { error, loading, isAuthenticated } = useSelector(
+  const { error,message, loading, isAuthenticated } = useSelector(
     (state) => state.auth
   );
 
   useEffect(() => {
-    isAuthenticated && navigation.navigate("home");
-  }, [loading]);
-
-
-  const backAction = () => {
-   
-    if (isAuthenticated === false) {
-      BackHandler.exitApp();
+    if (message) {
+      ToastAndroid.show(message, ToastAndroid.SHORT);
+      dispatch(clearMessage())
     }
-    return false;
-  };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
-    return () => backHandler.remove();
-  });
+   
+    isAuthenticated && navigation.navigate("home");
+
+  }, [loading,message]);
+
 
   return (
     <Formik
