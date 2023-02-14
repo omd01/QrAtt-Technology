@@ -1,5 +1,5 @@
 import axios from "axios";
-const serverUrl = "https://qratt-technology-server.onrender.com/api/v1";
+const serverUrl = "https://qratt-technology-server-w6ix.onrender.com/api/v1";
 
 export const setToken = (token) => async (dispatch) => {
 

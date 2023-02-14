@@ -17,9 +17,8 @@ import {
   totalAttendanceSuccess,
 } from "./messageReducer";
 
-// const serverUrl = "https://omd01-special-yodel-j97g5rr9g4g2p77p-4000.preview.app.github.dev/api/v1";
 
-const serverUrl = "https://qratt-technology-server.onrender.com/api/v1";
+const serverUrl = "https://qratt-technology-server-w6ix.onrender.com/api/v1";
 
 export const leaveRequeste = (teacher, reason, from, to) => async (dispatch) => {
     dispatch(leaveRequest());
