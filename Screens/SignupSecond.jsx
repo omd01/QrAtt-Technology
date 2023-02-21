@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
-import { Appbar, Avatar } from "react-native-paper";
+import { Appbar, Avatar, RadioButton } from "react-native-paper";
 import { Size, Font, colors } from "../constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import { Dropdown } from "../components/Dropdown";
@@ -26,6 +26,7 @@ const secondSignupSchema = yup.object().shape({
     )
     .required("Parents mobile number is required"),
   room: yup.number().required("Room number is required"),
+  gender:yup.string()
 });
 
 const SignupSecond = ({ navigation, route }) => {
@@ -88,7 +89,7 @@ const SignupSecond = ({ navigation, route }) => {
 
   return (
     <Formik
-      initialValues={{ name: "", pmobile: "", room: ""}}
+      initialValues={{ name: "", pmobile: "", room: "",gender:"male"}}
       validateOnMount={true}
       onSubmit={(values) => {
         newBranch === null
@@ -105,6 +106,7 @@ const SignupSecond = ({ navigation, route }) => {
           myForm.append('name', values.name);
           myForm.append('parentsMob', values.pmobile);
           myForm.append('roomNo', values.room);
+          myForm.append('gender', values.gender);
           myForm.append('avatar', {
             uri: avatar,
             type: mime.getType(avatar),
@@ -112,6 +114,7 @@ const SignupSecond = ({ navigation, route }) => {
           });
           dispatch(clearError());
           dispatch(signUp(myForm))
+        
 
         }
       }}
@@ -285,6 +288,28 @@ const SignupSecond = ({ navigation, route }) => {
                   </Text>
                 )}
               </View>
+              <View style={{ marginVertical: Size.Small,marginHorizontal:10}}>
+                <RadioButton.Group onValueChange={handleChange("gender")} value={values.gender} >
+                  <View style={{flexDirection:'row',alignItems:'center'}}>
+                    <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Male</Text>
+                  <RadioButton value="male" />
+                  <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Femail</Text>
+                <RadioButton value="female" />
+                  </View>
+               
+                </RadioButton.Group>
+                  {errors.password && touched.password && (
+                    <Text
+                      style={{
+                        color: "red",
+                        fontFamily: Font.light,
+                        marginLeft: 15,
+                      }}
+                    >
+                      {errors.password}
+                    </Text>
+                  )}
+                </View>
             </View>
             {error ? (
                     <Text
