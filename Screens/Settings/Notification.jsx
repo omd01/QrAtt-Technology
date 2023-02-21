@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Text } from "react-native";
+import { View, TouchableOpacity, Text, Linking } from "react-native";
 import React, { useState } from "react";
 import { Appbar, Switch } from "react-native-paper";
 import { colors, Font, Size } from "../../constants/theme";
@@ -86,6 +86,27 @@ const Notification = ({ navigation }) => {
             onValueChange={() => setMuteNotification(!muteNotification)}
           />
         </View>
+        <TouchableOpacity
+          style={{
+            backgroundColor: Color.Secondary,
+            height: 40,
+            marginHorizontal: 15,
+            justifyContent: "center",
+            padding: 10,
+            marginTop: 25,
+          }}
+          onPress={() => Linking.openSettings()}
+        >
+          <Text
+            style={{
+              fontSize: Size.Midum + 2,
+              color: Color.White,
+              fontFamily: Font.medium,
+            }}
+          >
+            Manage notifications in settings
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
