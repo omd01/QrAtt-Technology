@@ -14,34 +14,29 @@ const Profile = ({ navigation ,setScreen }) => {
   const { myLeaves, totalAttendance } = useSelector((state) => state.message);
   const [checkIn, setCheckIn] = useState(0);
   const [checkOut, setCheckOut] = useState(0);
-
-  // const backAction = () => {
-  //   setScreen("home")
-  //   return null;
-  // };
-
-  // useEffect(() => {
-  //   const backHandler = BackHandler.addEventListener(
-  //     "hardwareBackPress",
-  //     backAction
-  //   );
-  //   return () => backHandler.remove();
-  // }, []);
+  const [failedAttempt, setFailedAttempt] = useState(0);
 
   useEffect(() => {
     var checkIn = 0;
     var checkOut = 0;
+    var failedAttempt = 0;
+
     if (totalAttendance) {
       totalAttendance.map((item) => {
-        if (item.action == "check-in") {
+        if (item.action == "check-in" && item.status == "success") {
           ++checkIn;
-        } else {
+        } else if (item.action == "check-out" && item.status == "success"){
           ++checkOut;
         }
+        else if (item.status == "failed"){
+          ++failedAttempt;
+        }
+
       });
     }
     setCheckIn(checkIn);
     setCheckOut(checkOut);
+    setFailedAttempt(failedAttempt)
   }, []);
 
   if (ProfileData === null) return null;
@@ -258,6 +253,56 @@ const Profile = ({ navigation ,setScreen }) => {
                   fontSize: Size.Midum + 2,
                 }}
               >
+                {`Total Failed Attempts`}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                height: "70%",
+                width: "16%",
+                alignItems: "center",
+                justifyContent: "center",
+                borderLeftWidth: 1,
+                borderColor: Color.White,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: Size.Midum + 2,
+                  fontFamily: Font.semiBold,
+                  color: Color.White,
+                }}
+              >
+                {failedAttempt}
+              </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              backgroundColor: Color.Secondary,
+              height: Size.ExtraLarge,
+              borderRadius: 8,
+              // overflow: "hidden",
+              alignItems: "center",
+              flexDirection: "row",
+              marginVertical: 5,
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  marginLeft: 8,
+                  color: Color.White,
+                  fontFamily: Font.regular,
+                  fontSize: Size.Midum + 2,
+                }}
+              >
                 {`Total Leave Request`}
               </Text>
             </View>
@@ -282,7 +327,10 @@ const Profile = ({ navigation ,setScreen }) => {
                 {myLeaves === undefined ? `0` : myLeaves.length}
               </Text>
             </View>
+
+            
           </View>
+          
         </View>
       </View>
     </>

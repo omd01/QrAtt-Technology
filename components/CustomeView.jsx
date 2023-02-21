@@ -306,6 +306,7 @@ export const ErrorView = ({ error }) => {
           value={"RETRY"}
           onPress={() => {
             dispatch(clearError());
+            dispatch(getMyAttendance());
           }}
           textColor={Color.White}
           labelStyle={{ fontFamily: Font.bold, fontSize: 16, letterSpacing: 1 }}

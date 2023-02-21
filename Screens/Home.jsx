@@ -28,7 +28,6 @@ import { setToken } from "../redux/notification";
 import Verify from "./Verify";
 import { logOut } from "../redux/action";
 
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -49,8 +48,7 @@ const Home = ({ navigation, route }) => {
   );
   const { user, loadingUser } = useSelector((state) => state.auth);
 
-
-/***************  Notification settings  **************/
+  /***************  Notification settings  **************/
 
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
@@ -63,11 +61,9 @@ const Home = ({ navigation, route }) => {
       setExpoPushToken(token);
     });
 
-
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
         setNotification(notification);
-     
       });
 
     responseListener.current =
@@ -85,18 +81,16 @@ const Home = ({ navigation, route }) => {
   }, []);
 
   async function registerForPushNotificationsAsync() {
-
     let token;
 
     if (Platform.OS === "android") {
       await Notifications.setNotificationChannelAsync("default", {
-        name: "default",
+        name: "All Notifications",
         importance: Notifications.AndroidImportance.MAX,
         vibrationPattern: [0, 250, 250, 250],
         lightColor: "#FF231F7C",
-        showBadge: false,
+        showBadge: true,
       });
-      
     }
 
     if (Device.isDevice) {
@@ -114,8 +108,6 @@ const Home = ({ navigation, route }) => {
         return;
       }
       token = (await Notifications.getExpoPushTokenAsync()).data;
-      const deviceToken = await Notifications.getDevicePushTokenAsync();
-      alert(deviceToken.data)
     } else {
       alert("Must use physical device for Push Notifications");
     }
@@ -124,8 +116,6 @@ const Home = ({ navigation, route }) => {
   }
 
   /*******************************************************/
-
-
 
   useEffect(() => {
     dispatch(loadTeachers());
@@ -147,13 +137,11 @@ const Home = ({ navigation, route }) => {
     };
   }, []);
 
-
   useEffect(() => {
     if (route.params) {
       setSelfi(route.params.image);
     }
   }, [route]);
-
 
   if (loadingUser) {
     return <SplashView />;
@@ -161,66 +149,48 @@ const Home = ({ navigation, route }) => {
 
   if (user === undefined) {
     dispatch(logOut());
-  }
+  } else {
+    if (user !== undefined) {
+      if (user !== null) {
+        if (user.verified === false) {
+          return <Verify />;
+        } else {
+          return (
+            <>
+              <View
+                style={{
+                  height: Size.Full,
+                  backgroundColor: Color.Primary,
+                  position: "relative",
+                }}
+              >
+                <View style={{ flex: 1, zIndex: 10 }}>
+                  {loading && <LoadingView />}
+                  {pending && <PendingView />}
+                  {error && <ErrorView error={error} />}
+                  {message && <SuccessView message={message} />}
 
-  else{
-if (user !== undefined) {
-    if (user !== null) {
-      if (user.verified === false) {
-        return <Verify/>;
-      }
-      else{
-        return (
-          <>
-            <View
-              style={{
-                height: Size.Full,
-                backgroundColor: Color.Primary,
-                position: "relative",
-              }}
-            >
-              <View style={{ flex: 1, zIndex: 10 }}>
-                {loading && <LoadingView />}
-                {pending && <PendingView />}
-                {error && <ErrorView error={error} />}
-                {message && <SuccessView message={message} />}
-      
-                {screen === "leave" ? (
-                 
+                  {screen === "leave" ? (
                     <Leave setScreen={setScreen} />
-                    
-                  
-                ) : screen === "history" ? (
-                
+                  ) : screen === "history" ? (
                     <History />
-                    
-                  
-                ) : screen === "profile" ? (
-                 
+                  ) : screen === "profile" ? (
                     <Profile navigation={navigation} setScreen={setScreen} />
-                    
-                  
-                ) : screen === "attendance" ? (
-                 
+                  ) : screen === "attendance" ? (
                     <Attendance />
-                    
-                  
-                ) : (
-               
+                  ) : (
                     <Scanner navigation={navigation} selfi={selfi} />
-                    
-                  
-                )}
+                  )}
+                </View>
+                {keyboardStatus === "KeyboardHidden" ? (
+                  <Footer screen={screen} setScreen={setScreen} />
+                ) : null}
               </View>
-              {keyboardStatus === "KeyboardHidden" ? (
-                <Footer screen={screen} setScreen={setScreen} />
-              ) : null}
-            </View>
-          </>
-        );
+            </>
+          );
+        }
       }
     }
-}
   }
 };
 
