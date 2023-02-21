@@ -43,12 +43,10 @@ export const SplashView = () => {
         source={require("../assets/Images/splash.gif")}
         style={{ width: Size.Full, resizeMode: "contain" }}
       />
-      <Text style={{ fontSize: Size.Midum, color: Color.White }}>
-        Welcome to
-      </Text>
+
       <Text
-        style={{ fontSize: Size.Large - 2, color: Color.Btn }}
-      >{`Q r A t t`}</Text>
+        style={{ fontSize: Size.Small + 2, color: Color.Btn }}
+      >{`L o a d i n g . . .`}</Text>
     </View>
   );
 };
