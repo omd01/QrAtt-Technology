@@ -107,6 +107,7 @@ const Color = colors[theme.mode]
           }}
         >
           <View style={{ flex: 1, alignItems: "center" }}>
+            {item.status === "success" ? 
             <Text
               style={{
                 marginLeft: 8,
@@ -117,8 +118,18 @@ const Color = colors[theme.mode]
             >
               {item.action.replace(/^\w/, (c) => c.toUpperCase()) +
                 ` From ` +
-                `Main Gate`}
+                item.gate}
             </Text>
+:<Text
+style={{
+  marginLeft: 8,
+  color: "red",
+  fontFamily: Font.semiBold,
+  fontSize: Size.Midum + 3,
+}}
+>
+{`Failed To ` +item.action.replace(/^\w/, (c) => c.toUpperCase()) }
+</Text>}
             <Text
               style={{
                 marginLeft: 8,
