@@ -291,10 +291,11 @@ const SignupSecond = ({ navigation, route }) => {
               <View style={{ marginVertical: Size.Small,marginHorizontal:10}}>
                 <RadioButton.Group onValueChange={handleChange("gender")} value={values.gender} >
                   <View style={{flexDirection:'row',alignItems:'center'}}>
-                    <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Male</Text>
                   <RadioButton value="male" />
-                  <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Femail</Text>
+                    <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Male</Text>
                 <RadioButton value="female" />
+                 
+                  <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Femail</Text>
                   </View>
                
                 </RadioButton.Group>
