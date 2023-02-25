@@ -32,22 +32,22 @@ export const SplashView = () => {
 
   return (
     <View
-      style={{
-        backgroundColor: Color.Primary,
-        height: Size.Full,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Image
-        source={require("../assets/Images/splash.gif")}
-        style={{ width: Size.Full, resizeMode: "contain" }}
-      />
-
-      <Text
-        style={{ fontSize: Size.Small + 2, color: Color.Btn }}
-      >{`L o a d i n g . . .`}</Text>
-    </View>
+    style={{
+      backgroundColor: Color.Primary,
+      height: Size.Full,
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <Image
+      source={theme.mode ==='dark' ? require("../assets/Images/loading-white.gif"):require("../assets/Images/loading-pending.gif")}
+      style={{ width: "30%", resizeMode: "contain" }}
+    />
+    
+    <Text
+      style={{ fontSize: Size.Midum, color: Color.White, fontFamily: Font.bold,marginTop:25 }}
+    >{`Getting Your Data...`}</Text>
+  </View>
   );
 };
 

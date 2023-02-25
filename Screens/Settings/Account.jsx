@@ -72,7 +72,7 @@ const Color = colors[theme.mode]
               paddingLeft: 25,
               backgroundColor: Color.Primary,
               justifyContent: "space-between",
-            //   marginVertical: 10,
+           
             }}
           >
             <Text
@@ -82,7 +82,7 @@ const Color = colors[theme.mode]
                 fontFamily: Font.medium,
               }}
             >
-              Chnage Password
+              Change password
             </Text>
             <IconButton
               icon={"chevron-right"}

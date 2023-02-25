@@ -22,8 +22,9 @@ const Settings = ({ navigation }) => {
     }
   }, [dispatch,message]);
 
-  const handelLogOut =() => {
-   dispatch(logOut());
+  const handelLogOut = async () => {
+   await dispatch(logOut());
+   navigation.navigate("login");
   };
 
   return (

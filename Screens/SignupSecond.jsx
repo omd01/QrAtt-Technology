@@ -295,7 +295,7 @@ const SignupSecond = ({ navigation, route }) => {
                     <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Male</Text>
                 <RadioButton value="female" />
                  
-                  <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Femail</Text>
+                  <Text style={{color:Color.White, marginHorizontal:5, fontFamily:Font.semiBold,fontSize:Size.Midum +1}}>Female</Text>
                   </View>
                
                 </RadioButton.Group>
